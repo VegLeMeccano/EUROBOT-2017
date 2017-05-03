@@ -1,0 +1,5 @@
+echo lancement du programe picky.a
+#./picky.a 2>&1 | tee log.txt
+# chmod +x bash_picky //pour executable en ./bash_picky
+
+sudo /home/pi/Documents/PICKY_PI/picky.a 2>&1 | tee /home/pi/Desktop/log.txt
