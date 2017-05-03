@@ -1,34 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="..\..\PICKY_MASTER_PI\Coord.h" open="0" top="0" tabpos="0">
-		<Cursor position="275" topLine="6" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Distributeur.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="884" topLine="45" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Distributeur.h" open="0" top="0" tabpos="0">
-		<Cursor position="508" topLine="12" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Module.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1223" topLine="80" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Module.h" open="0" top="0" tabpos="0">
-		<Cursor position="270" topLine="12" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Plateau_jeu.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="138" topLine="0" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Plateau_jeu.h" open="0" top="0" tabpos="0">
-		<Cursor position="1501" topLine="34" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Zone_depose_module.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1311" topLine="45" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Zone_depose_module.h" open="0" top="0" tabpos="0">
-		<Cursor position="331" topLine="12" />
-	</File>
-	<File name="main.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="197" topLine="0" />
+	<File name="main.cpp" open="1" top="1" tabpos="0">
+		<Cursor position="120" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

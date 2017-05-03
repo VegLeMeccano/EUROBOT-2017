@@ -32,16 +32,16 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="..\..\PICKY_MASTER_PI\Coord.cpp" />
-		<Unit filename="..\..\PICKY_MASTER_PI\Coord.h" />
-		<Unit filename="..\..\PICKY_MASTER_PI\Distributeur.cpp" />
-		<Unit filename="..\..\PICKY_MASTER_PI\Distributeur.h" />
-		<Unit filename="..\..\PICKY_MASTER_PI\Module.cpp" />
-		<Unit filename="..\..\PICKY_MASTER_PI\Module.h" />
-		<Unit filename="..\..\PICKY_MASTER_PI\Plateau_jeu.cpp" />
-		<Unit filename="..\..\PICKY_MASTER_PI\Plateau_jeu.h" />
-		<Unit filename="..\..\PICKY_MASTER_PI\Zone_depose_module.cpp" />
-		<Unit filename="..\..\PICKY_MASTER_PI\Zone_depose_module.h" />
+		<Unit filename="..\..\PICKY_PI\Coord.cpp" />
+		<Unit filename="..\..\PICKY_PI\Coord.h" />
+		<Unit filename="..\..\PICKY_PI\Distributeur.cpp" />
+		<Unit filename="..\..\PICKY_PI\Distributeur.h" />
+		<Unit filename="..\..\PICKY_PI\Module.cpp" />
+		<Unit filename="..\..\PICKY_PI\Module.h" />
+		<Unit filename="..\..\PICKY_PI\Plateau_jeu.cpp" />
+		<Unit filename="..\..\PICKY_PI\Plateau_jeu.h" />
+		<Unit filename="..\..\PICKY_PI\Zone_depose_module.cpp" />
+		<Unit filename="..\..\PICKY_PI\Zone_depose_module.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

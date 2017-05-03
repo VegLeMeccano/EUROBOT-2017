@@ -32,10 +32,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="..\..\PICKY_MASTER_PI\Element_Robot.cpp" />
-		<Unit filename="..\..\PICKY_MASTER_PI\Element_Robot.h" />
-		<Unit filename="..\..\PICKY_MASTER_PI\StockageModule.cpp" />
-		<Unit filename="..\..\PICKY_MASTER_PI\StockageModule.h" />
+		<Unit filename="..\..\PICKY_PI\Element_Robot.cpp" />
+		<Unit filename="..\..\PICKY_PI\Element_Robot.h" />
+		<Unit filename="..\..\PICKY_PI\StockageModule.cpp" />
+		<Unit filename="..\..\PICKY_PI\StockageModule.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

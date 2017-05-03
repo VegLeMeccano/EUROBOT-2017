@@ -1,46 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="..\..\PICKY_MASTER_PI\Coord.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="185" topLine="0" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Coord.h" open="0" top="0" tabpos="0">
-		<Cursor position="486" topLine="6" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Distributeur.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="134" topLine="0" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Element_Robot.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="356" topLine="0" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Element_Robot.h" open="0" top="0" tabpos="0">
-		<Cursor position="612" topLine="25" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Gestionnaire_Mission.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="1758" topLine="6" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Gestionnaire_Mission.h" open="1" top="0" tabpos="2">
-		<Cursor position="557" topLine="20" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Mission.cpp" open="1" top="1" tabpos="5">
-		<Cursor position="11191" topLine="332" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Mission.h" open="1" top="0" tabpos="4">
-		<Cursor position="163" topLine="0" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Module.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="23" topLine="0" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Plateau_jeu.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="1637" topLine="30" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Plateau_jeu.h" open="0" top="0" tabpos="0">
-		<Cursor position="247" topLine="14" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Zone_depose_module.h" open="0" top="0" tabpos="0">
-		<Cursor position="412" topLine="13" />
-	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="23" topLine="8" />
+	<File name="main.cpp" open="1" top="1" tabpos="0">
+		<Cursor position="128" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

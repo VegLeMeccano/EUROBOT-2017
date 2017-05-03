@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "../../PICKY_MASTER_PI/Plateau_jeu.h"
-#include "../../PICKY_MASTER_PI/Element_Robot.h"
-#include "../../PICKY_MASTER_PI/Gestionnaire_Mission.h"
+#include "../../PICKY_PI/Plateau_jeu.h"
+#include "../../PICKY_PI/Element_Robot.h"
+#include "../../PICKY_PI/Gestionnaire_Mission.h"
 
 
 using namespace std;

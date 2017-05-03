@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="..\..\PICKY_MASTER_PI\Element_Robot.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="1868" topLine="33" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\Element_Robot.h" open="1" top="0" tabpos="2">
-		<Cursor position="399" topLine="0" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\StockageModule.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="164" topLine="0" />
-	</File>
-	<File name="..\..\PICKY_MASTER_PI\StockageModule.h" open="0" top="0" tabpos="3">
-		<Cursor position="75" topLine="0" />
-	</File>
-	<File name="main.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="2022" topLine="60" />
+	<File name="main.cpp" open="1" top="1" tabpos="0">
+		<Cursor position="59" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

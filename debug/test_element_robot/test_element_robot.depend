@@ -16,3 +16,27 @@
 1493629457 source:c:\users\link\desktop\eurobot_2017\picky_master_pi\stockagemodule.cpp
 	"StockageModule.h"
 
+1493629457 source:c:\users\link\desktop\eurobot-2017\picky_master_pi\stockagemodule.cpp
+	"StockageModule.h"
+
+1493626723 c:\users\link\desktop\eurobot-2017\picky_master_pi\stockagemodule.h
+	<iostream>
+
+1493802812 source:c:\users\link\desktop\eurobot-2017\debug\test_element_robot\main.cpp
+	<iostream>
+	"../../PICKY_PI/Element_Robot.h"
+
+1493658091 c:\users\link\desktop\eurobot-2017\picky_master_pi\element_robot.h
+	"StockageModule.h"
+	<iostream>
+
+1493722858 source:c:\users\link\desktop\eurobot-2017\picky_master_pi\element_robot.cpp
+	"Element_Robot.h"
+
+1493658091 c:\users\link\desktop\eurobot-2017\picky_pi\element_robot.h
+	"StockageModule.h"
+	<iostream>
+
+1493626723 c:\users\link\desktop\eurobot-2017\picky_pi\stockagemodule.h
+	<iostream>
+

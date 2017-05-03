@@ -1,7 +1,7 @@
 #include <iostream>
-#include "../../PICKY_MASTER_PI/Module.h"
-#include "../../PICKY_MASTER_PI/Distributeur.h"
-#include "../../PICKY_MASTER_PI/Plateau_jeu.h"
+#include "../../PICKY_PI/Module.h"
+#include "../../PICKY_PI/Distributeur.h"
+#include "../../PICKY_PI/Plateau_jeu.h"
 
 using namespace std;
 
