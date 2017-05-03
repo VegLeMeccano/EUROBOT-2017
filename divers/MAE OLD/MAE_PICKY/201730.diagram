@@ -1,0 +1,36 @@
+format 76
+
+statecanvas 128002 state_ref 158466 // sortie de zone
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 166 87 2000 691 451
+end
+pseudostatecanvas 128130 pseudostate_ref 250626 // initial
+   xyz 297 166 2005
+end
+statecanvas 128258 state_ref 240514 // BF cap
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 234 247 2005 555 145
+end
+statecanvas 128386 state_ref 240642 // avance
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 685 469 2005 59 33
+end
+pseudostatecanvas 128514 pseudostate_ref 250754 // exit_point
+   xyz 793 408 3005 label_xy 789 427
+end
+transitioncanvas 128642 transition_ref 305922 // <transition>
+  
+  from ref 128130 z 2006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 128770 transition_ref 306050 // <transition>
+  
+  from ref 128258 z 2006 to ref 128386
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 128898 transition_ref 306178 // <transition>
+  
+  from ref 128386 z 3006 to ref 128514
+  write_horizontally default show_definition default drawing_language default
+end
+end

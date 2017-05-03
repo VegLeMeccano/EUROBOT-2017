@@ -1,0 +1,90 @@
+format 76
+
+statecanvas 128002 state_ref 150914 // vidage distributeur
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 109 37 2000 1037 1035
+end
+pseudostatecanvas 128130 pseudostate_ref 209666 // initial
+   xyz 181 122 2005
+end
+statecanvas 128386 state_ref 216578 // BF droite sur distrib
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 148 389 2005 349 173
+end
+statecanvas 128770 state_ref 216706 // BF avance jusquau blocage
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 243 665 2005 339 117
+end
+statecanvas 128898 state_ref 216834 // SET Y CAP
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 645 121 2005 349 173
+end
+statecanvas 129026 state_ref 216962 // pompage
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 562 342 2005 537 89
+end
+statecanvas 129154 state_ref 217090 // recule
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 750 481 2005 351 159
+end
+pseudostatecanvas 129282 pseudostate_ref 209794 // exit_point
+   xyz 373 919 3005 label_xy 349 938
+end
+statecanvas 130306 state_ref 217346 // orientation vers sortie de zone
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 692 668 3010 329 145
+end
+statecanvas 130562 state_ref 217474 // avance
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 515 858 2005 421 187
+end
+transitioncanvas 129410 transition_ref 259074 // <transition>
+  decenter_begin 323
+  
+  from ref 128386 z 2006 label "assFini" xyz 233 565 2006 to point 241 582
+  line 131202 z 2006 to ref 128770
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129538 transition_ref 259202 // <transition>
+  
+  from ref 128770 z 2006 label "blocage" xyz 581 471 2006 to ref 128898
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129666 transition_ref 259330 // <transition>
+  
+  from ref 128898 z 2006 to ref 129026
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129794 transition_ref 259458 // <transition>
+  
+  from ref 129026 z 2006 label "distrib_deboite" xyz 830.5 446.5 2006 to ref 129154
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130434 transition_ref 259714 // <transition>
+  
+  from ref 129154 z 3011 label "assFini" xyz 897 646 3011 to ref 130306
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130690 transition_ref 259842 // <transition>
+  
+  from ref 130306 z 3011 label "assFini" xyz 775 826 3011 to ref 130562
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130818 transition_ref 259970 // <transition>
+  
+  from ref 130562 z 3006 label "assFini" xyz 435 923 3006 to ref 129282
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130946 transition_ref 410242 // <transition>
+  
+  from ref 128130 z 2006 to ref 128386
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 131074 transition_ref 430722 // <transition>
+  decenter_begin 675
+  
+  from ref 128386 z 2006 label "blocage" xyz 387.5 567.5 2006 to point 429 587
+  line 131330 z 2006 to ref 128770
+  write_horizontally default show_definition default drawing_language default
+end
+end

@@ -1,0 +1,35 @@
+class avance_State
+!!!191106.cpp!!!	assFini(inout stm : MAE_MURPHY) : void
+  {
+    stm._set_currentState(stm._mae_murphy_state._jeu_state._mission_attrap_balle_et_chiage_state._sortie_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_MURPHY.Jeu.mission attrap balle et chiage.sortie");
+#endif
+    stm._mae_murphy_state._jeu_state._mission_attrap_balle_et_chiage_state._sortie_state.create(stm);
+  }
+!!!191234.cpp!!!	create(inout stm : MAE_MURPHY) : void
+	_doentry(stm);
+!!!191362.cpp!!!	_doentry(inout stm : MAE_MURPHY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_MURPHY.Jeu.mission attrap balle et chiage.avance");
+#endif
+cout<<"chiage : avance/degagement"<<endl;
+// aller devant la zone de depart
+//BF avance de 400mm
+
+serialPrintf(master->getPortSerie(),"S7 1 \n"); 	// vitesse moyenne
+
+//serialPrintf(master->getPortSerie(),"S4 400 \n");
+
+if(master->is_Jaune()){
+// BF droite sur le gobelet 
+serialPrintf(master->getPortSerie(),"S5 -934 996 0 \n");
+}
+if(master->is_Vert()){
+// BF droite sur le gobelet 
+serialPrintf(master->getPortSerie(),"S5 934 996 180 \n");
+}
+
+//master->get_gestionnaire_mission()->get_mission_chiage_balle()->mission_remplie();
+!!!191490.cpp!!!	_upper(inout stm : MAE_MURPHY) : MAE_MURPHY::AnyState
+  return &stm._mae_murphy_state._jeu_state._mission_attrap_balle_et_chiage_state;

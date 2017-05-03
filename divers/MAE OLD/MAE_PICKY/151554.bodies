@@ -1,0 +1,47 @@
+class claps_central_State
+!!!227202.cpp!!!	create(inout stm : MAE_MURPHY) : void
+  _doentry(stm);
+  {
+    stm._set_currentState(stm._mae_murphy_state._jeu_state._mission_zone_ennemie_state._claps_central_state._bf_droite_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_MURPHY.Jeu.mission zone ennemie.claps central.BF droite");
+#endif
+    stm._mae_murphy_state._jeu_state._mission_zone_ennemie_state._claps_central_state._bf_droite_state.create(stm);
+  }
+!!!228866.cpp!!!	_exit22(inout stm : MAE_MURPHY) : void
+  {
+    stm._set_currentState(stm._mae_murphy_state._jeu_state._mission_zone_ennemie_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_MURPHY.Jeu.mission zone ennemie");
+#endif
+    if (master->get_gestionnaire()->get_mission_zone_ennemie()->is_depot_gobelet_done()) {
+      stm._set_currentState(stm._mae_murphy_state._jeu_state._mission_zone_ennemie_state._faire_chier_en_zizagant_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_MURPHY.Jeu.mission zone ennemie.faire chier en zizagant");
+#endif
+      stm._mae_murphy_state._jeu_state._mission_zone_ennemie_state._faire_chier_en_zizagant_state.create(stm);
+    }
+    else if (!master->get_gestionnaire()->get_mission_zone_ennemie()->is_depot_gobelet_done()) {
+      if (!master->get_gestionnaire()->get_element_robot()->gobelet_present()) {
+        stm._set_currentState(stm._mae_murphy_state._jeu_state._mission_zone_ennemie_state._faire_chier_en_zizagant_state);
+#ifdef VERBOSE_STATE_MACHINE
+        puts("DEBUG : current state is now .MAE_MURPHY.Jeu.mission zone ennemie.faire chier en zizagant");
+#endif
+        stm._mae_murphy_state._jeu_state._mission_zone_ennemie_state._faire_chier_en_zizagant_state.create(stm);
+      }
+      else if (master->get_gestionnaire()->get_element_robot()->gobelet_present()) {
+        stm._set_currentState(stm._mae_murphy_state._jeu_state._mission_zone_ennemie_state._depot_gobelet_state);
+#ifdef VERBOSE_STATE_MACHINE
+        puts("DEBUG : current state is now .MAE_MURPHY.Jeu.mission zone ennemie.depot gobelet");
+#endif
+        stm._mae_murphy_state._jeu_state._mission_zone_ennemie_state._depot_gobelet_state.create(stm);
+      }
+    }
+  }
+!!!229506.cpp!!!	_doentry(inout stm : MAE_MURPHY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_MURPHY.Jeu.mission zone ennemie.claps central");
+#endif
+// mission à 5pts
+!!!229634.cpp!!!	_upper(inout stm : MAE_MURPHY) : MAE_MURPHY::AnyState
+  return &stm._mae_murphy_state._jeu_state._mission_zone_ennemie_state;

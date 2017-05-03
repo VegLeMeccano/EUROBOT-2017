@@ -1,0 +1,23 @@
+class RECALAGE_AR_State
+!!!139778.cpp!!!	blocage(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._initialisation_state._set_x_y_cap_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.INITIALISATION.SET X Y CAP");
+#endif
+    stm._mae_picky_state._initialisation_state._set_x_y_cap_state.create(stm);
+  }
+!!!139906.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!140034.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.INITIALISATION.RECALAGE AR");
+#endif
+cout<<"recalage AR"<<endl;
+// desactivation de l'evitement
+serialPrintf(master->getPortSerie(),"E0 \n"); 
+serialPrintf(master->getPortSerie(),"S0 0 0 0 \n");
+// recalage
+serialPrintf(master->getPortSerie(),"S2 \n");
+!!!140162.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._initialisation_state;

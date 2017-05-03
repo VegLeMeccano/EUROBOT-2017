@@ -1,0 +1,14 @@
+class Etat_check_sortie_de_mission_State
+!!!161538.cpp!!!	_completion(inout stm : MAE_PICKY) : bool
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._exit2(stm);
+    return (bool) 1;
+  }
+!!!161666.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_completion(stm);
+!!!161794.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state;

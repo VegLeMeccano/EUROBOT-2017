@@ -1,0 +1,60 @@
+format 76
+
+statecanvas 128002 state_ref 128002 // MAE_PICKY
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 43 22 2000 805 637
+end
+pseudostatecanvas 128130 pseudostate_ref 128002 // initial
+   xyz 323 80 2005
+end
+statecanvas 128258 state_ref 128130 // INITIALISATION
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 196 187 2005 271 61
+end
+statecanvas 128514 state_ref 128258 // JEU
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 214 353 2005 209 65
+end
+statecanvas 128642 state_ref 128386 // EVITEMENT
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 540 355 2005 251 61
+end
+statecanvas 129282 state_ref 149122 // END
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 448 531 2005 211 61
+end
+pseudostatecanvas 129538 pseudostate_ref 156418 // exit_point
+   xyz 309 238 3005 label_xy 336 253
+end
+pseudostatecanvas 129922 pseudostate_ref 163074 // exit_point
+   xyz 561 406 3005 label_xy 578 424
+end
+transitioncanvas 128386 transition_ref 128002 // <transition>
+  
+  from ref 128130 z 2006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129154 transition_ref 151938 // <transition>
+  
+  from ref 128514 z 2006 label "evitement" xyz 458 370 2006 to ref 128642
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129410 transition_ref 152066 // <transition>
+  decenter_end 442
+  
+  from ref 128514 z 2006 label "end_game" xyz 264 460 2006 to point 316 509
+  line 130306 z 2006 to ref 129282
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130050 transition_ref 166658 // <transition>
+  
+  from ref 129922 z 3006 to point 448 413
+  line 130178 z 3006 to ref 128514
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130434 transition_ref 188930 // <transition>
+  
+  from ref 129538 z 3006 to ref 128514
+  write_horizontally default show_definition default drawing_language default
+end
+end

@@ -1,0 +1,18 @@
+format 76
+
+statecanvas 128002 state_ref 141954 // MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 161 172 2000 573 253
+end
+pseudostatecanvas 128130 pseudostate_ref 141954 // initial
+   xyz 266 243 2005
+end
+pseudostatecanvas 128258 pseudostate_ref 142082 // exit_point
+   xyz 534 361 3005 label_xy 379 380
+end
+transitioncanvas 128386 transition_ref 136962 // <transition>
+  
+  from ref 128130 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+end

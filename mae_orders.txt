@@ -1,0 +1,40 @@
+transisition MAE BOUML
+
+triggger mission:
+mission_collecte_module_centraux_initiale()
+mission_collecte_module_centraux_restant()
+mission_collecte_distributeur_monochrome()
+mission_transfert_direct_distributeur_polychrome()
+mission_push_distributeur_monochrome()
+mission_push_cratere()
+mission_drop_zone_depart()
+mission_depot_base_diagonale()
+mission_depot_base_verticale()
+
+
+start:
+start_mis
+start_enleve
+end_game
+
+
+slave:
+near
+assFini
+blocage
+evitement
+
+time_out
+
+
+APPEL dans MAE
+master->getPortSerie()
+SerialPrintf
+
+cout<<"ETAT INITIALISATION"<<endl;
+cout<<"RECULE"<<endl;
+// recule (recalage au cul)
+serialPrintf(master->getPortSerie(),"E0 \n"); // desactivation de l'evitement
+serialPrintf(master->getPortSerie(),"S0 0 0 0 \n");
+serialPrintf(master->getPortSerie(),"S2 \n");
+master->set_time_out(2000);

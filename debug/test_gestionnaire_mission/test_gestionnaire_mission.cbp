@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="test_gestionnaire_mission" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin\Debug\test_gestionnaire_mission" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin\Release\test_gestionnaire_mission" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="..\..\PICKY_MASTER_PI\Coord.cpp" />
+		<Unit filename="..\..\PICKY_MASTER_PI\Coord.h" />
+		<Unit filename="..\..\PICKY_MASTER_PI\Distributeur.cpp" />
+		<Unit filename="..\..\PICKY_MASTER_PI\Distributeur.h" />
+		<Unit filename="..\..\PICKY_MASTER_PI\Element_Robot.cpp" />
+		<Unit filename="..\..\PICKY_MASTER_PI\Element_Robot.h" />
+		<Unit filename="..\..\PICKY_MASTER_PI\Gestionnaire_Mission.cpp" />
+		<Unit filename="..\..\PICKY_MASTER_PI\Gestionnaire_Mission.h" />
+		<Unit filename="..\..\PICKY_MASTER_PI\Mission.cpp" />
+		<Unit filename="..\..\PICKY_MASTER_PI\Mission.h" />
+		<Unit filename="..\..\PICKY_MASTER_PI\Module.cpp" />
+		<Unit filename="..\..\PICKY_MASTER_PI\Module.h" />
+		<Unit filename="..\..\PICKY_MASTER_PI\Plateau_jeu.cpp" />
+		<Unit filename="..\..\PICKY_MASTER_PI\Plateau_jeu.h" />
+		<Unit filename="..\..\PICKY_MASTER_PI\StockageModule.cpp" />
+		<Unit filename="..\..\PICKY_MASTER_PI\StockageModule.h" />
+		<Unit filename="..\..\PICKY_MASTER_PI\Zone_depose_module.cpp" />
+		<Unit filename="..\..\PICKY_MASTER_PI\Zone_depose_module.h" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

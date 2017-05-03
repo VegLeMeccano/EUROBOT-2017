@@ -1,0 +1,27 @@
+class mission_depot_tour_estrade_State
+!!!158978.cpp!!!	create(inout stm : MAE_MURPHY) : void
+  _doentry(stm);
+  {
+    stm._set_currentState(stm._mae_murphy_state._jeu_state._mission_depot_tour_estrade_state._waypoint_init_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_MURPHY.Jeu.mission depot tour estrade.waypoint init");
+#endif
+    stm._mae_murphy_state._jeu_state._mission_depot_tour_estrade_state._waypoint_init_state.create(stm);
+  }
+!!!159874.cpp!!!	_exit2(inout stm : MAE_MURPHY) : void
+  {
+    stm._set_currentState(stm._mae_murphy_state._jeu_state._decision_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_MURPHY.Jeu.decision");
+#endif
+    stm._mae_murphy_state._jeu_state._decision_state.create(stm);
+  }
+!!!163970.cpp!!!	_doentry(inout stm : MAE_MURPHY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_MURPHY.Jeu.mission depot tour estrade");
+#endif
+// depose une ou plusieurs pile sur l'estrade
+// normalement une seule sinon risque de faire tomber celle adverse
+cout<<"MISSION DEPOT TOUR ESTRADE"<<endl;
+!!!164098.cpp!!!	_upper(inout stm : MAE_MURPHY) : MAE_MURPHY::AnyState
+  return &stm._mae_murphy_state._jeu_state;

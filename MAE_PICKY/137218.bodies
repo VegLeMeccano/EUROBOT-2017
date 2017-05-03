@@ -1,0 +1,25 @@
+class EVITEMENT_State
+!!!151554.cpp!!!	create(inout stm : MAE_PICKY) : void
+  _doentry(stm);
+  {
+    stm._set_currentState(stm._mae_picky_state._evitement_state._action_to_do_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.EVITEMENT.ACTION TO DO");
+#endif
+    stm._mae_picky_state._evitement_state._action_to_do_state.create(stm);
+  }
+!!!151682.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.EVITEMENT");
+#endif
+cout<<"ETAT EVITEMENT"<<endl;
+!!!151810.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state;
+!!!162946.cpp!!!	_exit11(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU");
+#endif
+    stm._mae_picky_state._jeu_state.create(stm);
+  }

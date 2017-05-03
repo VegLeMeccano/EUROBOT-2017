@@ -1,0 +1,14 @@
+window_sizes 1920 1058 456 1458 739 35
+diagrams
+  active  statediagram_ref 128130 // Principal
+    1623 949 100 0 0 0
+  statediagram_ref 134658 // Jeu
+    1458 949 100 0 0 29
+end
+show_stereotypes
+selected statediagram_ref 128130 // Principal
+open
+  state_ref 128130 // MAE_MURPHY
+  deploymentview_ref 128130 // MAE_MURPHY
+end
+end

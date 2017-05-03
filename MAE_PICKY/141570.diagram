@@ -1,0 +1,18 @@
+format 76
+
+statecanvas 128002 state_ref 142082 // MISSION_PUSH_DISTRIBUTEUR_MONOCHROME
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 129 114 2000 547 361
+end
+pseudostatecanvas 128130 pseudostate_ref 142210 // initial
+   xyz 205 179 2005
+end
+pseudostatecanvas 128258 pseudostate_ref 142338 // exit_point
+   xyz 366 336 3005 label_xy 247 355
+end
+transitioncanvas 128386 transition_ref 137090 // <transition>
+  
+  from ref 128130 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+end

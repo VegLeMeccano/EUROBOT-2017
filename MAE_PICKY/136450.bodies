@@ -1,0 +1,14 @@
+class MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME_State
+!!!148226.cpp!!!	create(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._exit5(stm);
+  }
+!!!148354.cpp!!!	_exit5(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._decision_mission_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.DECISION_MISSION");
+#endif
+  }
+!!!148482.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state;

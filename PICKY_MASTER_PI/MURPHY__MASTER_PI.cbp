@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="MURPHY__MASTER_PI" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin\Debug\MURPHY__MASTER_PI" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="..\..\..\..\..\usr\local\include" />
+					<Add directory="..\..\..\..\..\usr\lib" />
+				</Compiler>
+				<Linker>
+					<Add library="..\..\..\..\..\usr\lib\libwiringPi.so" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin\Release\COOP_R__MASTER_PI" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="Coord.cpp" />
+		<Unit filename="Coord.h" />
+		<Unit filename="Distributeur.cpp" />
+		<Unit filename="Distributeur.h" />
+		<Unit filename="Element_Robot.cpp" />
+		<Unit filename="Element_Robot.h" />
+		<Unit filename="Gestionnaire_Mission.cpp" />
+		<Unit filename="Gestionnaire_Mission.h" />
+		<Unit filename="MAE_PICKY.cpp" />
+		<Unit filename="MAE_PICKY.h" />
+		<Unit filename="Master.cpp" />
+		<Unit filename="Master.h" />
+		<Unit filename="Mission.cpp" />
+		<Unit filename="Mission.h" />
+		<Unit filename="Module.cpp" />
+		<Unit filename="Module.h" />
+		<Unit filename="Period.cpp" />
+		<Unit filename="Period.h" />
+		<Unit filename="Plateau_jeu.cpp" />
+		<Unit filename="Plateau_jeu.h" />
+		<Unit filename="Protocole_COM.cpp" />
+		<Unit filename="Protocole_COM.h" />
+		<Unit filename="StockageModule.cpp" />
+		<Unit filename="StockageModule.h" />
+		<Unit filename="Zone_depose_module.cpp" />
+		<Unit filename="Zone_depose_module.h" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

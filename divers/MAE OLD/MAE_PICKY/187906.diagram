@@ -1,0 +1,65 @@
+format 76
+
+statecanvas 128002 state_ref 159106 // depot gobelet
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 259 121 2000 1113 773
+end
+pseudostatecanvas 128130 pseudostate_ref 223618 // initial
+   xyz 369 178 2005
+end
+pseudostatecanvas 128258 pseudostate_ref 223746 // exit_point
+   xyz 893 770 3005 label_xy 889 789
+end
+statecanvas 128514 state_ref 262914 // BF droite sur le cine
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 303 256 2005 349 159
+end
+statecanvas 128770 state_ref 263042 // BF CAP vers centre de la table
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 299 459 2005 373 159
+end
+statecanvas 129026 state_ref 263170 // ouverture capot
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 288 708 2005 499 117
+end
+statecanvas 129282 state_ref 263298 // avance
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 966 326 2005 335 89
+end
+statecanvas 129538 state_ref 263426 // fermeture capot
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 980 591 2005 345 75
+end
+transitioncanvas 128642 transition_ref 331650 // <transition>
+  
+  from ref 128130 z 2006 to ref 128514
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 128898 transition_ref 331778 // <transition>
+  
+  from ref 128514 z 2006 label "assFini" xyz 462.5 428 2006 to ref 128770
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129154 transition_ref 331906 // <transition>
+  
+  from ref 128770 z 2006 label "assFini" xyz 494.5 654.5 2006 to ref 129026
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129410 transition_ref 332034 // <transition>
+  decenter_begin 970
+  decenter_end 128
+  
+  from ref 129026 z 2006 label "time_out" xyz 870 553.5 2006 to ref 129282
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129666 transition_ref 332162 // <transition>
+  
+  from ref 129282 z 2006 label "assFini" xyz 1124.5 495 2006 to ref 129538
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129794 transition_ref 332290 // <transition>
+  
+  from ref 129538 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+end

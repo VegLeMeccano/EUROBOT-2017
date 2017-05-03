@@ -1,0 +1,37 @@
+class capture_de_balle_State
+!!!189186.cpp!!!	fin_montee_bras(inout stm : MAE_MURPHY) : void
+  {
+    stm._set_currentState(stm._mae_murphy_state._jeu_state._mission_attrap_balle_et_chiage_state._drop_pop_corn_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_MURPHY.Jeu.mission attrap balle et chiage.drop pop corn");
+#endif
+    stm._mae_murphy_state._jeu_state._mission_attrap_balle_et_chiage_state._drop_pop_corn_state.create(stm);
+  }
+!!!189314.cpp!!!	time_out(inout stm : MAE_MURPHY) : void
+  {
+    stm._set_currentState(stm._mae_murphy_state._jeu_state._mission_attrap_balle_et_chiage_state._drop_pop_corn_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_MURPHY.Jeu.mission attrap balle et chiage.drop pop corn");
+#endif
+    stm._mae_murphy_state._jeu_state._mission_attrap_balle_et_chiage_state._drop_pop_corn_state.create(stm);
+  }
+!!!189442.cpp!!!	create(inout stm : MAE_MURPHY) : void
+	_doentry(stm);
+!!!189570.cpp!!!	_doentry(inout stm : MAE_MURPHY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_MURPHY.Jeu.mission attrap balle et chiage.capture de balle");
+#endif
+cout<<"chiage : capture de balle"<<endl;
+if(!master->get_gestionnaire_mission()->get_mission_chiage_balle()->is_catch_ball())
+{
+	serialPrintf(master->getPortSerie(),"B2 \n");
+	master->get_gestionnaire_mission()->get_mission_chiage_balle()->catch_ball_done();
+	master->get_gestionnaire_mission()->get_element_robot()->balle_catch();
+}
+else
+{
+	master->set_time_out(200);
+}
+
+!!!189698.cpp!!!	_upper(inout stm : MAE_MURPHY) : MAE_MURPHY::AnyState
+  return &stm._mae_murphy_state._jeu_state._mission_attrap_balle_et_chiage_state;

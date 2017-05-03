@@ -1,0 +1,152 @@
+class MAE_PICKY
+!!!137730.cpp!!!	MAE_PICKY()
+  _current_state = 0;
+!!!137986.cpp!!!	create() : bool
+if (_current_state == 0)
+(_current_state = &(*this)._mae_picky_state)->create(*this);
+return (_current_state != 0);
+!!!138754.cpp!!!	start_mis() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger start_mis");
+#endif
+    _current_state->start_mis(*this);
+  }
+  return (_current_state != 0);
+!!!139522.cpp!!!	blocage() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger blocage");
+#endif
+    _current_state->blocage(*this);
+  }
+  return (_current_state != 0);
+!!!140290.cpp!!!	time_out() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger time_out");
+#endif
+    _current_state->time_out(*this);
+  }
+  return (_current_state != 0);
+!!!141570.cpp!!!	assFini() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger assFini");
+#endif
+    _current_state->assFini(*this);
+  }
+  return (_current_state != 0);
+!!!142338.cpp!!!	start_enleve() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger start_enleve");
+#endif
+    _current_state->start_enleve(*this);
+  }
+  return (_current_state != 0);
+!!!143490.cpp!!!	mission_collecte_module_centraux_initiale() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger mission_collecte_module_centraux_initiale");
+#endif
+    _current_state->mission_collecte_module_centraux_initiale(*this);
+  }
+  return (_current_state != 0);
+!!!143874.cpp!!!	mission_collecte_module_centraux_restant() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger mission_collecte_module_centraux_restant");
+#endif
+    _current_state->mission_collecte_module_centraux_restant(*this);
+  }
+  return (_current_state != 0);
+!!!144258.cpp!!!	mission_collecte_distributeur_monochrome() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger mission_collecte_distributeur_monochrome");
+#endif
+    _current_state->mission_collecte_distributeur_monochrome(*this);
+  }
+  return (_current_state != 0);
+!!!144642.cpp!!!	mission_transfert_direct_distributeur_polychrome() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger mission_transfert_direct_distributeur_polychrome");
+#endif
+    _current_state->mission_transfert_direct_distributeur_polychrome(*this);
+  }
+  return (_current_state != 0);
+!!!145026.cpp!!!	mission_push_distributeur_monochrome() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger mission_push_distributeur_monochrome");
+#endif
+    _current_state->mission_push_distributeur_monochrome(*this);
+  }
+  return (_current_state != 0);
+!!!145410.cpp!!!	mission_push_cratere() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger mission_push_cratere");
+#endif
+    _current_state->mission_push_cratere(*this);
+  }
+  return (_current_state != 0);
+!!!145794.cpp!!!	mission_drop_zone_depart() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger mission_drop_zone_depart");
+#endif
+    _current_state->mission_drop_zone_depart(*this);
+  }
+  return (_current_state != 0);
+!!!146178.cpp!!!	mission_depot_base_diagonale() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger mission_depot_base_diagonale");
+#endif
+    _current_state->mission_depot_base_diagonale(*this);
+  }
+  return (_current_state != 0);
+!!!146562.cpp!!!	mission_depot_base_verticale() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger mission_depot_base_verticale");
+#endif
+    _current_state->mission_depot_base_verticale(*this);
+  }
+  return (_current_state != 0);
+!!!150530.cpp!!!	evitement() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger evitement");
+#endif
+    _current_state->evitement(*this);
+  }
+  return (_current_state != 0);
+!!!150914.cpp!!!	end_game() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger end_game");
+#endif
+    _current_state->end_game(*this);
+  }
+  return (_current_state != 0);
+!!!152962.cpp!!!	doActivity() : void
+  _current_state->_do(*this);
+!!!153090.cpp!!!	_set_currentState(inout st : MAE_PICKY::AnyState) : void
+  _current_state = &st;
+!!!153218.cpp!!!	_final() : void
+  _current_state = 0;
+#ifdef VERBOSE_STATE_MACHINE
+  puts("DEBUG : final state reached");
+#endif
+!!!161922.cpp!!!	near() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger near");
+#endif
+    _current_state->near(*this);
+  }
+  return (_current_state != 0);

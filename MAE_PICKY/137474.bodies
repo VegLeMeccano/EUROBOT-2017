@@ -1,0 +1,10 @@
+class END_State
+!!!152450.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!152578.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.END");
+#endif
+cout<<"ETAT END"<<endl;
+!!!152706.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state;

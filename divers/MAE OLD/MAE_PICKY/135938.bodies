@@ -1,0 +1,28 @@
+class recule_doucement_State
+!!!160002.cpp!!!	assFini(inout stm : MAE_MURPHY) : void
+  {
+    stm._set_currentState(stm._mae_murphy_state._jeu_state._mission_depot_tour_estrade_state._replis_des_pinces_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_MURPHY.Jeu.mission depot tour estrade.replis des pinces");
+#endif
+    stm._mae_murphy_state._jeu_state._mission_depot_tour_estrade_state._replis_des_pinces_state.create(stm);
+  }
+!!!160130.cpp!!!	create(inout stm : MAE_MURPHY) : void
+	_doentry(stm);
+!!!160258.cpp!!!	_doentry(inout stm : MAE_MURPHY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_MURPHY.Jeu.mission depot tour estrade.recule doucement");
+#endif
+cout<<"depot estrade : recule doucement"<<endl;
+serialPrintf(master->getPortSerie(),"S4 -250 \n");
+
+!!!160386.cpp!!!	_upper(inout stm : MAE_MURPHY) : MAE_MURPHY::AnyState
+  return &stm._mae_murphy_state._jeu_state._mission_depot_tour_estrade_state;
+!!!292738.cpp!!!	blocage(inout stm : MAE_MURPHY) : void
+  {
+    stm._set_currentState(stm._mae_murphy_state._jeu_state._mission_depot_tour_estrade_state._replis_des_pinces_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_MURPHY.Jeu.mission depot tour estrade.replis des pinces");
+#endif
+    stm._mae_murphy_state._jeu_state._mission_depot_tour_estrade_state._replis_des_pinces_state.create(stm);
+  }

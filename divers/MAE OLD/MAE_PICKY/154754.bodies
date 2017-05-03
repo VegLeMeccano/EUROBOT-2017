@@ -1,0 +1,20 @@
+class avance_State
+!!!242818.cpp!!!	assFini(inout stm : MAE_MURPHY) : void
+  {
+    stm._set_currentState(stm._mae_murphy_state._recalage_initial_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_MURPHY.Recalage Initial");
+#endif
+    stm._mae_murphy_state._recalage_initial_state._exit27(stm);
+  }
+!!!242946.cpp!!!	create(inout stm : MAE_MURPHY) : void
+	_doentry(stm);
+!!!243074.cpp!!!	_doentry(inout stm : MAE_MURPHY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_MURPHY.Recalage Initial.avance");
+#endif
+// pour laisser de la place à coop'r
+cout<<"avance de 200 mm "<<endl;
+serialPrintf(master->getPortSerie(),"S4 250 \n");
+!!!243202.cpp!!!	_upper(inout stm : MAE_MURPHY) : MAE_MURPHY::AnyState
+  return &stm._mae_murphy_state._recalage_initial_state;

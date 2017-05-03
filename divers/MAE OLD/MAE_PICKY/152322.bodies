@@ -1,0 +1,25 @@
+class BF_droite_sur_le_cine_State
+!!!230018.cpp!!!	assFini(inout stm : MAE_MURPHY) : void
+  {
+    stm._set_currentState(stm._mae_murphy_state._jeu_state._mission_zone_ennemie_state._depot_gobelet_state._bf_cap_vers_centre_de_la_table_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_MURPHY.Jeu.mission zone ennemie.depot gobelet.BF CAP vers centre de la table");
+#endif
+    stm._mae_murphy_state._jeu_state._mission_zone_ennemie_state._depot_gobelet_state._bf_cap_vers_centre_de_la_table_state.create(stm);
+  }
+!!!230146.cpp!!!	create(inout stm : MAE_MURPHY) : void
+	_doentry(stm);
+!!!230274.cpp!!!	_doentry(inout stm : MAE_MURPHY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_MURPHY.Jeu.mission zone ennemie.depot gobelet.BF droite sur le cine");
+#endif
+cout<<"gobelet : BF droite sur le cine"<<endl;
+if(master->is_Jaune()){
+// BF droite sur le cine
+serialPrintf(master->getPortSerie(),"S5 1255 531 0 \n");
+}
+if(master->is_Vert()){
+serialPrintf(master->getPortSerie(),"S5 -1255 531 180 \n");
+}
+!!!230402.cpp!!!	_upper(inout stm : MAE_MURPHY) : MAE_MURPHY::AnyState
+  return &stm._mae_murphy_state._jeu_state._mission_zone_ennemie_state._depot_gobelet_state;

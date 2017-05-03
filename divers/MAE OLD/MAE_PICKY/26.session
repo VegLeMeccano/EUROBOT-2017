@@ -1,0 +1,18 @@
+window_sizes 1364 715 320 962 512 82
+diagrams
+  statediagram_ref 128130 // Principal
+    829 447 100 0 336 0
+  statediagram_ref 134658 // Jeu
+    829 447 100 0 423 740
+  statediagram_ref 154370 // mission claps
+    829 447 100 0 420 0
+  active  statediagram_ref 188418 // chope du coin
+    1042 557 100 0 0 0
+end
+show_stereotypes
+selected statediagram_ref 128130 // Principal
+open
+  state_ref 128130 // MAE_MURPHY
+  deploymentview_ref 128130 // MAE_MURPHY
+end
+end

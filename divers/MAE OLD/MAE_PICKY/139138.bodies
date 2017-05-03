@@ -1,0 +1,26 @@
+class BF_droite_vers_objectif_State
+!!!174466.cpp!!!	assFini(inout stm : MAE_MURPHY) : void
+  {
+    stm._set_currentState(stm._mae_murphy_state._jeu_state._mission_pillage_distrib_state._capture_stand_bordure_state._ouverture_pince_cote_bordure_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_MURPHY.Jeu.mission pillage distrib.capture stand bordure.ouverture pince cote bordure");
+#endif
+    stm._mae_murphy_state._jeu_state._mission_pillage_distrib_state._capture_stand_bordure_state._ouverture_pince_cote_bordure_state.create(stm);
+  }
+!!!174594.cpp!!!	create(inout stm : MAE_MURPHY) : void
+	_doentry(stm);
+!!!174722.cpp!!!	_doentry(inout stm : MAE_MURPHY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_MURPHY.Jeu.mission pillage distrib.capture stand bordure.BF droite vers objectif");
+#endif
+cout<<"stands bordure : BF droite sur cible"<<endl;
+if(master->is_Jaune()){
+// BF droite sur le gobelet 
+serialPrintf(master->getPortSerie(),"S5 -1174 1566 90 \n");
+}
+if(master->is_Vert()){
+// BF droite sur le gobelet 
+serialPrintf(master->getPortSerie(),"S5 1174 1566 90 \n");
+}
+!!!174850.cpp!!!	_upper(inout stm : MAE_MURPHY) : MAE_MURPHY::AnyState
+  return &stm._mae_murphy_state._jeu_state._mission_pillage_distrib_state._capture_stand_bordure_state;

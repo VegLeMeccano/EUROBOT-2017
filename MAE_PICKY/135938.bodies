@@ -1,0 +1,75 @@
+class DECISION_MISSION_State
+!!!143746.cpp!!!	mission_collecte_module_centraux_initiale(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state.create(stm);
+  }
+!!!144130.cpp!!!	mission_collecte_module_centraux_restant(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state.create(stm);
+  }
+!!!144514.cpp!!!	mission_collecte_distributeur_monochrome(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_distributeur_monochrome_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_DISTRIBUTEUR_MONOCHROME");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_distributeur_monochrome_state.create(stm);
+  }
+!!!144898.cpp!!!	mission_transfert_direct_distributeur_polychrome(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME");
+#endif
+    stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state.create(stm);
+  }
+!!!145282.cpp!!!	mission_push_distributeur_monochrome(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state.create(stm);
+  }
+!!!145666.cpp!!!	mission_push_cratere(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_cratere_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_CRATERE");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_cratere_state.create(stm);
+  }
+!!!146050.cpp!!!	mission_drop_zone_depart(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART");
+#endif
+    stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state.create(stm);
+  }
+!!!146434.cpp!!!	mission_depot_base_diagonale(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_depot_base_diagonale_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DEPOT_BASE_DIAGONALE");
+#endif
+    stm._mae_picky_state._jeu_state._mission_depot_base_diagonale_state.create(stm);
+  }
+!!!146818.cpp!!!	mission_depot_base_verticale(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_depot_base_verticale_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DEPOT_BASE_VERTICALE");
+#endif
+    stm._mae_picky_state._jeu_state._mission_depot_base_verticale_state.create(stm);
+  }
+!!!146946.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state;

@@ -1,0 +1,34 @@
+class JEU_State
+!!!143362.cpp!!!	create(inout stm : MAE_PICKY) : void
+  _doentry(stm);
+  {
+    {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._decision_mission_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.DECISION_MISSION");
+#endif
+    }
+  }
+!!!150786.cpp!!!	evitement(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._evitement_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.EVITEMENT");
+#endif
+    stm._mae_picky_state._evitement_state.create(stm);
+  }
+!!!151170.cpp!!!	end_game(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._end_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.END");
+#endif
+    stm._mae_picky_state._end_state.create(stm);
+  }
+!!!151298.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU");
+#endif
+cout<<"ETAT JEU"<<endl;
+!!!151426.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state;

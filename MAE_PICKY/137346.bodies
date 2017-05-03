@@ -1,0 +1,20 @@
+class PREPARATION_State
+!!!151938.cpp!!!	_completion(inout stm : MAE_PICKY) : bool
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU");
+#endif
+    stm._mae_picky_state._jeu_state.create(stm);
+    return (bool) 1;
+  }
+!!!152066.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+	_completion(stm);
+!!!152194.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.PREPARATION");
+#endif
+cout<<"ETAT PREPARATION"<<endl;
+!!!152322.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state;

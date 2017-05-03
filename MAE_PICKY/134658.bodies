@@ -1,0 +1,154 @@
+class AnyState
+!!!138882.cpp!!!	start_mis(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->start_mis(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition start_mis not expected");
+#endif
+!!!139650.cpp!!!	blocage(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->blocage(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition blocage not expected");
+#endif
+!!!140418.cpp!!!	time_out(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->time_out(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition time_out not expected");
+#endif
+!!!141698.cpp!!!	assFini(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->assFini(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition assFini not expected");
+#endif
+!!!142466.cpp!!!	start_enleve(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->start_enleve(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition start_enleve not expected");
+#endif
+!!!143618.cpp!!!	mission_collecte_module_centraux_initiale(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->mission_collecte_module_centraux_initiale(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition mission_collecte_module_centraux_initiale not expected");
+#endif
+!!!144002.cpp!!!	mission_collecte_module_centraux_restant(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->mission_collecte_module_centraux_restant(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition mission_collecte_module_centraux_restant not expected");
+#endif
+!!!144386.cpp!!!	mission_collecte_distributeur_monochrome(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->mission_collecte_distributeur_monochrome(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition mission_collecte_distributeur_monochrome not expected");
+#endif
+!!!144770.cpp!!!	mission_transfert_direct_distributeur_polychrome(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->mission_transfert_direct_distributeur_polychrome(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition mission_transfert_direct_distributeur_polychrome not expected");
+#endif
+!!!145154.cpp!!!	mission_push_distributeur_monochrome(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->mission_push_distributeur_monochrome(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition mission_push_distributeur_monochrome not expected");
+#endif
+!!!145538.cpp!!!	mission_push_cratere(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->mission_push_cratere(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition mission_push_cratere not expected");
+#endif
+!!!145922.cpp!!!	mission_drop_zone_depart(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->mission_drop_zone_depart(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition mission_drop_zone_depart not expected");
+#endif
+!!!146306.cpp!!!	mission_depot_base_diagonale(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->mission_depot_base_diagonale(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition mission_depot_base_diagonale not expected");
+#endif
+!!!146690.cpp!!!	mission_depot_base_verticale(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->mission_depot_base_verticale(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition mission_depot_base_verticale not expected");
+#endif
+!!!150658.cpp!!!	evitement(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->evitement(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition evitement not expected");
+#endif
+!!!151042.cpp!!!	end_game(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->end_game(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition end_game not expected");
+#endif
+!!!162050.cpp!!!	near(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->near(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition near not expected");
+#endif

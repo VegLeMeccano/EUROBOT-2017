@@ -1,0 +1,36 @@
+class Collecte_Poychrome_2_State
+!!!160770.cpp!!!	_completion(inout stm : MAE_PICKY) : bool
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE");
+#endif
+    if (master->get_element_robot()->nb_slot_available() >= 1) {
+      if (master->get_plateau_jeu()->get_module_central_3()->is_present()) {
+        stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._collecte_polychrome_3_state);
+#ifdef VERBOSE_STATE_MACHINE
+        puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Collecte Polychrome 3");
+#endif
+        stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._collecte_polychrome_3_state.create(stm);
+      }
+      else if (!master->get_plateau_jeu()->get_module_central_3()->is_present()) {
+        stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._etat_check_sortie_de_mission_state);
+#ifdef VERBOSE_STATE_MACHINE
+        puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Etat check sortie de mission");
+#endif
+        stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._etat_check_sortie_de_mission_state.create(stm);
+      }
+    }
+    else if (master->get_element_robot()->nb_slot_available() == 0) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._etat_check_sortie_de_mission_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Etat check sortie de mission");
+#endif
+      stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._etat_check_sortie_de_mission_state.create(stm);
+    }
+    return (bool) 1;
+  }
+!!!160898.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_completion(stm);
+!!!161026.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state;

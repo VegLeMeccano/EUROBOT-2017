@@ -1,0 +1,26 @@
+class ouverture_claps_State
+!!!227842.cpp!!!	claps_replie(inout stm : MAE_MURPHY) : void
+  {
+    stm._set_currentState(stm._mae_murphy_state._jeu_state._mission_zone_ennemie_state._claps_central_state._bf_cap_to_cine_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_MURPHY.Jeu.mission zone ennemie.claps central.BF cap to cine");
+#endif
+    stm._mae_murphy_state._jeu_state._mission_zone_ennemie_state._claps_central_state._bf_cap_to_cine_state.create(stm);
+  }
+!!!227970.cpp!!!	create(inout stm : MAE_MURPHY) : void
+	_doentry(stm);
+!!!228098.cpp!!!	_doentry(inout stm : MAE_MURPHY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_MURPHY.Jeu.mission zone ennemie.claps central.ouverture claps");
+#endif
+cout<<"claps central : deboit le claps"<<endl;
+if(master->is_Jaune()){
+// ouverture claps cote bordure (jaune gauche)
+serialPrintf(master->getPortSerie(),"C2 \n");
+}
+if(master->is_Vert()){
+serialPrintf(master->getPortSerie(),"C0 \n");
+}
+master->get_gestionnaire()->get_mission_zone_ennemie()->claps_done();
+!!!228226.cpp!!!	_upper(inout stm : MAE_MURPHY) : MAE_MURPHY::AnyState
+  return &stm._mae_murphy_state._jeu_state._mission_zone_ennemie_state._claps_central_state;

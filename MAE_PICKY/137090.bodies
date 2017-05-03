@@ -1,0 +1,14 @@
+class MISSION_DEPOT_BASE_VERTICALE_State
+!!!150146.cpp!!!	create(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_depot_base_verticale_state._exit10(stm);
+  }
+!!!150274.cpp!!!	_exit10(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._decision_mission_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.DECISION_MISSION");
+#endif
+  }
+!!!150402.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state;

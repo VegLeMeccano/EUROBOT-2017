@@ -1,0 +1,14 @@
+class MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT_State
+!!!147458.cpp!!!	create(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._exit3(stm);
+  }
+!!!147586.cpp!!!	_exit3(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._decision_mission_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.DECISION_MISSION");
+#endif
+  }
+!!!147714.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state;

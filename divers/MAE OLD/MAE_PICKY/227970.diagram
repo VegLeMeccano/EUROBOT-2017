@@ -1,0 +1,18 @@
+format 76
+
+statecanvas 128002 state_ref 293762 // MISSION_DEPOT_BASE_VERTICALE
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 201 44 2000 589 437
+end
+pseudostatecanvas 128130 pseudostate_ref 312578 // initial
+   xyz 310 137 2005
+end
+pseudostatecanvas 128258 pseudostate_ref 312706 // exit_point
+   xyz 550 193 3005 label_xy 496 212
+end
+transitioncanvas 128386 transition_ref 438146 // <transition>
+  
+  from ref 128130 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+end

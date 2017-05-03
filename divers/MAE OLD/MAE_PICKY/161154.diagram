@@ -1,0 +1,91 @@
+format 76
+
+statecanvas 128002 state_ref 143490 // MISSION_PUSH_CRATERE
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 16.003 36.4909 2000 1511 877
+end
+pseudostatecanvas 128130 pseudostate_ref 181890 // initial
+   xyz 370.715 106.647 2005
+end
+statecanvas 128258 state_ref 180226 // way point initial
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 247.651 149.841 2005 275 69
+end
+pseudostatecanvas 128514 pseudostate_ref 182018 // exit_point
+   xyz 1368.63 423.202 3005 label_xy 1363 442
+end
+statecanvas 128770 state_ref 180482 // avance la pince
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 163.309 391.83 2005 570 299
+end
+statecanvas 128898 state_ref 180610 // avance
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 859.722 507.973 2005 341 89
+end
+statecanvas 129666 state_ref 180738 // recule
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 414.982 741.798 2005 341 89
+end
+pseudostatecanvas 130690 pseudostate_ref 264578 // exit_point
+   xyz 493.33 201.293 3005 label_xy 489 220
+end
+statecanvas 130946 state_ref 255490 // prepare_la_pince
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 793.868 106.917 2005 567 333
+end
+statecanvas 131330 state_ref 255618 // rembale les pinces
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 869.978 749.528 2005 579 103
+end
+statecanvas 131586 state_ref 255746 // BF cap vers la zone adverse
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 1204.61 553.862 2005 303 159
+end
+transitioncanvas 128386 transition_ref 211330 // <transition>
+  
+  from ref 128130 z 2006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130306 transition_ref 212354 // <transition>
+  
+  from ref 128770 z 2006 label "pince_lache" xyz 513 706 2006 to ref 129666
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130562 transition_ref 267522 // <transition>
+  decenter_end 836
+  
+  from ref 128898 z 2006 label "assFini" xyz 783.5 587 2006 to ref 128770
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 131074 transition_ref 323586 // <transition>
+  
+  from ref 130690 z 3006 to ref 130946
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 131202 transition_ref 323714 // <transition>
+  decenter_end 407
+  
+  from ref 130946 z 2006 label "pince_ready_to_drop" xyz 971 460.5 2006 to ref 128898
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 131458 transition_ref 323842 // <transition>
+  
+  from ref 129666 z 2006 label "assFini" xyz 792 783 2006 to ref 131330
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 131714 transition_ref 323970 // <transition>
+  
+  from ref 131330 z 2006 label "pince_range" xyz 1205 722 2006 to ref 131586
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 131842 transition_ref 324098 // <transition>
+  
+  from ref 131586 z 3006 label "assFini" xyz 1355 490 3006 to ref 128514
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 131970 transition_ref 431234 // <transition>
+  
+  from ref 128898 z 2006 label "blocage" xyz 775.5 538.5 2006 to ref 128770
+  write_horizontally default show_definition default drawing_language default
+end
+end

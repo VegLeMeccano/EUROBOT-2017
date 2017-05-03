@@ -1,0 +1,19 @@
+class AVANCE_State
+!!!141826.cpp!!!	assFini(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._initialisation_state._wait_start_out_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.INITIALISATION.WAIT START OUT");
+#endif
+    stm._mae_picky_state._initialisation_state._wait_start_out_state.create(stm);
+  }
+!!!141954.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!142082.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.INITIALISATION.AVANCE");
+#endif
+// avance de 100 mm
+serialPrintf(master->getPortSerie(),"S4 100 \n");
+!!!142210.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._initialisation_state;

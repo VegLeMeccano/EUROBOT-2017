@@ -1,0 +1,18 @@
+class WAIT_START_OUT_State
+!!!142594.cpp!!!	start_enleve(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._initialisation_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.INITIALISATION");
+#endif
+    stm._mae_picky_state._initialisation_state._exit1(stm);
+  }
+!!!142722.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!142850.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.INITIALISATION.WAIT START OUT");
+#endif
+cout<<"wait start, to be removed"<<endl;
+!!!142978.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._initialisation_state;

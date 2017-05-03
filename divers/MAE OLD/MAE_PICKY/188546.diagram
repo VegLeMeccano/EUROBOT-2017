@@ -1,0 +1,36 @@
+format 76
+
+statecanvas 128002 state_ref 157954 // claps estrade
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 35 65 2000 1037 607
+end
+pseudostatecanvas 128130 pseudostate_ref 216706 // initial
+   xyz 114 128 2005
+end
+statecanvas 128258 state_ref 226178 // BF droite sur claps estrade
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 79 191 2005 439 201
+end
+statecanvas 128514 state_ref 226434 // Claps 3
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 481 420 2005 523 201
+end
+pseudostatecanvas 128770 pseudostate_ref 216834 // exit_point
+   xyz 680 238 3005 label_xy 662 257
+end
+transitioncanvas 128898 transition_ref 297858 // <transition>
+  
+  from ref 128130 z 2006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129666 transition_ref 298498 // <transition>
+  
+  from ref 128514 z 3006 label "claps_replie" xyz 675 330 3006 to ref 128770
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129794 transition_ref 350338 // <transition>
+  
+  from ref 128258 z 2006 label "assFini" xyz 450.5 404 2006 to ref 128514
+  write_horizontally default show_definition default drawing_language default
+end
+end

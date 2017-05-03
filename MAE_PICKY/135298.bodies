@@ -1,0 +1,26 @@
+class SET_X_Y_CAP_State
+!!!140546.cpp!!!	time_out(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._initialisation_state._check_cote_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.INITIALISATION.CHECK COTE");
+#endif
+    stm._mae_picky_state._initialisation_state._check_cote_state.create(stm);
+  }
+!!!140674.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!140802.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.INITIALISATION.SET X Y CAP");
+#endif
+if(master->is_blue())
+{
+	serialPrintf(master->getPortSerie(),"S0 -600 1800 -90 \n");
+}
+if(master->is_yellow())
+{
+	serialPrintf(master->getPortSerie(),"S0 600 1800 0 \n");
+}
+master->set_time_out(300);
+!!!140930.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._initialisation_state;

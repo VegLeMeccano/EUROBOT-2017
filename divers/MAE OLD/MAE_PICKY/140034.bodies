@@ -1,0 +1,34 @@
+class BF_droite_sur_distrib_State
+!!!178050.cpp!!!	assFini(inout stm : MAE_MURPHY) : void
+  {
+    stm._set_currentState(stm._mae_murphy_state._jeu_state._mission_pillage_distrib_state._vidage_distributeur_state._bf_avance_jusquau_blocage_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_MURPHY.Jeu.mission pillage distrib.vidage distributeur.BF avance jusquau blocage");
+#endif
+    stm._mae_murphy_state._jeu_state._mission_pillage_distrib_state._vidage_distributeur_state._bf_avance_jusquau_blocage_state.create(stm);
+  }
+!!!178178.cpp!!!	create(inout stm : MAE_MURPHY) : void
+	_doentry(stm);
+!!!178306.cpp!!!	_doentry(inout stm : MAE_MURPHY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_MURPHY.Jeu.mission pillage distrib.vidage distributeur.BF droite sur distrib");
+#endif
+cout<<"distrib : BF droite sur cible"<<endl;
+if(master->is_Jaune()){
+// BF droite sur le gobelet 
+serialPrintf(master->getPortSerie(),"S5 -1050 1700 90 \n");
+}
+if(master->is_Vert()){
+// BF droite sur le gobelet 
+serialPrintf(master->getPortSerie(),"S5 1050 1700 90 \n");
+}
+!!!178434.cpp!!!	_upper(inout stm : MAE_MURPHY) : MAE_MURPHY::AnyState
+  return &stm._mae_murphy_state._jeu_state._mission_pillage_distrib_state._vidage_distributeur_state;
+!!!293506.cpp!!!	blocage(inout stm : MAE_MURPHY) : void
+  {
+    stm._set_currentState(stm._mae_murphy_state._jeu_state._mission_pillage_distrib_state._vidage_distributeur_state._bf_avance_jusquau_blocage_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_MURPHY.Jeu.mission pillage distrib.vidage distributeur.BF avance jusquau blocage");
+#endif
+    stm._mae_murphy_state._jeu_state._mission_pillage_distrib_state._vidage_distributeur_state._bf_avance_jusquau_blocage_state.create(stm);
+  }

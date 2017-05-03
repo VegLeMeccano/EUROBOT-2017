@@ -1,0 +1,27 @@
+class BF_droite_State
+!!!192514.cpp!!!	assFini(inout stm : MAE_MURPHY) : void
+  {
+    stm._set_currentState(stm._mae_murphy_state._jeu_state._mission_claps_state._chope_du_stand_sur_la_route_state._chope_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_MURPHY.Jeu.mission claps.chope du stand sur la route.chope");
+#endif
+    stm._mae_murphy_state._jeu_state._mission_claps_state._chope_du_stand_sur_la_route_state._chope_state.create(stm);
+  }
+!!!192642.cpp!!!	create(inout stm : MAE_MURPHY) : void
+	_doentry(stm);
+!!!192770.cpp!!!	_doentry(inout stm : MAE_MURPHY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_MURPHY.Jeu.mission claps.chope du stand sur la route.BF droite");
+#endif
+serialPrintf(master->getPortSerie(),"S7 0 \n"); 	// vitesse moyenne
+cout<<"stand depart : BF droite sur cible"<<endl;
+if(master->is_Jaune()){
+// BF droite sur le gobelet 
+serialPrintf(master->getPortSerie(),"S5 -835 744 -90 \n");
+}
+if(master->is_Vert()){
+// BF droite sur le gobelet 
+serialPrintf(master->getPortSerie(),"S5 835 744 -90 \n");
+}
+!!!192898.cpp!!!	_upper(inout stm : MAE_MURPHY) : MAE_MURPHY::AnyState
+  return &stm._mae_murphy_state._jeu_state._mission_claps_state._chope_du_stand_sur_la_route_state;

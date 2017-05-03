@@ -1,0 +1,54 @@
+format 76
+
+statecanvas 128002 state_ref 158082 // chope stand pres estrade
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 225 106 2000 541 429
+end
+pseudostatecanvas 128130 pseudostate_ref 250370 // initial
+   xyz 347 192 2005
+end
+pseudostatecanvas 128258 pseudostate_ref 250498 // exit_point
+   xyz 583 465 3005 label_xy 544 484
+end
+statecanvas 128386 state_ref 240002 // avance
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 324 302 2005 59 33
+end
+statecanvas 128514 state_ref 240130 // ouverture pince
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 320 245 2005 109 33
+end
+statecanvas 128642 state_ref 240258 // chope
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 372 351 2005 55 33
+end
+statecanvas 128770 state_ref 240386 // recule
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 421 417 2005 55 33
+end
+transitioncanvas 128898 transition_ref 305154 // <transition>
+  
+  from ref 128130 z 2006 to ref 128514
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129026 transition_ref 305282 // <transition>
+  
+  from ref 128514 z 2006 to ref 128386
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129154 transition_ref 305410 // <transition>
+  
+  from ref 128386 z 2006 to ref 128642
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129282 transition_ref 305538 // <transition>
+  
+  from ref 128642 z 2006 to ref 128770
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129410 transition_ref 305666 // <transition>
+  
+  from ref 128770 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+end

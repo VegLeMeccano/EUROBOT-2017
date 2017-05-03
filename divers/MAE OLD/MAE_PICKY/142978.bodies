@@ -1,0 +1,23 @@
+class sortie_State
+!!!191618.cpp!!!	_completion(inout stm : MAE_MURPHY) : bool
+  {
+    stm._set_currentState(stm._mae_murphy_state._jeu_state._mission_attrap_balle_et_chiage_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_MURPHY.Jeu.mission attrap balle et chiage");
+#endif
+    stm._mae_murphy_state._jeu_state._mission_attrap_balle_et_chiage_state._exit10(stm);
+    return (bool) 1;
+  }
+!!!191746.cpp!!!	create(inout stm : MAE_MURPHY) : void
+	_doentry(stm);
+	_completion(stm);
+!!!191874.cpp!!!	_doentry(inout stm : MAE_MURPHY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_MURPHY.Jeu.mission attrap balle et chiage.sortie");
+#endif
+cout<<"chiage : sortie de zone"<<endl;
+// fermeture capot arriere
+serialPrintf(master->getPortSerie(),"P3 \n");
+master->get_gestionnaire_mission()->get_mission_chiage_balle()->mission_remplie();
+!!!192002.cpp!!!	_upper(inout stm : MAE_MURPHY) : MAE_MURPHY::AnyState
+  return &stm._mae_murphy_state._jeu_state._mission_attrap_balle_et_chiage_state;

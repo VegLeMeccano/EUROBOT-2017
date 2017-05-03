@@ -1,0 +1,24 @@
+class BF_droite_stand_1_State
+!!!212738.cpp!!!	assFini(inout stm : MAE_MURPHY) : void
+  {
+    stm._set_currentState(stm._mae_murphy_state._jeu_state._mission_rush_zone_centrale_state._chope_stand_1_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_MURPHY.Jeu.mission rush zone centrale.chope stand 1");
+#endif
+    stm._mae_murphy_state._jeu_state._mission_rush_zone_centrale_state._chope_stand_1_state.create(stm);
+  }
+!!!212866.cpp!!!	create(inout stm : MAE_MURPHY) : void
+	_doentry(stm);
+!!!212994.cpp!!!	_doentry(inout stm : MAE_MURPHY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_MURPHY.Jeu.mission rush zone centrale.BF droite stand 1");
+#endif
+cout<<"stand central : BF droite sur cible"<<endl;
+if(master->is_Jaune()){
+serialPrintf(master->getPortSerie(),"S5 -270 687 -100 \n");
+}
+if(master->is_Vert()){
+serialPrintf(master->getPortSerie(),"S5 270 687 280 \n");
+}
+!!!213122.cpp!!!	_upper(inout stm : MAE_MURPHY) : MAE_MURPHY::AnyState
+  return &stm._mae_murphy_state._jeu_state._mission_rush_zone_centrale_state;

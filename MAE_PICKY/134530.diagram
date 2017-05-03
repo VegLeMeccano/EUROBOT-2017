@@ -1,0 +1,200 @@
+format 76
+
+statecanvas 128002 state_ref 128258 // JEU
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 283.3 37.7 2000 1305 1035
+end
+pseudostatecanvas 128130 pseudostate_ref 134530 // initial
+   xyz 391.3 123.8 2005
+end
+statecanvas 128258 state_ref 135042 // DECISION_MISSION
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 335.5 237 2005 131 33
+end
+pseudostatecanvas 128514 pseudostate_ref 134658 // choice
+   xyz 388.3 160.6 2005
+end
+statecanvas 128898 state_ref 141570 // MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 773 143.2 2005 316 35
+end
+statecanvas 129026 state_ref 141698 // MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 762.8 234.7 2005 319 33
+end
+statecanvas 129154 state_ref 141826 // MISSION_COLLECTE_DISTRIBUTEUR_MONOCHROME
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 762.5 319.5 2005 324 33
+end
+statecanvas 129282 state_ref 141954 // MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 854.4 409.5 2005 374 33
+end
+statecanvas 129410 state_ref 142082 // MISSION_PUSH_DISTRIBUTEUR_MONOCHROME
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 853.6 492.2 2005 294 33
+end
+statecanvas 129538 state_ref 142210 // MISSION_PUSH_CRATERE
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 858.1 555.3 2005 166 33
+end
+statecanvas 129666 state_ref 142338 // MISSION_DROP_ZONE_DEPART
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 784.6 668.8 2010 199 33
+end
+statecanvas 129794 state_ref 142466 // MISSION_DEPOT_BASE_DIAGONALE
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 783.6 762 2005 221 33
+end
+statecanvas 129922 state_ref 142594 // MISSION_DEPOT_BASE_VERTICALE
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 785.6 844.6 2005 219 33
+end
+pseudostatecanvas 132482 pseudostate_ref 141314 // exit_point
+   xyz 764.9 167.3 3005 label_xy 805 187
+end
+pseudostatecanvas 133506 pseudostate_ref 141570 // exit_point
+   xyz 791.3 256.9 3005 label_xy 820 272
+end
+pseudostatecanvas 133890 pseudostate_ref 141826 // exit_point
+   xyz 771.3 341.5 3005 label_xy 815 354
+end
+pseudostatecanvas 134274 pseudostate_ref 142082 // exit_point
+   xyz 855.3 431.1 3005 label_xy 900 448
+end
+pseudostatecanvas 134402 pseudostate_ref 142338 // exit_point
+   xyz 855.6 515 3005 label_xy 896 529
+end
+pseudostatecanvas 134786 pseudostate_ref 142594 // exit_point
+   xyz 875.6 575 3005 label_xy 910 596
+end
+pseudostatecanvas 137090 pseudostate_ref 149250 // exit_point
+   xyz 779 689.3 2016 label_xy 803 708
+end
+pseudostatecanvas 137218 pseudostate_ref 149506 // exit_point
+   xyz 787.2 785.3 3005 label_xy 813 802
+end
+pseudostatecanvas 137346 pseudostate_ref 149762 // exit_point
+   xyz 802.4 866 3005 label_xy 711 886
+end
+transitioncanvas 128642 transition_ref 134786 // <transition>
+  
+  from ref 128130 z 2006 to ref 128514
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 128770 transition_ref 134914 // <transition>
+  
+  from ref 128514 z 2006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130050 transition_ref 135042 // <transition>
+  
+  from ref 128258 z 2006 label "mission_collecte_module_centraux_initiale" xyz 545 144 2006 to point 578 160
+  line 131202 z 2006 to ref 128898
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130178 transition_ref 135170 // <transition>
+  
+  from ref 128258 z 2006 label "mission_collecte_module_centraux_restant" xyz 531 234 2006 to point 532 246
+  line 132226 z 2006 to ref 129026
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130306 transition_ref 135298 // <transition>
+  
+  from ref 128258 z 2006 label "mission_collecte_distributeur_monochrome" xyz 535 317 2006 to point 504 332
+  line 132098 z 2006 to ref 129154
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130434 transition_ref 135426 // <transition>
+  
+  from ref 128258 z 2006 label "mission_transfert_direct_distributeur_polychrome" xyz 567 407 2006 to point 530 422
+  line 131970 z 2006 to point 738 420
+  line 135170 z 2006 to ref 129282
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130562 transition_ref 135554 // <transition>
+  
+  from ref 128258 z 2006 label "mission_push_distributeur_monochrome" xyz 604 488 2006 to point 540 502
+  line 131842 z 2006 to ref 129410
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130690 transition_ref 135682 // <transition>
+  decenter_end 564
+  
+  from ref 128258 z 2006 label "mission_push_cratere" xyz 613 557 2006 to point 534 572
+  line 131714 z 2006 to ref 129538
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130818 transition_ref 135810 // <transition>
+  
+  from ref 128258 z 2011 label "mission_drop_zone_depart" xyz 601 662 2011 to point 530 682
+  line 131586 z 2011 to ref 129666
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130946 transition_ref 135938 // <transition>
+  
+  from ref 128258 z 2006 label "mission_depot_base_diagonale" xyz 591 757 2006 to point 510 774
+  line 131458 z 2006 to ref 129794
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 131074 transition_ref 136066 // <transition>
+  
+  from ref 128258 z 2006 label "mission_depot_base_verticale" xyz 591 838 2006 to point 490 856
+  line 131330 z 2006 to ref 129922
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 135298 transition_ref 137474 // <transition>
+  
+  from ref 132482 z 3006 to point 580 176
+  line 135426 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 135554 transition_ref 137602 // <transition>
+  
+  from ref 133506 z 3006 to point 528 266
+  line 135682 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 135810 transition_ref 137730 // <transition>
+  
+  from ref 133890 z 3006 to point 498 348
+  line 135938 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 136066 transition_ref 144258 // <transition>
+  
+  from ref 134274 z 3006 to point 523 437
+  line 136194 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 136578 transition_ref 144514 // <transition>
+  
+  from ref 134402 z 3006 to point 537 521
+  line 136706 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 136834 transition_ref 144642 // <transition>
+  
+  from ref 134786 z 3006 to point 523 581
+  line 136962 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 137474 transition_ref 145154 // <transition>
+  
+  from ref 137090 z 2017 to point 521 697
+  line 137730 z 2017 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 137986 transition_ref 145282 // <transition>
+  
+  from ref 137218 z 3006 to point 501 792
+  line 138114 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 138242 transition_ref 145410 // <transition>
+  
+  from ref 137346 z 3006 to point 481 873
+  line 138370 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+end

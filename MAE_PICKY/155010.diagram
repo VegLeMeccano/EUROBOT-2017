@@ -1,0 +1,73 @@
+format 76
+
+statecanvas 128002 state_ref 128130 // INITIALISATION
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 113 91 2000 977 883
+end
+pseudostatecanvas 128130 pseudostate_ref 156290 // initial
+   xyz 256 182 2005
+end
+pseudostatecanvas 128258 pseudostate_ref 156418 // exit_point
+   xyz 288 423 3005 label_xy 300 407
+end
+statecanvas 128386 state_ref 155650 // WAIT START IN
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 129 236 2005 295 61
+end
+statecanvas 128642 state_ref 155778 // RECALAGE AR
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 554 241 2005 303 131
+end
+statecanvas 128898 state_ref 155906 // SET X Y CAP
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 590 428 2005 349 173
+end
+statecanvas 129154 state_ref 156034 // CHECK COTE
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 595 655 2005 343 229
+end
+statecanvas 129282 state_ref 156162 // AVANCE
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 152 624 2005 297 75
+end
+statecanvas 129794 state_ref 156290 // WAIT START OUT
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 149 496 2005 299 61
+end
+transitioncanvas 128514 transition_ref 158722 // <transition>
+  
+  from ref 128130 z 2006 to ref 128386
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 128770 transition_ref 158850 // <transition>
+  
+  from ref 128386 z 2006 label "start_mis" xyz 460.5 263 3000 to ref 128642
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129026 transition_ref 158978 // <transition>
+  
+  from ref 128642 z 2006 label "blocage" xyz 734.5 392.5 3000 to ref 128898
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129538 transition_ref 159234 // <transition>
+  
+  from ref 128898 z 2006 label "time_out" xyz 771.5 622.5 3000 to ref 129154
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129666 transition_ref 159362 // <transition>
+  
+  from ref 129154 z 2006 label "time_out" xyz 502 720.5 3000 to ref 129282
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129922 transition_ref 159490 // <transition>
+  
+  from ref 129794 z 3006 label "start_enleve" xyz 304 458.5 3000 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130050 transition_ref 159618 // <transition>
+  decenter_begin 490
+  
+  from ref 129282 z 2006 label "assFini" xyz 307 581 3000 to ref 129794
+  write_horizontally default show_definition default drawing_language default
+end
+end

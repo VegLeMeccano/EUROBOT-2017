@@ -1,0 +1,8 @@
+window_sizes 1920 1058 326 1588 720 82
+show_stereotypes
+selected classview_ref 128002 // MAE_PICKY
+open
+  pseudostate_ref 156418 // exit_point
+  deploymentview_ref 128002 // MAE_PICKY
+end
+end
