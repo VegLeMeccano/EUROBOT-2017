@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Picky_Launch
+Exec=sudo /home/pi/PICKY_PI/picky.a
+Terminal=true
+StartupNotify=true
