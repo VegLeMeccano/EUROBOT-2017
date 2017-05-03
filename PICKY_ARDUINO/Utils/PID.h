@@ -7,7 +7,7 @@
 #include "Coord.h"
 
 //distance to target
-#define NEAR 1 
+#define NEAR 1
 #define FAR 2
 #define DONE 3
 
@@ -16,9 +16,9 @@
 
 class PID
 {
-    private: 
+    private:
         float last_error;
-        float I_sum; 
+        float I_sum;
         float target;
         float Kp;
         float Ki;
@@ -32,7 +32,10 @@ class PID
         bool type_cap; // specific pid for angles (always within[0: 2*PI])
         int arrival_count; // to see when it's over
         int pid_state; //see define distance to target
-        
+
+        float last_input;
+        float d_input;
+
     public:
         PID();
         PID(bool type_cap_, float Kp_, float Ki_, float Kd_, float near_error_value_, float done_error_value_);

@@ -145,6 +145,8 @@ void OrdersRaspberry::executeinstr()
         **/
         case 3:
             Serial.println("@[Slave][O3][SET PID : Cap]");
+
+            stream >> y >> z >> cap;
             Serial.println(" setting gains for cap");
             Serial.println(" Kp KI KV");
 

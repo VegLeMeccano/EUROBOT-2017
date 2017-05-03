@@ -8,6 +8,32 @@
 #include "Const.h"
 
 
+#define PERIODE_PID 20
+#define PERIODE_COORD 10
+#define PERIODE_SONAR 500
+
+
+// GAIN du slave
+#define GAIN_ODO_G 0.340045058//0.377287304 //0.325998//0.338409475
+#define GAIN_ODO_D 0.339614681//0.379146919 //0.338925//0.337609723
+#define GAIN_ODO_inter 0.012413283
+
+//0.005537522 //0.004987
+
+
+// moteur
+#define MOTEUR_PROPU_DROIT_ARRET 1516
+#define MOTEUR_PROPU_DROIT_MAX_AVANT 1000
+#define MOTEUR_PROPU_DROIT_MAX_ARRIERE 2000
+
+#define MOTEUR_PROPU_GAUCHE_ARRET 1516
+#define MOTEUR_PROPU_GAUCHE_MAX_AVANT 1000
+#define MOTEUR_PROPU_GAUCHE_MAX_ARRIERE 2000
+
+
+#define MIN_MAX_SLOW 150
+#define MIN_MAX_MEDIUM 200
+#define MIN_MAX_FAST 250  // don't use it too fast
 
 // type of BF
 #define STOP 0
@@ -42,17 +68,17 @@
 #define GAIN_KD_CAP_MEDIUM 0 //18.0 //40.0
 
 // gain PID deplacement en slow
-#define GAIN_KP_DEP_SLOW 2
-#define GAIN_KI_DEP_SLOW 0.0066
-#define GAIN_KD_DEP_SLOW 0.00
-#define GAIN_KP_CAP_SLOW 310  //Ku = 260
-#define GAIN_KI_CAP_SLOW 2.5 //52.0 //70.0
-#define GAIN_KD_CAP_SLOW 0 //18.0 //40.0
+#define GAIN_KP_DEP_SLOW 3
+#define GAIN_KI_DEP_SLOW 0.12
+#define GAIN_KD_DEP_SLOW 50
+#define GAIN_KP_CAP_SLOW 300  //Ku = 260
+#define GAIN_KI_CAP_SLOW 20 //52.0 //70.0
+#define GAIN_KD_CAP_SLOW 2900 //18.0 //40.0
 
 
 // norme sur les etats de transistion proche  et fini
 #define NEAR_ERROR_DEP 200
-#define DONE_ERROR_DEP  150  //
+#define DONE_ERROR_DEP  100  //
 
 // gain PID cap (rotation)
 #define GAIN_KP_CAP 200  //Ku = 260

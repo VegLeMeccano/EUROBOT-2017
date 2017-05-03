@@ -28,7 +28,9 @@ PID::PID(bool type_cap_, float Kp_, float Ki_, float Kd_, float near_error_value
     minV(-500),
     maxV(500),
     inAuto(true),
-    type_cap(type_cap_)
+    type_cap(type_cap_),
+    last_input(0),
+    d_input(0)
 {
     // autre merde a init si on veut
 }
@@ -72,6 +74,7 @@ void PID::setTuning(float Kp_, float Ki_, float Kd_){
 **/
 float PID::compute(float input){
     // si on est pas en mode auto, commande a zero
+
     if (!inAuto)
     {
         return 0.;
@@ -82,10 +85,12 @@ float PID::compute(float input){
     if (type_cap)
     {
         error = diff_cap(target, input);
+        //d_input = diff_cap(input, last_input); //check le signe?
     }
     else
     {
         error = target - input;
+        //d_input = input - last_input;
     }
 
     //Serial.print("error");
@@ -96,6 +101,17 @@ float PID::compute(float input){
     //Serial.print(input);
 
     I_sum = I_sum + Ki * error;     // integrale?
+
+    if (I_sum > maxV)
+    {
+        I_sum = maxV;
+    }
+    if (I_sum < minV)
+    {
+        I_sum = minV;
+    }
+
+
     //saturation of I term
     //if (I_sum > maxV){
     //    I_sum = maxV;}
@@ -108,20 +124,25 @@ float PID::compute(float input){
     //    I_sum = 0.;
     //}
     float derror = error - last_error;  // derivee
-    last_error = error;
-    float out = Kp * error + I_sum + Kd * derror / 0.02;  //0.04 = period du slave
+
+    float out = Kp * error + I_sum + Kd * derror ; // 0.02;  //0.04 = period du slave
+    //float out = Kp * error + I_sum - Kd * d_input;  //0.04 = period du slave
 
     // check des bornes
     if (out > maxV)
     {                               // saturation haute
         out = maxV;
-        I_sum = I_sum - Ki * error;
+        //I_sum = I_sum - Ki * error; //attention si on laisse...
     }
     else if (out < minV)             // saturation basse
     {
         out = minV;
-        I_sum = I_sum - Ki * error;
+        //I_sum = I_sum - Ki * error; //attention si on laisse...
     }
+
+    // pour evolution
+    last_input = input;
+    last_error = error;
 
     // retourne la commande a appliquer
     return out;

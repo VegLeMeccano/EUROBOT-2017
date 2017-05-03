@@ -61,9 +61,7 @@ void ControlLoop::bf_avance(float d){
 /** definition des vitesses
 // a check sur PID
 **/
-#define MIN_MAX_SLOW 80
-#define MIN_MAX_MEDIUM 110
-#define MIN_MAX_FAST 160  // don't use it too fast
+
 void ControlLoop::set_speed(int speed)
 {
     switch(speed){
@@ -442,7 +440,7 @@ void ControlLoop::run(Coord real_coord_){
     {
         check_adversary();
     }
-    if (bf_type != STOP)
+    if (bf_type != STOP && assfini_on)
     {
         // pour tester a remettre apres
         check_blockage();                       // check blocage, ....
@@ -490,7 +488,7 @@ void ControlLoop::check_blockage()
         return;
     }
 
-   if (dep.norm() < 10.0 && abs(real_coord.get_cap() - late_pos.get_cap()) < 0.05)
+   if (dep.norm() < 2.0 && abs(real_coord.get_cap() - late_pos.get_cap()) < 0.05)
    {
         count_not_moving += 1;
         Serial.print("INC BLOC COUNT ");
