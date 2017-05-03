@@ -1,5 +1,9 @@
 # Eurobot-2017
 
+TODO
+-> shortcut sur desktop pi
+-> bash et dosssier PICKY_PI dans PI/documents/
+
 PICKY_ARDUINO
 code bas niveau de l'archi du code actionneur Arduino pour la coupe
 
