@@ -1,0 +1,42 @@
+# depslib dependency file v1.0
+1431330392 source:c:\users\link\desktop\eurobot_2017\picky_master_pi\coord.cpp
+	"Coord.h"
+
+1431330392 c:\users\link\desktop\eurobot_2017\picky_master_pi\coord.h
+	<cmath>
+
+1493640914 source:c:\users\link\desktop\eurobot_2017\picky_master_pi\module.cpp
+	"Module.h"
+
+1493640775 c:\users\link\desktop\eurobot_2017\picky_master_pi\module.h
+	<iostream>
+	"Coord.h"
+
+1493642216 source:c:\users\link\desktop\eurobot_2017\debug\test_plateau_jeu\main.cpp
+	<iostream>
+	"../../PICKY_MASTER_PI/Module.h"
+	"../../PICKY_MASTER_PI/Distributeur.h"
+	"../../PICKY_MASTER_PI/Plateau_jeu.h"
+
+1493638130 source:c:\users\link\desktop\eurobot_2017\picky_master_pi\distributeur.cpp
+	"Distributeur.h"
+
+1493633730 c:\users\link\desktop\eurobot_2017\picky_master_pi\distributeur.h
+	<iostream>
+	"Coord.h"
+	"Module.h"
+
+1493642560 source:c:\users\link\desktop\eurobot_2017\picky_master_pi\plateau_jeu.cpp
+	"Plateau_jeu.h"
+
+1493642544 c:\users\link\desktop\eurobot_2017\picky_master_pi\plateau_jeu.h
+	"Distributeur.h"
+	"Module.h"
+	"Zone_depose_module.h"
+
+1493642115 source:c:\users\link\desktop\eurobot_2017\picky_master_pi\zone_depose_module.cpp
+	"Zone_depose_module.h"
+
+1493642759 c:\users\link\desktop\eurobot_2017\picky_master_pi\zone_depose_module.h
+	"Module.h"
+

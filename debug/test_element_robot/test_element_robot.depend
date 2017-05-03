@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1493631334 source:c:\users\link\desktop\eurobot_2017\debug\test_element_robot\main.cpp
+	<iostream>
+	"../../PICKY_MASTER_PI/Element_Robot.h"
+
+1493631694 source:c:\users\link\desktop\eurobot_2017\picky_master_pi\element_robot.cpp
+	"Element_Robot.h"
+
+1493631645 c:\users\link\desktop\eurobot_2017\picky_master_pi\element_robot.h
+	"StockageModule.h"
+	<iostream>
+
+1493626723 c:\users\link\desktop\eurobot_2017\picky_master_pi\stockagemodule.h
+	<iostream>
+
+1493629457 source:c:\users\link\desktop\eurobot_2017\picky_master_pi\stockagemodule.cpp
+	"StockageModule.h"
+

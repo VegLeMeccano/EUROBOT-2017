@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="Element_Robot.h" open="1" top="0" tabpos="6">
+		<Cursor position="853" topLine="30" />
+	</File>
+	<File name="Gestionnaire_Mission.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="38861" topLine="92" />
+	</File>
+	<File name="Gestionnaire_Mission.h" open="1" top="0" tabpos="4">
+		<Cursor position="3151" topLine="23" />
+	</File>
+	<File name="MAE_PICKY.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="13982" topLine="413" />
+	</File>
+	<File name="Master.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="427" topLine="0" />
+	</File>
+	<File name="Master.h" open="1" top="0" tabpos="1">
+		<Cursor position="611" topLine="18" />
+	</File>
+	<File name="Mission.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="664" topLine="6" />
+	</File>
+	<File name="Mission.h" open="0" top="0" tabpos="7">
+		<Cursor position="266" topLine="0" />
+	</File>
+	<File name="Module.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="1467" topLine="79" />
+	</File>
+	<File name="Module.h" open="1" top="0" tabpos="8">
+		<Cursor position="419" topLine="0" />
+	</File>
+	<File name="Period.h" open="1" top="1" tabpos="10">
+		<Cursor position="278" topLine="0" />
+	</File>
+	<File name="Plateau_jeu.h" open="1" top="0" tabpos="7">
+		<Cursor position="416" topLine="11" />
+	</File>
+	<File name="Protocole_COM.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="6093" topLine="232" />
+	</File>
+	<File name="Protocole_COM.h" open="0" top="0" tabpos="6">
+		<Cursor position="242" topLine="0" />
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="1306" topLine="52" />
+	</File>
+</CodeBlocks_layout_file>

@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+<<<<<<< HEAD
+1430174793 source:/home/pi/.git/Eurobot-2015/MURPHY__MASTER_PI/Period.cpp
+	"Period.h"
+
+1430174793 /home/pi/.git/Eurobot-2015/MURPHY__MASTER_PI/Period.h
+	<ctime>
+	<wiringPi.h>
+
+1430175067 source:/home/pi/.git/Eurobot-2015/test/main.cpp
+=======
+1430602314 source:d:\club robotique iron menad 2\eurobot 2015 iron menad\eurobot-2015\test\test.cpp
+	"test.h"
+
+1430602104 d:\club robotique iron menad 2\eurobot 2015 iron menad\eurobot-2015\test\test.h
+	<iostream>
+
+1430602276 source:d:\club robotique iron menad 2\eurobot 2015 iron menad\eurobot-2015\test\main.cpp
+>>>>>>> 9add58b566aaed03f60d4b08f29d2490b821e0b0
+	<iterator>
+	<string>
+	<iostream>
+	<sstream>
+	<stdlib.h>
+<<<<<<< HEAD
+	"../MURPHY__MASTER_PI/Period.h"
+=======
+	"test.h"
+>>>>>>> 9add58b566aaed03f60d4b08f29d2490b821e0b0
+

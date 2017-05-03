@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="..\..\PICKY_MASTER_PI\Element_Robot.h" open="0" top="0" tabpos="0">
+		<Cursor position="296" topLine="0" />
+	</File>
+	<File name="..\..\PICKY_MASTER_PI\Gestionnaire_Mission.h" open="0" top="0" tabpos="0">
+		<Cursor position="632" topLine="0" />
+	</File>
+	<File name="main.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="952" topLine="24" />
+	</File>
+</CodeBlocks_layout_file>
