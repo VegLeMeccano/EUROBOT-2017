@@ -56,8 +56,6 @@ Temporary Items
 *.hex
 *.a
 *log*
-*.depend
-*.layout
 PICKY_ARDUINO/build/*
 PICKY_ARDUINO/build/*
 MAE_PICKY/obj/*
