@@ -35,6 +35,17 @@ PID::PID(bool type_cap_, float Kp_, float Ki_, float Kd_, float near_error_value
     // autre merde a init si on veut
 }
 
+void PID::set_near_error_value(float near_value_)
+{
+    near_error_value = near_value_;
+}
+
+void PID::set_done_error_value(float done_value_)
+{
+    done_error_value = done_value_;
+}
+
+
 /** modification des bornes inf et sup
 // attention pour sabertooth : PWM (1000 -> 2000)
 //                             Serie (-128,128)
@@ -69,11 +80,18 @@ void PID::setTuning(float Kp_, float Ki_, float Kd_){
 }
 
 
+float PID::get_last_error()
+{
+    return last_error;
+}
+
 
 /** Calcul des PIDs
 **/
 float PID::compute(float input){
     // si on est pas en mode auto, commande a zero
+    float derror = 0 ;
+    float out = 0;
 
     if (!inAuto)
     {
@@ -85,11 +103,13 @@ float PID::compute(float input){
     if (type_cap)
     {
         error = diff_cap(target, input);
+        derror = diff_cap(error,last_error);
         //d_input = diff_cap(input, last_input); //check le signe?
     }
     else
     {
         error = target - input;
+        derror = error - last_error;
         //d_input = input - last_input;
     }
 
@@ -123,9 +143,9 @@ float PID::compute(float input){
     //{
     //    I_sum = 0.;
     //}
-    float derror = error - last_error;  // derivee
+    //float derror = error - last_error;  // derivee
 
-    float out = Kp * error + I_sum + Kd * derror ; // 0.02;  //0.04 = period du slave
+     out = Kp * error + I_sum + Kd * derror ; // 0.02;  //0.04 = period du slave
     //float out = Kp * error + I_sum - Kd * d_input;  //0.04 = period du slave
 
     // check des bornes

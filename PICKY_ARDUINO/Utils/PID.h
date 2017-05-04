@@ -53,6 +53,9 @@ class PID
         void setMinMax(int v);
         float get_target();
         void write_debug();
+        void set_near_error_value(float near_value_);
+        void set_done_error_value(float done_value_);
+        float get_last_error();
 
 };
 #endif
