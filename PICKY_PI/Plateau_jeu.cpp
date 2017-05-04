@@ -67,7 +67,7 @@ void Plateau_jeu::display()
     cout << "[DEPOT] Base Verticale " <<  "\t module -> #" << depose_module_base_centrale_verticale->nb_module_in_stock() << "/" << depose_module_base_centrale_verticale->nb_slot_available() << " \t PTS ->  " << depose_module_base_centrale_verticale->point_marked() << endl ;
 
     cout << "[PTS] total -> " <<  point_total() << " pts" << endl;
-    cout <<"-----------------------------------------------" << endl;
+    cout <<"-----------------------------------------------" << endl<< endl;
 }
 
 

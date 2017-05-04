@@ -24,6 +24,7 @@ Mission::Mission(int mission_nb_, Plateau_jeu* plateau_jeu_, Element_Robot* elem
 void Mission::set_temps_restant(long temps_restant_)
 {
     temps_restant = temps_restant_;
+    refresh_status();
 }
 
 
@@ -263,6 +264,12 @@ void Mission::refresh_status()
             case MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE:
             module_possible_tps_restant = (int)(temps_restant/TIME_TO_CATCH_AND_STOCK_PER_MODULE);
             // si on a plus de place que de module => on les queshs tous!
+
+            if(!is_accomplie() && !plateau_jeu->get_module_central_1()->is_present() && !plateau_jeu->get_module_central_2()->is_present() && !plateau_jeu->get_module_central_3()->is_present())
+            {
+                mission_remplie();
+            }
+
             if((plateau_jeu->get_module_central_1()->is_present() + plateau_jeu->get_module_central_2()->is_present() + plateau_jeu->get_module_central_3()->is_present()) <= element_robot->nb_slot_available())
             {
                 module_dispo = (plateau_jeu->get_module_central_1()->is_present() + plateau_jeu->get_module_central_2()->is_present() + plateau_jeu->get_module_central_3()->is_present());
@@ -299,6 +306,11 @@ void Mission::refresh_status()
 
             // modulo du temps restant....
             case MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT:
+            if(!is_accomplie() && !plateau_jeu->get_module_central_4()->is_present() && !plateau_jeu->get_module_central_5()->is_present() )
+            {
+                mission_remplie();
+            }
+
             if((plateau_jeu->get_module_central_4()->is_present() + plateau_jeu->get_module_central_5()->is_present()) <= element_robot->nb_slot_available())
             {
                 module_dispo = plateau_jeu->get_module_central_4()->is_present() + plateau_jeu->get_module_central_5()->is_present() ;
@@ -332,6 +344,12 @@ void Mission::refresh_status()
 
             // modulo du temps restant....
             case MISSION_COLLECTE_DISTRIBUTEUR_MONOCHROME:
+
+            if(!is_accomplie() && plateau_jeu->get_distributeur_monochrome()->is_empty())
+            {
+                mission_remplie();
+            }
+
             if(plateau_jeu->get_distributeur_monochrome()->nb_module_available() <= element_robot->nb_slot_available())
             {
                 //points = plateau_jeu->get_distributeur_monochrome()->nb_module_available()*PTS_PER_MODULE_BASE_LUNAIRE;
@@ -368,6 +386,12 @@ void Mission::refresh_status()
 
             // modulo du temps restant....
             case MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME:
+
+                if(!is_accomplie() && plateau_jeu->get_distributeur_polychrome()->is_empty())
+                {
+                    mission_remplie();
+                }
+
                 if(element_robot->claw_available() || element_robot->nb_module_present()<=3)
                 {
                     // on suppose qu'on drop rien d'autre
@@ -391,6 +415,12 @@ void Mission::refresh_status()
 
             // modulo du temps restant...
             case MISSION_PUSH_DISTRIBUTEUR_MONOCHROME:
+
+                if(!is_accomplie() && plateau_jeu->get_distributeur_monochrome()->is_empty())
+                {
+                    mission_remplie();
+                }
+
                 module_dispo = plateau_jeu->get_distributeur_monochrome()->nb_module_available();
                 //points = plateau_jeu->get_distributeur_monochrome()->nb_module_available()*PTS_PER_MODULE_ZONE_DEPART;
                 // pas forcement besoin d'avoir la pince de dispo... on peut quand meme fracasse...
@@ -407,6 +437,7 @@ void Mission::refresh_status()
 
             // temps fixe
             case MISSION_PUSH_CRATERE:
+                //besoin de le remplir a la main...
                 points = 5*2;
                 time_to_achieve_mission += TIME_TO_PUSH_CRATERE;
             break;
@@ -420,6 +451,12 @@ void Mission::refresh_status()
 
             // modulo du temps restant...
             case MISSION_DEPOT_BASE_DIAGONALE:
+
+                if(!is_accomplie() && plateau_jeu->get_depose_module_base_centrale_diagonale()->is_full())
+                {
+                    mission_remplie();
+                }
+
                 if(element_robot->nb_module_present()<=plateau_jeu->get_depose_module_base_centrale_diagonale()->nb_slot_available())
                 {
                     module_dispo = element_robot->nb_module_present();
@@ -446,6 +483,11 @@ void Mission::refresh_status()
 
             // modulo du temps restant...
             case MISSION_DEPOT_BASE_VERTICALE:
+                if(!is_accomplie() && plateau_jeu->get_depose_module_base_centrale_verticale()->is_full())
+                {
+                    mission_remplie();
+                }
+
                 if(element_robot->nb_module_present()<=plateau_jeu->get_depose_module_base_centrale_verticale()->nb_slot_available())
                 {
                     module_dispo = element_robot->nb_module_present();
@@ -473,6 +515,7 @@ void Mission::refresh_status()
     //cout << ratio_pts_tps << endl;
     nbr_pts =  points;
 }
+
 
 
 /*************************************************************************

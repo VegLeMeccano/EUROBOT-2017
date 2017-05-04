@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="main.cpp" open="1" top="1" tabpos="0">
-		<Cursor position="128" topLine="0" />
+	<File name="..\..\PICKY_PI\Element_Robot.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2034" topLine="24" />
+	</File>
+	<File name="..\..\PICKY_PI\Gestionnaire_Mission.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="34655" topLine="654" />
+	</File>
+	<File name="..\..\PICKY_PI\Mission.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="15543" topLine="420" />
+	</File>
+	<File name="..\..\PICKY_PI\Mission.h" open="0" top="0" tabpos="0">
+		<Cursor position="3446" topLine="115" />
+	</File>
+	<File name="..\..\PICKY_PI\Plateau_jeu.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2032" topLine="45" />
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="1044" topLine="27" />
 	</File>
 </CodeBlocks_layout_file>

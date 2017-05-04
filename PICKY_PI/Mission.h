@@ -110,6 +110,8 @@ class Mission
 
         void set_temps_restant(long temps_restant_);
 
+        //void check_mission_complete(); // direct dans refresh_status
+
 
     protected:
         Coord coord_debut_mission;

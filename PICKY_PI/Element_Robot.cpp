@@ -44,7 +44,7 @@ void Element_Robot::display_element()
     cout << "[STO_R] -> #" << this->get_stockage_R()->is_stockage_full();
     cout << " (P : " << this->get_stockage_R()->is_color_polychrome() << " ; ";
     cout << "M : " << this->get_stockage_R()->is_color_monochrome() << ")"<< endl;
-    cout <<"---------------------------------------------------" << endl;
+    cout <<"---------------------------------------------------" << endl<< endl;
 }
 
 
