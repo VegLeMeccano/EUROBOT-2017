@@ -273,12 +273,28 @@ void Claw::debug(){
     Serial.print("\t[STATE] -> ");
     Serial.println(state);
 
-    Serial.print("\t[IR] -> \t");
+    Serial.print("\t[IR][CLAW CLOSED] -> \t");
     Serial.print(analogRead(PIN_CLW_IR));
-    Serial.print(" / ");
-    Serial.print(CLW_SEUIL_IR);
+    Serial.print(" / if between [");
+    Serial.print(CLW_SEUIL_IR_LIMIT_LOW);
+    Serial.print(" ; ");
+    Serial.print(CLW_SEUIL_IR_LIMIT_UP);
+    Serial.print("] ");
 
-    if (analogRead(PIN_CLW_IR)>CLW_SEUIL_IR){
+    if (analogRead(PIN_CLW_IR)>CLW_SEUIL_IR_LIMIT_LOW && analogRead(PIN_CLW_IR)<CLW_SEUIL_IR_LIMIT_UP){
+        Serial.println(" -> MODULE_PRESENT");
+    }
+    else{
+        Serial.println(" -> MODULE_ABSENT");
+    }
+
+
+    Serial.print("\t[IR][CLAW OPEN] -> \t");
+    Serial.print(analogRead(PIN_CLW_IR));
+    Serial.print(" / if >");
+    Serial.print(CLW_SEUIL_IR_LIMIT_LOW);
+
+    if (analogRead(PIN_CLW_IR)>CLW_SEUIL_IR_LIMIT_LOW ){
         Serial.println(" -> MODULE_PRESENT");
     }
     else{
@@ -658,7 +674,7 @@ void Claw::run(){
         // Ir detection
         if(state == CLW_STATE_RECON_1 )
         {
-            if(analogRead(PIN_CLW_IR)>CLW_SEUIL_IR)
+            if(analogRead(PIN_CLW_IR)>CLW_SEUIL_IR_LIMIT_LOW )
             {
                 trigger(CLW_TRIGGER_IR_DETECTED);
             }
@@ -668,7 +684,7 @@ void Claw::run(){
         // Ir detection
         if(state == CLW_STATE_RECON_2)
         {
-            if(analogRead(PIN_CLW_IR)>CLW_SEUIL_IR)
+            if(analogRead(PIN_CLW_IR)>CLW_SEUIL_IR_LIMIT_LOW && analogRead(PIN_CLW_IR)<CLW_SEUIL_IR_LIMIT_UP)
             {
                 trigger(CLW_TRIGGER_IR_DETECTED);
             }

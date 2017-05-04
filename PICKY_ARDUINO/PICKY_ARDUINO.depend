@@ -2997,7 +2997,7 @@
 1431330392 source:c:\users\link\desktop\eurobot_2017\picky_arduino\utils\switch.cpp
 	"Switch.h"
 
-1493397331 source:c:\users\link\desktop\eurobot-2017\picky_arduino\armsys.cpp
+1493912275 source:c:\users\link\desktop\eurobot-2017\picky_arduino\armsys.cpp
 	"ArmSys.h"
 
 1493332619 c:\users\link\desktop\eurobot-2017\picky_arduino\armsys.h
@@ -3622,7 +3622,7 @@
 
 1493296168 c:\users\link\desktop\eurobot-2017\picky_arduino\pins.h
 
-1493757473 c:\users\link\desktop\eurobot-2017\picky_arduino\const.h
+1493921471 c:\users\link\desktop\eurobot-2017\picky_arduino\const.h
 
 1493404424 source:c:\users\link\desktop\eurobot-2017\picky_arduino\autom.cpp
 	"Autom.h"
@@ -3659,7 +3659,7 @@
 	"Arduino.h"
 	"Coord.h"
 
-1493461584 source:c:\users\link\desktop\eurobot-2017\picky_arduino\claw.cpp
+1493913114 source:c:\users\link\desktop\eurobot-2017\picky_arduino\claw.cpp
 	"Claw.h"
 
 1493461500 c:\users\link\desktop\eurobot-2017\picky_arduino\claw.h
@@ -3697,7 +3697,7 @@
 1493396889 source:c:\users\link\desktop\eurobot-2017\picky_arduino\colorsensor.cpp
 	"ColorSensor.h"
 
-1493856126 source:c:\users\link\desktop\eurobot-2017\picky_arduino\controlloop.cpp
+1493856484 source:c:\users\link\desktop\eurobot-2017\picky_arduino\controlloop.cpp
 	"ControlLoop.h"
 
 1493244448 source:c:\users\link\desktop\eurobot-2017\picky_arduino\interrupts.cpp

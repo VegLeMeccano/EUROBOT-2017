@@ -17,6 +17,7 @@ ArmSys::ArmSys()
     /** INIT */
 
     Serial.println("[ArmSys][init][Begin]");
+    /*
     get_yaw_left_diagonal();
     //delay(300);
     get_slider_right();
@@ -25,7 +26,13 @@ ArmSys::ArmSys()
     get_pitch_folded();
     //delay(300);
     delay(300);
-    get_yaw_left_total();
+    get_yaw_left_total();*/
+
+    get_yaw_front();
+    get_slider_centre();
+    get_flipper_vertical();
+    get_pitch_folded();
+
 
     Serial.println("[ArmSys][init][Done]");
 }
