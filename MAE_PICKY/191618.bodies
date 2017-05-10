@@ -1,0 +1,31 @@
+class PLACEMENT_State
+!!!271490.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!271618.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state;
+!!!374658.cpp!!!	assFini(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._catch_and_place_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME.CATCH AND PLACE");
+#endif
+    stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._catch_and_place_state.create(stm);
+  }
+!!!374786.cpp!!!	blocage(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._catch_and_place_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME.CATCH AND PLACE");
+#endif
+    stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._catch_and_place_state.create(stm);
+  }
+!!!374914.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME.PLACEMENT");
+#endif
+if(master->is_blue()){
+	serialPrintf(master->getPortSerie(),"S5 -1214 900 180 \n");
+}
+if(master->is_yellow()){
+	serialPrintf(master->getPortSerie(),"S5 1214 900 0 \n");
+}

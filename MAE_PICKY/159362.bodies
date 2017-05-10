@@ -1,0 +1,24 @@
+class RECULE_PINCE_State
+!!!189698.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!189826.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state;
+!!!223874.cpp!!!	time_out(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state._rotation_and_slide_vers_zone_de_pose_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.CATCH AND THROW.ROTATION AND SLIDE VERS ZONE DE POSE");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state._rotation_and_slide_vers_zone_de_pose_state.create(stm);
+  }
+!!!224002.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.CATCH AND THROW.RECULE PINCE");
+#endif
+// position front, slide centre, pitch folded
+serialPrintf(master->getPortSerie(),"F0 \n");
+serialPrintf(master->getPortSerie(),"L1 \n");
+serialPrintf(master->getPortSerie(),"Y2 \n");
+serialPrintf(master->getPortSerie(),"P0 \n");
+
+master->set_time_out(500);

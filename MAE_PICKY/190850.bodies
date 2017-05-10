@@ -1,0 +1,14 @@
+class PLACEMENT_State
+!!!267906.cpp!!!	_completion(inout stm : MAE_PICKY) : bool
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_distributeur_monochrome_state._deboit_le_distrib_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_DISTRIBUTEUR_MONOCHROME.DEBOIT LE DISTRIB");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_distributeur_monochrome_state._deboit_le_distrib_state.create(stm);
+    return (bool) 1;
+  }
+!!!268034.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_completion(stm);
+!!!268162.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_collecte_distributeur_monochrome_state;

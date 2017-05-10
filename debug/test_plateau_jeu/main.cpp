@@ -74,6 +74,9 @@ int main()
     plateau->get_depose_module_base_laterale()->add_module(Module(POLYCHROME));
     plateau->get_depose_module_base_laterale()->add_module(Module(POLYCHROME));
 
+
+     plateau->get_cratere_zone_depart()->vidange();
+
     plateau->display();
 
 

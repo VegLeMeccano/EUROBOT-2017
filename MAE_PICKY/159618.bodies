@@ -1,0 +1,14 @@
+class RELACHE_State
+!!!190338.cpp!!!	_completion(inout stm : MAE_PICKY) : bool
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state._degagement_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.CATCH AND THROW.DEGAGEMENT");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state._degagement_state.create(stm);
+    return (bool) 1;
+  }
+!!!190466.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_completion(stm);
+!!!190594.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state;

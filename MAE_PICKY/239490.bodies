@@ -1,0 +1,14 @@
+class DEGEMENT_DROP_State
+!!!379266.cpp!!!	_completion(inout stm : MAE_PICKY) : bool
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._catch_and_place_state._retour_centre_folded_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME.CATCH AND PLACE.RETOUR CENTRE FOLDED");
+#endif
+    stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._catch_and_place_state._retour_centre_folded_state.create(stm);
+    return (bool) 1;
+  }
+!!!379394.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_completion(stm);
+!!!379522.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._catch_and_place_state;

@@ -1,6 +1,7 @@
 class AVANCE_State
 !!!141826.cpp!!!	assFini(inout stm : MAE_PICKY) : void
   {
+    stm._mae_picky_state._initialisation_state._avance_state._doexit(stm);
     stm._set_currentState(stm._mae_picky_state._initialisation_state._wait_start_out_state);
 #ifdef VERBOSE_STATE_MACHINE
     puts("DEBUG : current state is now .MAE_PICKY.INITIALISATION.WAIT START OUT");
@@ -17,3 +18,19 @@ class AVANCE_State
 serialPrintf(master->getPortSerie(),"S4 100 \n");
 !!!142210.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
   return &stm._mae_picky_state._initialisation_state;
+!!!236418.cpp!!!	blocage(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._initialisation_state._avance_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._initialisation_state._wait_start_out_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.INITIALISATION.WAIT START OUT");
+#endif
+    stm._mae_picky_state._initialisation_state._wait_start_out_state.create(stm);
+  }
+!!!407938.cpp!!!	_doexit(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute exit behavior of .MAE_PICKY.INITIALISATION.AVANCE");
+#endif
+
+// evitement on
+serialPrintf(master->getPortSerie(),"E1 \n");

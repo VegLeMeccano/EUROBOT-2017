@@ -54,6 +54,8 @@ class Vector
         float get_y();
         void write_serial();
         float get_angle();
+
+        void set_vector(Coord u, Coord v);
 };
 
 

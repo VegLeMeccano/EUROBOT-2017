@@ -305,12 +305,26 @@ void OrdersRaspberry::executeinstr()
          x -> distance droit devant
          v -> vitesse de consigne (0 slow, 1 medium, 2 fast)
         **/
+        /*
         case 6: //BF Droite simple (sans cap)
             Serial.println("@[Slave][S6][BF Cercle]");
             //stream >> x >> y >> r >> cap >> s >> v;
             stream >> x >> y >> cap >> v;
             Serial.println("BF Droite sans correction de cap");
             break;
+*/
+        /** BFCap
+        **/
+        case 6:
+            Serial.println("@[Slave][S6][BF HOLD Cap]");
+            Serial.print("SET CAP :");
+            stream >> cap;
+            target = Coord(0, 0, 3.1416 * atoi(cap.c_str()) / 180.0);
+            Serial.print ("BF HOLD Cap ");
+            Serial.println(atoi(cap.c_str()));
+            slave->get_control()->set_BF(BFHOLDCAP, target);
+            break;
+
 
 
 
@@ -329,34 +343,13 @@ void OrdersRaspberry::executeinstr()
             break;
 
 
-        /** Set gain PIDs
-         x -> 0 gain dep, 1 gain cap
-        **/
+
         case 8:
-            Serial.println("@[Slave][S8][SET PID]");
+            Serial.println("@[Slave][S8][BF HOLD POSITION]");
             //Serial.println(" SET GAINS (DEBUG) ");
-
-            stream>> x >> y >> z >> cap;
-
-            if (atoi(x.c_str()) == 1 )
-            {
-                Serial.println("setting gains for dep");
-                Serial.println(" Kp KI KV");
-
-                slave->get_control()->setTuningDep(atof(y.c_str()), atof(z.c_str()), atof(cap.c_str())); // a revoir
-                slave->get_control()->write_debug();
-
-            }
-            else
-            {
-                Serial.println(" setting gains for cap");
-                Serial.println(" Kp KI KV");
-
-                slave->get_control()-> setTuningCap(atof(y.c_str()), atof(z.c_str()), atof(cap.c_str()));
-                slave->get_control()->write_debug();
-
-
-            }
+            target = Coord(0, 0, 0);
+            //slave->get_control()->set_speed(atoi(v.c_str()));
+            slave->get_control()->set_BF(BFHOLDFW, target);
             break;
 
         /** Arret moteur
@@ -364,7 +357,9 @@ void OrdersRaspberry::executeinstr()
         case 9:
             Serial.println("@[Slave][S9][STOP]");
             //Serial.println("SLAVE : stop");
-            slave->stop();
+            target = Coord(0, 0, 0);
+            slave->get_control()->set_BF(STOP, target);
+            //slave->stop();
             break;
         }
         break;

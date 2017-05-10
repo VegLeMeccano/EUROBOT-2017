@@ -1,0 +1,33 @@
+class GOLF_PLAYING_State
+!!!205442.cpp!!!	create(inout stm : MAE_PICKY) : void
+  _doentry(stm);
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_cratere_state._golf_playing_state._preparation_du_swing_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_CRATERE.GOLF PLAYING.PREPARATION DU SWING");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_cratere_state._golf_playing_state._preparation_du_swing_state.create(stm);
+  }
+!!!206850.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_PUSH_CRATERE.GOLF PLAYING");
+#endif
+// depend du cote:  a repeter 1 ou 2 fois
+master->get_compteur()->reset();
+!!!206978.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_push_cratere_state;
+!!!229250.cpp!!!	_doexit(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute exit behavior of .MAE_PICKY.JEU.MISSION_PUSH_CRATERE.GOLF PLAYING");
+#endif
+master->get_plateau_jeu()->get_cratere_zone_depart()->vidange();
+master->get_gestionnaire_mission()->get_mission_push_cratere()->mission_remplie();
+!!!380930.cpp!!!	_exit21(inout stm : MAE_PICKY) : void
+  _doexit(stm);
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_cratere_state._recule_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_CRATERE.RECULE");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_cratere_state._recule_state.create(stm);
+  }

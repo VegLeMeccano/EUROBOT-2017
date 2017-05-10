@@ -1,0 +1,27 @@
+class DEGAGEMENT_State
+!!!190850.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!190978.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state;
+!!!224386.cpp!!!	time_out(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state._degagement_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state._recentrage_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.CATCH AND THROW.RECENTRAGE");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state._recentrage_state.create(stm);
+  }
+!!!224514.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.CATCH AND THROW.DEGAGEMENT");
+#endif
+// replis et ouverture de pince
+serialPrintf(master->getPortSerie(),"P0 \n");
+
+master->set_time_out(500);
+!!!236546.cpp!!!	_doexit(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute exit behavior of .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.CATCH AND THROW.DEGAGEMENT");
+#endif
+master->get_plateau_jeu()->get_depose_module_zone_depart()->add_module_monochrome();

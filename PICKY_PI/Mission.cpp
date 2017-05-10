@@ -14,7 +14,8 @@ Mission::Mission(int mission_nb_, Plateau_jeu* plateau_jeu_, Element_Robot* elem
         time_to_achieve_mission(0),
         ratio_pts_tps(0),
         nbr_pts(0),
-        temps_restant(90)
+        temps_restant(90),
+        compteur_prise_module(0)
 {
     //ctor
     reset();
@@ -52,47 +53,56 @@ void Mission::reset()
     {
             case MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE:
                 title = "COLLECT_CENTR_INIT";
-                coord_debut_mission = Coord(-606,1781,-90*PI/180.0);
+                if(plateau_jeu->get_module_central_1()->is_present())
+                {
+                    coord_debut_mission = Coord(-602,1915,(360-90)*PI/180.0);
+                }
+                else
+                {
+                    // pour une reprise apres echec, depart dynamique
+                    coord_debut_mission = Coord(-698,1180,(222)*PI/180.0);
+                }
+
             break;
 
             case MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT:
                 title = "COLLECT_CENTR_REST";
-                coord_debut_mission = Coord(-943,887,120*PI/180.0);
+                coord_debut_mission = Coord(-857,862,(180+56)*PI/180.0);
             break;
 
             case MISSION_COLLECTE_DISTRIBUTEUR_MONOCHROME:
                 title = "COLLECT_DISTRIB_MONO";
-                coord_debut_mission = Coord(-350,1779,90*PI/180.0);
+                coord_debut_mission = Coord(-347,1529,90*PI/180.0);
             break;
 
             case MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME:
                 title = "TRANSF_DISTRIB_POLY";
-                coord_debut_mission = Coord(-1262,695,180*PI/180.0);
+                coord_debut_mission = Coord(-975,900,180*PI/180.0);
             break;
 
             case MISSION_PUSH_DISTRIBUTEUR_MONOCHROME:
                 title = "PUSH_DISTRIB_MONOC";
-                coord_debut_mission = Coord(-350,1779,90*PI/180.0);
+                coord_debut_mission = Coord(-349,1446,90*PI/180.0);
             break;
 
             case MISSION_PUSH_CRATERE:
                 title = "PUSH_CRATERE       ";
-                coord_debut_mission = Coord(-750,1134,90*PI/180.0);
+                coord_debut_mission = Coord(-356,1478,180*PI/180.0);
             break;
 
             case MISSION_DROP_ZONE_DEPART:
                 title = "DROP_ZONE_DEPART";
-                coord_debut_mission = Coord(-1260,1781,90*PI/180.0);
+                coord_debut_mission = Coord(-909,941,133*PI/180.0);
             break;
 
             case MISSION_DEPOT_BASE_DIAGONALE:
                 title = "DEPOT_BASE_DIAGONAL";
-                coord_debut_mission = Coord(-700,700,240*PI/180.0);
+                coord_debut_mission = Coord(-830,836,(180+ 135)*PI/180.0);
             break;
 
             case MISSION_DEPOT_BASE_VERTICALE:
                 title = "DEPOT_BASE_VERTICAL";
-                coord_debut_mission = Coord(0,960,-90*PI/180.0);
+                coord_debut_mission = Coord(-275,709,(0)*PI/180.0);
             break;
     }
     if(!color_blue)
@@ -260,217 +270,322 @@ void Mission::refresh_status()
     switch(mission_nb)
     {
 
+
+            /*************************************************************************************
+                MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE
+            *************************************************************************************/
             // modulo du temps restant....
             case MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE:
-            module_possible_tps_restant = (int)(temps_restant/TIME_TO_CATCH_AND_STOCK_PER_MODULE);
             // si on a plus de place que de module => on les queshs tous!
 
-            if(!is_accomplie() && !plateau_jeu->get_module_central_1()->is_present() && !plateau_jeu->get_module_central_2()->is_present() && !plateau_jeu->get_module_central_3()->is_present())
+            /// check si remplie et condition de jeu remplie
+            if(!is_accomplie() && !plateau_jeu->get_module_central_1()->is_present()
+               && !plateau_jeu->get_module_central_2()->is_present()
+               && !plateau_jeu->get_module_central_3()->is_present())
             {
                 mission_remplie();
             }
 
-            if((plateau_jeu->get_module_central_1()->is_present() + plateau_jeu->get_module_central_2()->is_present() + plateau_jeu->get_module_central_3()->is_present()) <= element_robot->nb_slot_available())
+            /// check la capacité a réaliser la mission
+            if(element_robot->claw_available())
             {
-                module_dispo = (plateau_jeu->get_module_central_1()->is_present() + plateau_jeu->get_module_central_2()->is_present() + plateau_jeu->get_module_central_3()->is_present());
-                //module_dispo  = ;
-                //points =                    module_dispo*PTS_PER_MODULE_BASE_LUNAIRE*POIDS_COLLECT_OVER_PLACEMENT;
-                //time_to_achieve_mission +=  module_dispo*TIME_TO_CATCH_AND_STOCK_PER_MODULE;
+                if((plateau_jeu->get_module_central_1()->is_present()
+                    + plateau_jeu->get_module_central_2()->is_present()
+                    + plateau_jeu->get_module_central_3()->is_present())
+                   <= element_robot->nb_slot_available())
+                {
+                    module_dispo =
+                    (plateau_jeu->get_module_central_1()->is_present()
+                     + plateau_jeu->get_module_central_2()->is_present()
+                     + plateau_jeu->get_module_central_3()->is_present());
+                }
+                else
+                {
+                    module_dispo = element_robot->nb_slot_available();
+                }
             }
-
-            // si on a moins de place...
             else
             {
-                module_dispo = element_robot->nb_slot_available();
-                //points =                    module_dispo*PTS_PER_MODULE_BASE_LUNAIRE*POIDS_COLLECT_OVER_PLACEMENT;
-                //time_to_achieve_mission +=  module_dispo*TIME_TO_CATCH_AND_STOCK_PER_MODULE;
-
+                module_dispo = 0;
             }
-            // comparer slot available dans le robot et ce qui ya de disp
+
+            /// check points et temps modulo du temps restant
             cpt = 0;
             while(( (cpt+1)*TIME_TO_CATCH_AND_STOCK_PER_MODULE + TIME_OFFSET_DEBUT_MISSION) < temps_restant  && cpt < module_dispo)
             {
                 cpt++;
             }
-            // on interdit de collecter si on est a la fin
+
+            /// on interdit de collecter si on est a la fin
             if(temps_restant < TIME_LIMIT_TO_COLLECT)
             {
                 cpt = 0;
                 time_to_achieve_mission = TIME_LIMIT_TO_COLLECT;
             }
+
+            compteur_prise_module = cpt;
             module_dispo = cpt;
             points =                    module_dispo*PTS_PER_MODULE_BASE_LUNAIRE*POIDS_COLLECT_OVER_PLACEMENT;
             time_to_achieve_mission +=  module_dispo*TIME_TO_CATCH_AND_STOCK_PER_MODULE;
             break;
 
 
+
+            /*************************************************************************************
+                MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT
+            *************************************************************************************/
             // modulo du temps restant....
             case MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT:
-            if(!is_accomplie() && !plateau_jeu->get_module_central_4()->is_present() && !plateau_jeu->get_module_central_5()->is_present() )
+
+            /// check si remplie et condition de jeu remplie
+            if(!is_accomplie()
+               && !plateau_jeu->get_module_central_4()->is_present()
+               && !plateau_jeu->get_module_central_5()->is_present() )
             {
                 mission_remplie();
             }
 
-            if((plateau_jeu->get_module_central_4()->is_present() + plateau_jeu->get_module_central_5()->is_present()) <= element_robot->nb_slot_available())
+            /// check la capacité a réaliser la mission
+            if(element_robot->claw_available())
             {
-                module_dispo = plateau_jeu->get_module_central_4()->is_present() + plateau_jeu->get_module_central_5()->is_present() ;
-                //points =                    module_dispo*PTS_PER_MODULE_BASE_LUNAIRE*POIDS_COLLECT_OVER_PLACEMENT;
-                //time_to_achieve_mission +=  module_dispo*TIME_TO_CATCH_AND_STOCK_PER_MODULE;
+                if((plateau_jeu->get_module_central_4()->is_present()
+                    + plateau_jeu->get_module_central_5()->is_present())
+                   <= element_robot->nb_slot_available())
+                {
+                    module_dispo =
+                    plateau_jeu->get_module_central_4()->is_present()
+                    + plateau_jeu->get_module_central_5()->is_present() ;
+                }
+                // si on a moins de place...
+                else
+                {
+                    module_dispo = element_robot->nb_slot_available();
+                }
             }
-            // si on a moins de place...
             else
             {
-                module_dispo = element_robot->nb_slot_available();
-                //points =                    module_dispo*PTS_PER_MODULE_BASE_LUNAIRE*POIDS_COLLECT_OVER_PLACEMENT;
-                //time_to_achieve_mission +=  module_dispo*TIME_TO_CATCH_AND_STOCK_PER_MODULE;
+                module_dispo = 0;
             }
+
+            /// check points et temps modulo du temps restant
             cpt = 0;
             while(( (cpt+1)*TIME_TO_CATCH_AND_STOCK_PER_MODULE + TIME_OFFSET_DEBUT_MISSION) < temps_restant && cpt < module_dispo)
             {
                 cpt++;
             }
 
-            // on interdit de collecter si on est a la fin
+            /// on interdit de collecter si on est a la fin
             if(temps_restant < TIME_LIMIT_TO_COLLECT)
             {
                 cpt = 0;
                 time_to_achieve_mission = TIME_LIMIT_TO_COLLECT;
             }
+
+            compteur_prise_module = cpt;
             module_dispo = cpt;
             points =                    module_dispo*PTS_PER_MODULE_BASE_LUNAIRE*POIDS_COLLECT_OVER_PLACEMENT;
             time_to_achieve_mission +=  module_dispo*TIME_TO_CATCH_AND_STOCK_PER_MODULE;
 
             break;
 
+
+
+            /*************************************************************************************
+                MISSION_COLLECTE_DISTRIBUTEUR_MONOCHROME
+            *************************************************************************************/
             // modulo du temps restant....
             case MISSION_COLLECTE_DISTRIBUTEUR_MONOCHROME:
 
-            if(!is_accomplie() && plateau_jeu->get_distributeur_monochrome()->is_empty())
+            /// check si remplie et condition de jeu remplie
+            if(!is_accomplie()
+               && plateau_jeu->get_distributeur_monochrome()->is_empty())
             {
                 mission_remplie();
             }
 
-            if(plateau_jeu->get_distributeur_monochrome()->nb_module_available() <= element_robot->nb_slot_available())
+            /// on la fait pas avant 45s de jeu: force d'autre mission a demarrer
+                if(temps_restant > 45)
+                {
+                    set_priorite_evitement();
+                }
+                else
+                {
+                    set_priorite_normal();
+                }
+
+            /// check la capacité a réaliser la mission
+            if(element_robot->claw_available())
             {
-                //points = plateau_jeu->get_distributeur_monochrome()->nb_module_available()*PTS_PER_MODULE_BASE_LUNAIRE;
-                module_dispo = plateau_jeu->get_distributeur_monochrome()->nb_module_available();
-                //points =                    module_dispo*PTS_PER_MODULE_BASE_LUNAIRE*POIDS_COLLECT_OVER_PLACEMENT;
-                //time_to_achieve_mission +=  module_dispo*TIME_TO_CATCH_AND_STOCK_PER_MODULE;
+                 if( plateau_jeu->get_distributeur_monochrome()->nb_module_available() <= element_robot->nb_slot_available())
+                {
+                    module_dispo = plateau_jeu->get_distributeur_monochrome()->nb_module_available();
+                }
+                else
+                {
+                    module_dispo = element_robot->nb_slot_available();
+                }
             }
-            // si on a moins de place...
             else
             {
-                //points = element_robot->nb_slot_available()*PTS_PER_MODULE_BASE_LUNAIRE;
-                module_dispo = element_robot->nb_slot_available();
-                //points =                    module_dispo*PTS_PER_MODULE_BASE_LUNAIRE*POIDS_COLLECT_OVER_PLACEMENT;
-                //time_to_achieve_mission +=  module_dispo*TIME_TO_CATCH_AND_STOCK_PER_MODULE;
+                module_dispo = 0;
             }
+
+            /// check points et temps modulo du temps restant
             cpt = 0;
             while((( cpt+1)*TIME_TO_CATCH_AND_STOCK_PER_MODULE + TIME_OFFSET_DEBUT_MISSION) < temps_restant && cpt < module_dispo)
             {
                 cpt++;
             }
 
-            // on interdit de collecter si on est a la fin
+            /// on interdit de collecter si on est a la fin
             if(temps_restant < TIME_LIMIT_TO_COLLECT)
             {
                 cpt = 0;
                 time_to_achieve_mission = TIME_LIMIT_TO_COLLECT;
             }
 
+            compteur_prise_module = cpt;
             module_dispo = cpt;
             points =                    module_dispo*PTS_PER_MODULE_BASE_LUNAIRE*POIDS_COLLECT_OVER_PLACEMENT;
             time_to_achieve_mission +=  module_dispo*TIME_TO_CATCH_AND_STOCK_PER_MODULE;
             break;
 
 
+
+            /*************************************************************************************
+                MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME
+            *************************************************************************************/
             // modulo du temps restant....
             case MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME:
 
-                if(!is_accomplie() && plateau_jeu->get_distributeur_polychrome()->is_empty())
+                /// check si remplie et condition de jeu remplie
+                if(!is_accomplie()
+                   && plateau_jeu->get_distributeur_polychrome()->is_empty())
                 {
                     mission_remplie();
                 }
 
-                if(element_robot->claw_available() || element_robot->nb_module_present()<=3)
+
+                /// check la capacité a réaliser la mission
+                // la pince doit etre dispo et le nb de module embarqué en stock inf à 2 inclus pour forcer le depot qui vaut des points
+                if(element_robot->claw_available()
+                   && element_robot->nb_module_present()<=2)
                 {
-                    // on suppose qu'on drop rien d'autre
                     module_dispo = plateau_jeu->get_distributeur_polychrome()->nb_module_available();
-                    //points =                    module_dispo*PTS_PER_MODULE_BASE_LUNAIRE;
-                    //time_to_achieve_mission +=  module_dispo*TIME_FROM_DISTRIB_TO_BASE_PER_MODULE;
                 }
                 else{
-                    points = 0;
+                    module_dispo = 0;
                 }
+
+                /// check points et temps modulo du temps restant
                 cpt = 0;
                 while(( (cpt+1)*TIME_FROM_DISTRIB_TO_BASE_PER_MODULE + TIME_OFFSET_DEBUT_MISSION) < temps_restant && cpt < module_dispo)
                 {
                     cpt++;
                 }
+
+                compteur_prise_module = cpt;
                 module_dispo = cpt;
                 points =                    module_dispo*PTS_PER_MODULE_BASE_LUNAIRE;
                 time_to_achieve_mission +=  module_dispo*TIME_FROM_DISTRIB_TO_BASE_PER_MODULE;
 
             break;
 
+
+            /*************************************************************************************
+                MISSION_PUSH_DISTRIBUTEUR_MONOCHROME
+            *************************************************************************************/
             // modulo du temps restant...
             case MISSION_PUSH_DISTRIBUTEUR_MONOCHROME:
 
-                if(!is_accomplie() && plateau_jeu->get_distributeur_monochrome()->is_empty())
+                /// check si remplie et condition de jeu remplie
+                if(!is_accomplie()
+                   && plateau_jeu->get_distributeur_monochrome()->is_empty())
                 {
                     mission_remplie();
                 }
 
-                module_dispo = plateau_jeu->get_distributeur_monochrome()->nb_module_available();
-                //points = plateau_jeu->get_distributeur_monochrome()->nb_module_available()*PTS_PER_MODULE_ZONE_DEPART;
-                // pas forcement besoin d'avoir la pince de dispo... on peut quand meme fracasse...
-                //time_to_achieve_mission += TIME_TO_PUSH_DISTRIB_PER_MODULE;
+                /// check la capacité a réaliser la mission
+                // pince non dispo... on peut rien faire
+                if(element_robot->get_stockage_CLAW()->is_stockage_empty())
+                {
+                    module_dispo = plateau_jeu->get_distributeur_monochrome()->nb_module_available();
+                }
+                else
+                {
+                    module_dispo = 0;
+                }
+
+                /// check points et temps modulo du temps restant
                 cpt = 0;
-                while(( (cpt+1)*TIME_TO_PUSH_DISTRIB_PER_MODULE + TIME_OFFSET_DEBUT_MISSION) < temps_restant && cpt <= module_dispo)
+                while(( (cpt+1)*TIME_TO_PUSH_DISTRIB_PER_MODULE + TIME_OFFSET_DEBUT_MISSION) < temps_restant && cpt < module_dispo)
                 {
                     cpt++;
                 }
+                compteur_prise_module = cpt;
                 module_dispo = cpt;
                 points =                    module_dispo*PTS_PER_MODULE_ZONE_DEPART;
                 time_to_achieve_mission +=  module_dispo*TIME_TO_PUSH_DISTRIB_PER_MODULE;
             break;
 
+
+
+            /*************************************************************************************
+                MISSION_PUSH_CRATERE
+            *************************************************************************************/
             // temps fixe
             case MISSION_PUSH_CRATERE:
-                //besoin de le remplir a la main...
-                points = 5*2;
-                time_to_achieve_mission += TIME_TO_PUSH_CRATERE;
-            break;
 
-            // temps fixe
-            case MISSION_DROP_ZONE_DEPART:
-                points = element_robot->nb_module_present()*PTS_PER_MODULE_ZONE_DEPART;
-                time_to_achieve_mission += TIME_TO_DROP;
-
-            break;
-
-            // modulo du temps restant...
-            case MISSION_DEPOT_BASE_DIAGONALE:
-
-                if(!is_accomplie() && plateau_jeu->get_depose_module_base_centrale_diagonale()->is_full())
+                /// check si remplie et condition de jeu remplie
+                if(!is_accomplie()
+                   && plateau_jeu->get_cratere_zone_depart()->is_empty())
                 {
                     mission_remplie();
                 }
 
+                points = plateau_jeu->get_cratere_zone_depart()->get_nb_sphere()*PTS_PER_ROCHE*TAUX_DISPERSION_ROCHE;
+                time_to_achieve_mission += TIME_TO_PUSH_CRATERE;
+
+            break;
+
+
+
+            /*************************************************************************************
+                MISSION_DROP_ZONE_DEPART
+            *************************************************************************************/
+            // temps fixe
+            case MISSION_DROP_ZONE_DEPART:
+                points = element_robot->nb_module_present()*PTS_PER_MODULE_ZONE_DEPART;
+                time_to_achieve_mission += TIME_TO_DROP;
+            break;
+
+
+            /*************************************************************************************
+                MISSION_DEPOT_BASE_DIAGONALE
+            *************************************************************************************/
+            // modulo du temps restant...
+            case MISSION_DEPOT_BASE_DIAGONALE:
+
+                /// check si remplie et condition de jeu remplie
+                if(!is_accomplie()
+                   && plateau_jeu->get_depose_module_base_centrale_diagonale()->is_full())
+                {
+                    mission_remplie();
+                }
+
+                /// check la capacité d'acceuil de la zone de pose
                 if(element_robot->nb_module_present()<=plateau_jeu->get_depose_module_base_centrale_diagonale()->nb_slot_available())
                 {
                     module_dispo = element_robot->nb_module_present();
-                    //points =                    module_dispo*PTS_PER_MODULE_BASE_LUNAIRE;
-                    //time_to_achieve_mission +=  module_dispo*TIME_PLACE_MODULE_ON_BASE_PER_MODULE;
                 }
                 else
                 {
                     module_dispo = plateau_jeu->get_depose_module_base_centrale_diagonale()->nb_slot_available();
-                    //points =                    module_dispo*PTS_PER_MODULE_BASE_LUNAIRE;
-                    //time_to_achieve_mission +=  module_dispo*TIME_PLACE_MODULE_ON_BASE_PER_MODULE;
                 }
+
+                /// check points et temps modulo du temps restant
                 cpt = 0;
-                while(( (cpt+1)*TIME_PLACE_MODULE_ON_BASE_PER_MODULE + TIME_OFFSET_DEBUT_MISSION) < temps_restant && cpt <= module_dispo)
+                while(( (cpt+1)*TIME_PLACE_MODULE_ON_BASE_PER_MODULE + TIME_OFFSET_DEBUT_MISSION) < temps_restant && cpt < module_dispo)
                 {
                     cpt++;
                 }
@@ -478,30 +593,36 @@ void Mission::refresh_status()
                 points =                    module_dispo*PTS_PER_MODULE_BASE_LUNAIRE;
                 time_to_achieve_mission +=  module_dispo*TIME_PLACE_MODULE_ON_BASE_PER_MODULE;
 
-
             break;
 
+
+
+            /*************************************************************************************
+                MISSION_DEPOT_BASE_VERTICALE
+            *************************************************************************************/
             // modulo du temps restant...
             case MISSION_DEPOT_BASE_VERTICALE:
-                if(!is_accomplie() && plateau_jeu->get_depose_module_base_centrale_verticale()->is_full())
+
+                /// check si remplie et condition de jeu remplie
+                if(!is_accomplie()
+                   && plateau_jeu->get_depose_module_base_centrale_verticale()->is_full())
                 {
                     mission_remplie();
                 }
 
+                /// check la capacité d'acceuil de la zone de pose
                 if(element_robot->nb_module_present()<=plateau_jeu->get_depose_module_base_centrale_verticale()->nb_slot_available())
                 {
                     module_dispo = element_robot->nb_module_present();
-                    //points =                    module_dispo*PTS_PER_MODULE_BASE_LUNAIRE;
-                    //time_to_achieve_mission +=  module_dispo*TIME_PLACE_MODULE_ON_BASE_PER_MODULE;
                 }
                 else
                 {
                     module_dispo = plateau_jeu->get_depose_module_base_centrale_verticale()->nb_slot_available();
-                    //points =                    module_dispo*PTS_PER_MODULE_BASE_LUNAIRE;
-                    //time_to_achieve_mission +=  module_dispo*TIME_PLACE_MODULE_ON_BASE_PER_MODULE;
                 }
+
+                /// check points et temps modulo du temps restant
                 cpt = 0;
-                while(((cpt+1)*TIME_PLACE_MODULE_ON_BASE_PER_MODULE  + TIME_OFFSET_DEBUT_MISSION)< temps_restant && cpt <= module_dispo)
+                while(((cpt+1)*TIME_PLACE_MODULE_ON_BASE_PER_MODULE  + TIME_OFFSET_DEBUT_MISSION)< temps_restant && cpt < module_dispo)
                 {
                     cpt++;
                 }

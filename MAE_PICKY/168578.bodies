@@ -1,0 +1,57 @@
+class BF_droite_zone_depart_State
+!!!210562.cpp!!!	assFini(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART");
+#endif
+    if (master->get_element_robot()-> claw_available()) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._avance_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.Avance");
+#endif
+      stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._avance_state.create(stm);
+    }
+    else if (!master->get_element_robot()-> claw_available()) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._preparation_arm_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.Preparation Arm");
+#endif
+      stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._preparation_arm_state.create(stm);
+    }
+  }
+!!!210690.cpp!!!	blocage(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART");
+#endif
+    if (master->get_element_robot()-> claw_available()) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._avance_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.Avance");
+#endif
+      stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._avance_state.create(stm);
+    }
+    else if (!master->get_element_robot()-> claw_available()) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._preparation_arm_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.Preparation Arm");
+#endif
+      stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._preparation_arm_state.create(stm);
+    }
+  }
+!!!210818.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!210946.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.BF droite zone depart");
+#endif
+if(master->is_blue()){
+	serialPrintf(master->getPortSerie(),"S5 -1158 1533 90 \n");
+}
+if(master->is_yellow()){
+	serialPrintf(master->getPortSerie(),"S5 1158 1533 90 \n");
+}
+!!!211074.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state;

@@ -1,0 +1,26 @@
+class REPLIS_State
+!!!225154.cpp!!!	time_out(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.CATCH AND THROW");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state._exit17(stm);
+  }
+!!!225282.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!225410.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.CATCH AND THROW.REPLIS");
+#endif
+// position front, slide centre, pitch folded
+serialPrintf(master->getPortSerie(),"F0 \n");
+serialPrintf(master->getPortSerie(),"L2 \n");
+serialPrintf(master->getPortSerie(),"Y0 \n");
+serialPrintf(master->getPortSerie(),"P0 \n");
+
+serialPrintf(master->getPortSerie(),"C5 \n");
+
+master->set_time_out(100);
+!!!225538.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state;

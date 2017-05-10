@@ -1,0 +1,193 @@
+format 213
+
+statecanvas 128002 state_ref 169730 // Push Polychrome 3
+  
+  xyzwh 34.6432 34.4608 2000 1711 1022
+end
+pseudostatecanvas 128130 pseudostate_ref 266882 // initial
+   xyz 456.463 167.423 2005
+end
+pseudostatecanvas 128258 pseudostate_ref 267010 // exit_point
+   xyz 1148.39 964.586 3005 label_xy 1092 981
+end
+statecanvas 128386 state_ref 311682 // BF droite placement
+  
+  xyzwh 63.1873 331.504 2005 345 159
+end
+statecanvas 128642 state_ref 311810 // Preparation du belier
+  
+  xyzwh 83.3066 173.496 2005 313 131
+end
+statecanvas 128898 state_ref 312066 // BF droite Charge
+  
+  xyzwh 52.7595 522.183 2005 617 205
+end
+pseudostatecanvas 129026 pseudostate_ref 267138 // choice
+   xyz 815.01 143.508 2005
+end
+statecanvas 129154 state_ref 312194 // replis pince
+  
+  xyzwh 699.827 922.236 2005 313 103
+end
+statecanvas 130050 state_ref 312450 // Recule
+  
+  xyzwh 77.0025 776.763 2005 345 159
+end
+pseudostatecanvas 130434 pseudostate_ref 267394 // choice
+   xyz 693.962 772.743 2005
+end
+statecanvas 132482 state_ref 312578 // Prise de stock
+  
+  xyzwh 1161.11 145.188 2005 101 33
+end
+statecanvas 132610 state_ref 312706 // Recul chargement pince
+  
+  xyzwh 1066.23 716.062 2005 345 159
+end
+statecanvas 132738 state_ref 312834 // Positionnement pince pour pose
+  
+  xyzwh 1065.61 213.596 2005 313 131
+end
+statecanvas 133122 state_ref 312962 // Avance pour pose
+  
+  xyzwh 1034.57 372.388 2005 345 159
+end
+statecanvas 133250 state_ref 313090 // Drop
+  
+  xyzwh 758.544 571.278 2005 953 117
+end
+pseudostatecanvas 139266 pseudostate_ref 267778 // choice
+   xyz 763.701 395.208 2005
+end
+pseudostatecanvas 140674 pseudostate_ref 274434 // exit_point
+   xyz 1241.46 165.4 3005 label_xy 1263 174
+end
+transitioncanvas 129538 transition_ref 387458 // <transition>
+  
+  from ref 128130 z 2006 to ref 128642
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129666 transition_ref 387586 // <transition>
+  
+  from ref 128642 z 2006 label "time_out" xyz 182 307 2006 to ref 128386
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129922 transition_ref 387714 // <transition>
+  
+  from ref 128386 z 2006 label "assFini" xyz 308 492 2006 to point 335.74 511.26
+  line 137346 z 2006 to ref 128898
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130562 transition_ref 387970 // <transition>
+  
+  from ref 130050 z 2006 label "assFini" xyz 488 888 2006 to point 485.74 816.36
+  line 130690 z 2006 to ref 130434
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130818 transition_ref 388098 // <transition>
+  
+  from ref 130050 z 2006 label "blocage" xyz 469 805 2006 to point 483.7 778.6
+  line 130946 z 2006 to ref 130434
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 132354 transition_ref 388738 // <transition>
+  
+  from ref 128898 z 2006 label "assFini" xyz 191.5 742 2006 to point 228.6 747.98
+  line 137474 z 2006 to ref 130050
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 133378 transition_ref 388866 // <transition>
+  
+  from ref 132738 z 2006 label "time_out" xyz 1216 350 2006 to ref 133122
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 133506 transition_ref 388994 // <transition>
+  
+  from ref 133122 z 2006 label "assFini" xyz 1261 543 2006 to point 1250.04 546.96
+  line 138242 z 2006 to ref 133250
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 134530 transition_ref 389634 // <transition>
+  
+  from ref 133250 z 2006 label "time_out" xyz 1242 695 2006 to ref 132610
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 135042 transition_ref 389890 // <transition>
+  
+  from ref 132610 z 2006 label "blocage" xyz 833 745 2006 to point 749.02 760.24
+  line 138626 z 2006 to ref 130434
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 135426 transition_ref 390146 // <transition>
+  
+  from ref 129026 z 2006 label "[!master->get_element_robot()-> claw_available()]" xyz 804 282 2006 to point 827.58 269.42
+  line 136194 z 2006 to ref 132738
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 136322 transition_ref 390274 // <transition>
+  
+  from ref 129026 z 2006 label "[master->get_element_robot()-> claw_available()]" xyz 891.5 135 2006 to ref 132482
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 137602 transition_ref 390402 // <transition>
+  
+  from ref 128386 z 2006 label "blocage" xyz 244.5 494 2006 to ref 128898
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 137730 transition_ref 390530 // <transition>
+  decenter_end 620
+  
+  from ref 128898 z 2006 label "blocage" xyz 287.5 733 2006 to point 301.06 755.14
+  line 140290 z 2006 to ref 130050
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 137986 transition_ref 390658 // <transition>
+  
+  from ref 129154 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 138114 transition_ref 390786 // <transition>
+  decenter_begin 518
+  
+  from ref 130434 z 2006 label "[master->get_element_robot()->nb_module_present() == 0]" xyz 397 981 2006 to point 575.54 874.52
+  line 140546 z 2006 to point 573.5 966.36
+  line 139138 z 2006 to ref 129154
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 138498 transition_ref 390914 // <transition>
+  
+  from ref 132610 z 2006 label "assFini" xyz 871 814 2006 to point 754.12 809.22
+  line 138754 z 2006 to ref 130434
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 138882 transition_ref 391042 // <transition>
+  
+  from ref 133122 z 2006 label "blocage" xyz 1136 544 2006 to point 1184.72 547.98
+  line 139010 z 2006 to ref 133250
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 139522 transition_ref 391170 // <transition>
+  
+  from ref 130434 z 2006 label "master->get_element_robot()->nb_module_present() > 0" xyz 478 462 2006 to point 709.22 411.26
+  line 140162 z 2006 to ref 139266
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 139650 transition_ref 391298 // <transition>
+  
+  from ref 139266 z 2006 label "[!master->get_plateau_jeu()->get_depose_module_base_centrale_diagonale()->is_full()]" xyz 474 357 2006 to point 775.54 161.26
+  line 140418 z 2006 to ref 129026
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 139906 transition_ref 391426 // <transition>
+  
+  from ref 139266 z 2006 label "[master->get_plateau_jeu()->get_depose_module_base_centrale_diagonale()->is_full()]" xyz 689 892 2006 to point 777.58 871.46
+  line 140034 z 2006 to ref 129154
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 140930 transition_ref 404610 // <transition>
+  
+  from ref 140674 z 3006 to point 947.24 199
+  line 141058 z 3006 to ref 129026
+  write_horizontally default show_definition default drawing_language default
+end
+end

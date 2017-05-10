@@ -6,6 +6,8 @@
 #include "Gestionnaire_Mission.h"
 #include "Plateau_jeu.h"
 #include "Element_Robot.h"
+#include "Compteur.h"
+
 
 #include <wiringPi.h>
 
@@ -24,6 +26,8 @@ class Master
         Period periode_run;
 
         Period period_jeu;
+		
+		Compteur* compteur;
 
         // couleur
         bool color_blue;
@@ -44,6 +48,9 @@ class Master
     public:
         Master(int portSerie_);
         void run();
+
+
+        //void toArduino(String string);
 
         // port serie
         int getPortSerie();
@@ -66,6 +73,8 @@ class Master
 
         Plateau_jeu* get_plateau_jeu();
         Element_Robot* get_element_robot();
+		
+		Compteur* get_compteur();
 
         // color
         bool is_blue();

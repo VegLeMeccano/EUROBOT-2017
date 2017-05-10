@@ -142,8 +142,10 @@ void Protocole_COM::executeinstr()
         if(s.find("START_OUT") != string::npos)
         {
             cout<<"[Master] start enleve"<<endl;
+			master->start_compteur_periode();
+			// bien le mettre avant... sinon compteur tronqué
             master->get_mae_picky()->start_enleve();
-            master->start_compteur_periode();
+
         }
 
         //fin des 90s
@@ -180,14 +182,90 @@ void Protocole_COM::executeinstr()
             master->get_mae_picky()->blocage();
         }
 
-        // check si l'asserv est fini
-        if(s.find("SLAVE_ENNEMI") != string::npos)
+        /************************************************
+                CHECK PINCE : CLAW
+        *************************************************/
+
+		// check
+        if(s.find("CLW_STOCKED") != string::npos)
         {
-            cout<<"[Master] etat asserv, ennemi gauche"<<endl;
-            master->get_mae_picky()->evitement(); // adversaire();
-            master->get_gestionnaire_mission()->evitement_mission();
+            cout<<"[Master] CLW_STOCKED"<<endl;
+            master->get_mae_picky()->clw_stocked();
         }
 
+		if(s.find("CLW_FAIL_CATCH") != string::npos)
+        {
+            cout<<"[Master] CLW_FAIL_CATCH"<<endl;
+            master->get_mae_picky()->clw_fail_catch();
+        }
+
+	   	if(s.find("CLW_AUTO_GIVE_UP") != string::npos)
+        {
+            cout<<"[Master] CLW_AUTO_GIVE_UP"<<endl;
+            master->get_mae_picky()->clw_fail_catch();
+        }
+
+
+		/************************************************
+                CHECK STO : STOCKER
+        *************************************************/
+
+		// check
+        if(s.find("STO_L_STOCKED") != string::npos)
+        {
+            cout<<"[Master] STO_L_STOCKED"<<endl;
+            master->get_mae_picky()->sto_l_stocked();
+        }
+
+		if(s.find("STO_L_GIVE_UP") != string::npos)
+        {
+            cout<<"[Master] STO_L_GIVE_UP"<<endl;
+            master->get_mae_picky()->sto_l_fail();
+        }
+
+	   	if(s.find("STO_L_FAIL") != string::npos)
+        {
+            cout<<"[Master] STO_L_FAIL"<<endl;
+            master->get_mae_picky()->sto_l_fail();
+        }
+
+		/* Central **/
+		if(s.find("STO_C_STOCKED") != string::npos)
+        {
+            cout<<"[Master] STO_C_STOCKED"<<endl;
+            master->get_mae_picky()->sto_c_stocked();
+        }
+
+		if(s.find("STO_C_GIVE_UP") != string::npos)
+        {
+            cout<<"[Master] STO_C_GIVE_UP"<<endl;
+            master->get_mae_picky()->sto_c_fail();
+        }
+
+	   	if(s.find("STO_C_FAIL") != string::npos)
+        {
+            cout<<"[Master] STO_C_FAIL"<<endl;
+            master->get_mae_picky()->sto_c_fail();
+        }
+
+		/* right **/
+		if(s.find("STO_R_STOCKED") != string::npos)
+        {
+            cout<<"[Master] STO_R_STOCKED"<<endl;
+            master->get_mae_picky()->sto_r_stocked();
+        }
+
+		if(s.find("STO_R_GIVE_UP") != string::npos)
+        {
+            cout<<"[Master] STO_R_GIVE_UP"<<endl;
+            master->get_mae_picky()->sto_r_fail();
+        }
+
+	   	if(s.find("STO_R_FAIL") != string::npos)
+        {
+            cout<<"[Master] STO_R_FAIL"<<endl;
+            master->get_mae_picky()->sto_r_fail();
+        }
 
 
 
@@ -228,7 +306,7 @@ void Protocole_COM::executeinstr()
 		/************************************************
                 CHECK COORDS
         *************************************************/
-         //si reception de coordonnées
+         //si reception de coordonnées reel du robot
         if(s.find("COORD") != string::npos)
         {
             stream.str(s);
@@ -239,17 +317,56 @@ void Protocole_COM::executeinstr()
             cout<< " y : "<<atoi(y.c_str());
             cout<< " cap : "<<atoi(cap.c_str())<<endl;
 
-            master->get_gestionnaire_mission()->set_coord( Coord( atoi(x.c_str()) , atoi(y.c_str()) , 3.1423/180*atoi(cap.c_str()) ) );
+            //master->get_gestionnaire_mission()->set_coord( Coord( atoi(x.c_str()) , atoi(y.c_str()) , 3.1423/180*atoi(cap.c_str()) ) );
+            master->get_gestionnaire_mission()->get_coord_reel()->set_x(atoi(x.c_str()));
+            master->get_gestionnaire_mission()->get_coord_reel()->set_y(atoi(y.c_str()));
+            master->get_gestionnaire_mission()->get_coord_reel()->set_cap(3.1423/180*atoi(cap.c_str()));
+
             // aller chercher les coordonnées dans la chaine
             // to do
             // et les mettre dans le master pour decision sur mission a venir
             cout<<"[Master] REAL COORD : ";
-            cout<<master->get_gestionnaire_mission()->get_coord().get_x()<<" ";
-            cout<<master->get_gestionnaire_mission()->get_coord().get_y()<<" ";
-            cout<<(int)(master->get_gestionnaire_mission()->get_coord().get_cap()*180/3.1416)<<endl;
+            cout<<master->get_gestionnaire_mission()->get_coord_reel()->get_x()<<" ";
+            cout<<master->get_gestionnaire_mission()->get_coord_reel()->get_y()<<" ";
+            cout<<(int)(master->get_gestionnaire_mission()->get_coord_reel()->get_cap()*180/3.1416)<<endl;
 
             //master->set_couleur(COULEUR_VERT);
         }
+
+        // cooro ennemi
+        if(s.find("ADVD") != string::npos)
+        {
+
+
+            stream.str(s);
+            stream>> ordre >> name >> x >> y >> cap;
+            //stream>> name >> x >> y >> cap;
+            cout<<"compris : ";
+            cout<< "x : "<<atoi(x.c_str());
+            cout<< " y : "<<atoi(y.c_str());
+            cout<< " cap : "<<atoi(cap.c_str())<<endl;
+
+            //master->get_gestionnaire_mission()->set_coord( Coord( atoi(x.c_str()) , atoi(y.c_str()) , 3.1423/180*atoi(cap.c_str()) ) );
+            master->get_gestionnaire_mission()->get_coord_ennemi()->set_x(atoi(x.c_str()));
+            master->get_gestionnaire_mission()->get_coord_ennemi()->set_y(atoi(y.c_str()));
+            master->get_gestionnaire_mission()->get_coord_ennemi()->set_cap(3.1423/180*atoi(cap.c_str()));
+
+
+
+            // aller chercher les coordonnées dans la chaine
+            // to do
+            // et les mettre dans le master pour decision sur mission a venir
+            cout<<"[Master] ADV COORD : ";
+            cout<<master->get_gestionnaire_mission()->get_coord_ennemi()->get_x()<<" ";
+            cout<<master->get_gestionnaire_mission()->get_coord_ennemi()->get_y()<<" ";
+            cout<<(int)(master->get_gestionnaire_mission()->get_coord_ennemi()->get_cap()*180/3.1416)<<endl;
+
+
+            cout<<"[Master] etat asserv, ennemi detecté, abandon mission en cours"<<endl;
+            master->get_mae_picky()->evitement(); // adversaire();
+            master->get_gestionnaire_mission()->evitement_mission();
+        }
+
 
 
         break;

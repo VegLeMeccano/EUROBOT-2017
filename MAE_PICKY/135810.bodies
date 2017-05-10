@@ -2,12 +2,11 @@ class JEU_State
 !!!143362.cpp!!!	create(inout stm : MAE_PICKY) : void
   _doentry(stm);
   {
-    {
-      stm._set_currentState(stm._mae_picky_state._jeu_state._decision_mission_state);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._decision_mission_state);
 #ifdef VERBOSE_STATE_MACHINE
-      puts("DEBUG : current state is now .MAE_PICKY.JEU.DECISION_MISSION");
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.DECISION_MISSION");
 #endif
-    }
+    stm._mae_picky_state._jeu_state._decision_mission_state.create(stm);
   }
 !!!150786.cpp!!!	evitement(inout stm : MAE_PICKY) : void
   {

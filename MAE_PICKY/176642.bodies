@@ -1,0 +1,26 @@
+class DEGAGEMENT_State
+!!!228226.cpp!!!	blocage(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._exit16(stm);
+  }
+!!!228354.cpp!!!	assFini(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._exit16(stm);
+  }
+!!!228482.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!228610.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.DEGAGEMENT");
+#endif
+serialPrintf(master->getPortSerie(),"S4 -200 \n");
+!!!228738.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state;

@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
+	<File name="Cratere.h" open="0" top="0" tabpos="7">
+		<Cursor position="276" topLine="0" />
+	</File>
 	<File name="Element_Robot.h" open="0" top="0" tabpos="6">
 		<Cursor position="853" topLine="30" />
 	</File>
-	<File name="Gestionnaire_Mission.cpp" open="1" top="1" tabpos="4">
-		<Cursor position="28441" topLine="332" />
+	<File name="Gestionnaire_Mission.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="16306" topLine="332" />
 	</File>
-	<File name="Gestionnaire_Mission.h" open="0" top="0" tabpos="4">
-		<Cursor position="2363" topLine="76" />
+	<File name="Gestionnaire_Mission.h" open="0" top="0" tabpos="5">
+		<Cursor position="2412" topLine="55" />
 	</File>
 	<File name="MAE_PICKY.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="13982" topLine="413" />
 	</File>
 	<File name="Master.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="427" topLine="0" />
+		<Cursor position="2991" topLine="74" />
 	</File>
 	<File name="Master.h" open="1" top="0" tabpos="1">
-		<Cursor position="611" topLine="18" />
+		<Cursor position="1507" topLine="54" />
 	</File>
 	<File name="Mission.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="4498" topLine="147" />
@@ -34,16 +37,16 @@
 	<File name="Period.h" open="0" top="0" tabpos="10">
 		<Cursor position="52" topLine="0" />
 	</File>
-	<File name="Plateau_jeu.h" open="0" top="0" tabpos="7">
-		<Cursor position="416" topLine="11" />
+	<File name="Plateau_jeu.h" open="0" top="0" tabpos="6">
+		<Cursor position="938" topLine="11" />
 	</File>
-	<File name="Protocole_COM.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="6093" topLine="232" />
+	<File name="Protocole_COM.cpp" open="1" top="1" tabpos="4">
+		<Cursor position="9328" topLine="320" />
 	</File>
 	<File name="Protocole_COM.h" open="0" top="0" tabpos="6">
 		<Cursor position="242" topLine="0" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="1306" topLine="46" />
+		<Cursor position="1091" topLine="31" />
 	</File>
 </CodeBlocks_layout_file>

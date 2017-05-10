@@ -1,0 +1,21 @@
+class RECENTRAGE_State
+!!!364802.cpp!!!	_completion(inout stm : MAE_PICKY) : bool
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.Prise de stock");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state._exit7(stm);
+    return (bool) 1;
+  }
+!!!364930.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+	_completion(stm);
+!!!365058.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.Prise de stock.RECENTRAGE");
+#endif
+serialPrintf(master->getPortSerie(),"L1 \n");
+serialPrintf(master->getPortSerie(),"Y2 \n");
+!!!365186.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state;

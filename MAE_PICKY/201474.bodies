@@ -1,0 +1,20 @@
+class Stock_C_stocked_State
+!!!295554.cpp!!!	_completion(inout stm : MAE_PICKY) : bool
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._collecte_polychrome_1_state._stockage_state._stock_pitch_down_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Collecte Polychrome 1.Stockage.Stock Pitch down");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._collecte_polychrome_1_state._stockage_state._stock_pitch_down_state.create(stm);
+    return (bool) 1;
+  }
+!!!295682.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+	_completion(stm);
+!!!295810.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Collecte Polychrome 1.Stockage.Stock C stocked");
+#endif
+master->get_element_robot()->get_stockage_C()->catch_polychrome();
+!!!295938.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._collecte_polychrome_1_state._stockage_state;

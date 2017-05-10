@@ -1,0 +1,43 @@
+class RETOUR_CENTRE_FOLDED_State
+!!!379010.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!379138.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._catch_and_place_state;
+!!!391682.cpp!!!	time_out(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._catch_and_place_state._retour_centre_folded_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._catch_and_place_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME.CATCH AND PLACE");
+#endif
+    if (!master->get_plateau_jeu()->get_distributeur_polychrome()->is_empty()) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._catch_and_place_state._prise_ar_diagonal_side_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME.CATCH AND PLACE.PRISE AR DIAGONAL SIDE");
+#endif
+      stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._catch_and_place_state._prise_ar_diagonal_side_state.create(stm);
+    }
+    else if (master->get_plateau_jeu()->get_distributeur_polychrome()->is_empty()) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._catch_and_place_state._replis_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME.CATCH AND PLACE.REPLIS");
+#endif
+      stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._catch_and_place_state._replis_state.create(stm);
+    }
+  }
+!!!391810.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME.CATCH AND PLACE.RETOUR CENTRE FOLDED");
+#endif
+serialPrintf(master->getPortSerie(),"P0 \n");
+master->set_time_out(200);
+!!!391938.cpp!!!	_doexit(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute exit behavior of .MAE_PICKY.JEU.MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME.CATCH AND PLACE.RETOUR CENTRE FOLDED");
+#endif
+if(master->is_blue()){
+	serialPrintf(master->getPortSerie(),"L0 \n");
+}
+if(master->is_yellow()){
+	serialPrintf(master->getPortSerie(),"L2 \n");
+}

@@ -1,0 +1,39 @@
+class PRISE_AR_DIAGONAL_SIDE_State
+!!!375938.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!376066.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._catch_and_place_state;
+!!!389762.cpp!!!	time_out(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._catch_and_place_state._prise_ar_diagonal_side_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._catch_and_place_state._prise_av_diagonal_side_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME.CATCH AND PLACE.PRISE AV DIAGONAL SIDE");
+#endif
+    stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._catch_and_place_state._prise_av_diagonal_side_state.create(stm);
+  }
+!!!389890.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME.CATCH AND PLACE.PRISE AR DIAGONAL SIDE");
+#endif
+serialPrintf(master->getPortSerie(),"F0 \n");
+
+if(master->is_blue()){
+	serialPrintf(master->getPortSerie(),"L0 \n");
+	serialPrintf(master->getPortSerie(),"Y1 \n");
+}
+if(master->is_yellow()){
+	serialPrintf(master->getPortSerie(),"L2 \n");
+	serialPrintf(master->getPortSerie(),"Y3 \n");
+}
+
+serialPrintf(master->getPortSerie(),"P0 \n");
+
+//master->set_time_out(200);
+!!!390018.cpp!!!	_doexit(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute exit behavior of .MAE_PICKY.JEU.MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME.CATCH AND PLACE.PRISE AR DIAGONAL SIDE");
+#endif
+serialPrintf(master->getPortSerie(),"C2 \n");
+serialPrintf(master->getPortSerie(),"C4 \n");
+serialPrintf(master->getPortSerie(),"C7 \n");

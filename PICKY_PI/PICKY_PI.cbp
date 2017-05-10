@@ -37,8 +37,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Compteur.cpp" />
+		<Unit filename="Compteur.h" />
 		<Unit filename="Coord.cpp" />
 		<Unit filename="Coord.h" />
+		<Unit filename="Cratere.cpp" />
+		<Unit filename="Cratere.h" />
 		<Unit filename="Distributeur.cpp" />
 		<Unit filename="Distributeur.h" />
 		<Unit filename="Element_Robot.cpp" />

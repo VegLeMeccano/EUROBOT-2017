@@ -9,6 +9,7 @@
 
 Gestionnaire_Mission::Gestionnaire_Mission(Plateau_jeu* plateau_jeu_, Element_Robot* element_robot_):
         coord_reel(0,0,0),
+        coord_ennemi(0,0,0),
         cap_to_mission(0),
         alignement_to_mission(false),
         premiere_entree_decision(true),
@@ -27,11 +28,15 @@ Gestionnaire_Mission::Gestionnaire_Mission(Plateau_jeu* plateau_jeu_, Element_Ro
         mission_depot_base_verticale(MISSION_DEPOT_BASE_VERTICALE, plateau_jeu_, element_robot_),
         mission_en_cours(-1),
         mission_sortie_evitement(-1),
-        temps_restant(90)
+        temps_restant(90),
+        vecteur_reel_ennemi(),
+        vecteur_reel_mission()
 
 {
     mission_depot_base_verticale.mission_remplie();
-    mission_depot_base_diagonale.mission_remplie();
+    //mission_collecte_module_centraux_restant.mission_remplie();
+    //mission_collecte_distributeur_monochrome.mission_remplie();
+    //mission_depot_base_diagonale.mission_remplie();
 
     cout << "[GESTIONNAIRE MISSION] -> [INIT BEGIN]" << endl;
 
@@ -77,10 +82,22 @@ void Gestionnaire_Mission::set_coord(Coord coord_reel_)
     coord_reel = coord_reel_;
 }
 
-Coord Gestionnaire_Mission::get_coord()
+void Gestionnaire_Mission::set_coord_ennemi(Coord coord_reel_)
 {
-    return coord_reel;
+    coord_ennemi = coord_reel_;
 }
+
+
+Coord* Gestionnaire_Mission::get_coord_reel()
+{
+    return &coord_reel;
+}
+
+Coord* Gestionnaire_Mission::get_coord_ennemi()
+{
+    return &coord_ennemi;
+}
+
 
 
 /********************************************************
@@ -105,7 +122,14 @@ int Gestionnaire_Mission::decision_mission(long temps_restant_)
 
 
     cout<<"[GESTIONNAIRE MISSION] -> [DECISION MISSION : BEGIN]"<<endl;
-    affiche_mission_active();
+
+	plateau_jeu->display();
+	element_robot->display();
+
+	affiche_mission_active();
+
+
+
     /// recolte des données sur les missions, on prend seulement si la missions n'est pas remplie
     vector<float> vectorDistance;
     vector<string> vectorName;
@@ -117,7 +141,10 @@ int Gestionnaire_Mission::decision_mission(long temps_restant_)
     vector<float> vectorPtsToGet;
 
 
-    if(!mission_collecte_module_centraux_initiale.is_accomplie() && mission_collecte_module_centraux_initiale.get_time_to_realise()< temps_restant && mission_collecte_module_centraux_initiale.is_priorite_normal())
+    if(!mission_collecte_module_centraux_initiale.is_accomplie()
+       && mission_collecte_module_centraux_initiale.get_time_to_realise()< temps_restant
+       && mission_collecte_module_centraux_initiale.is_priorite_normal()
+       && mission_collecte_module_centraux_initiale.points_to_do() >0)
     {
         vectorMission.push_back(MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE);
         vectorName.push_back(mission_collecte_module_centraux_initiale.get_title());
@@ -127,7 +154,10 @@ int Gestionnaire_Mission::decision_mission(long temps_restant_)
         vectorPtsToGet.push_back(mission_collecte_module_centraux_initiale.points_to_do());
         vectorTimeToRealize.push_back(mission_collecte_module_centraux_initiale.get_time_to_realise());
     }
-    if(!mission_collecte_module_centraux_restant.is_accomplie() && mission_collecte_module_centraux_restant.get_time_to_realise()< temps_restant && mission_collecte_module_centraux_restant.is_priorite_normal())
+    if(!mission_collecte_module_centraux_restant.is_accomplie()
+       && mission_collecte_module_centraux_restant.get_time_to_realise()< temps_restant
+       && mission_collecte_module_centraux_restant.is_priorite_normal()
+       && mission_collecte_module_centraux_restant.points_to_do() >0)
     {
         vectorMission.push_back(MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT);
         vectorName.push_back(mission_collecte_module_centraux_restant.get_title());
@@ -138,7 +168,10 @@ int Gestionnaire_Mission::decision_mission(long temps_restant_)
         vectorTimeToRealize.push_back(mission_collecte_module_centraux_restant.get_time_to_realise());
     }
 
-    if(!mission_collecte_distributeur_monochrome.is_accomplie() && mission_collecte_distributeur_monochrome.get_time_to_realise()< temps_restant && mission_collecte_distributeur_monochrome.is_priorite_normal())
+    if(!mission_collecte_distributeur_monochrome.is_accomplie()
+       && mission_collecte_distributeur_monochrome.get_time_to_realise()< temps_restant
+       && mission_collecte_distributeur_monochrome.is_priorite_normal()
+       && mission_collecte_distributeur_monochrome.points_to_do() >0)
     {
         vectorMission.push_back(MISSION_COLLECTE_DISTRIBUTEUR_MONOCHROME);
         vectorName.push_back(mission_collecte_distributeur_monochrome.get_title());
@@ -149,7 +182,10 @@ int Gestionnaire_Mission::decision_mission(long temps_restant_)
         vectorTimeToRealize.push_back(mission_collecte_distributeur_monochrome.get_time_to_realise());
     }
 
-    if(!mission_transfert_direct_distributeur_polychrome.is_accomplie() && mission_transfert_direct_distributeur_polychrome.get_time_to_realise()< temps_restant && mission_transfert_direct_distributeur_polychrome.is_priorite_normal())
+    if(!mission_transfert_direct_distributeur_polychrome.is_accomplie()
+       && mission_transfert_direct_distributeur_polychrome.get_time_to_realise()< temps_restant
+       && mission_transfert_direct_distributeur_polychrome.is_priorite_normal()
+       && mission_transfert_direct_distributeur_polychrome.points_to_do() >0)
     {
         vectorMission.push_back(MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME);
         vectorName.push_back(mission_transfert_direct_distributeur_polychrome.get_title());
@@ -160,7 +196,10 @@ int Gestionnaire_Mission::decision_mission(long temps_restant_)
         vectorTimeToRealize.push_back(mission_transfert_direct_distributeur_polychrome.get_time_to_realise());
     }
 
-    if(!mission_push_distributeur_monochrome.is_accomplie() && mission_push_distributeur_monochrome.get_time_to_realise()< temps_restant && mission_push_distributeur_monochrome.is_priorite_normal())
+    if(!mission_push_distributeur_monochrome.is_accomplie()
+       && mission_push_distributeur_monochrome.get_time_to_realise()< temps_restant
+       && mission_push_distributeur_monochrome.is_priorite_normal()
+       && mission_push_distributeur_monochrome.points_to_do() >0)
     {
         vectorMission.push_back(MISSION_PUSH_DISTRIBUTEUR_MONOCHROME);
         vectorName.push_back(mission_push_distributeur_monochrome.get_title());
@@ -171,7 +210,10 @@ int Gestionnaire_Mission::decision_mission(long temps_restant_)
         vectorTimeToRealize.push_back(mission_push_distributeur_monochrome.get_time_to_realise());
     }
 
-    if(!mission_push_cratere.is_accomplie()&& mission_push_cratere.get_time_to_realise()< temps_restant && mission_push_cratere.is_priorite_normal())
+    if(!mission_push_cratere.is_accomplie()
+       && mission_push_cratere.get_time_to_realise()< temps_restant
+       && mission_push_cratere.is_priorite_normal()
+       && mission_push_cratere.points_to_do() >0)
     {
         vectorMission.push_back(MISSION_PUSH_CRATERE);
         vectorName.push_back(mission_push_cratere.get_title());
@@ -182,7 +224,10 @@ int Gestionnaire_Mission::decision_mission(long temps_restant_)
         vectorTimeToRealize.push_back(mission_push_cratere.get_time_to_realise());
     }
 
-    if(!mission_drop_zone_depart.is_accomplie()&& mission_drop_zone_depart.get_time_to_realise()< temps_restant && mission_drop_zone_depart.is_priorite_normal())
+    if(!mission_drop_zone_depart.is_accomplie()
+       && mission_drop_zone_depart.get_time_to_realise()< temps_restant
+       && mission_drop_zone_depart.is_priorite_normal()
+       && mission_drop_zone_depart.points_to_do() >0)
     {
         vectorMission.push_back(MISSION_DROP_ZONE_DEPART);
         vectorName.push_back(mission_drop_zone_depart.get_title());
@@ -193,7 +238,10 @@ int Gestionnaire_Mission::decision_mission(long temps_restant_)
         vectorTimeToRealize.push_back(mission_drop_zone_depart.get_time_to_realise());
     }
 
-    if(!mission_depot_base_diagonale.is_accomplie()&& mission_depot_base_diagonale.get_time_to_realise()< temps_restant && mission_depot_base_diagonale.is_priorite_normal())
+    if(!mission_depot_base_diagonale.is_accomplie()
+       && mission_depot_base_diagonale.get_time_to_realise()< temps_restant
+       && mission_depot_base_diagonale.is_priorite_normal()
+       && mission_depot_base_diagonale.points_to_do() >0)
     {
         vectorMission.push_back(MISSION_DEPOT_BASE_DIAGONALE);
         vectorName.push_back(mission_depot_base_diagonale.get_title());
@@ -204,7 +252,10 @@ int Gestionnaire_Mission::decision_mission(long temps_restant_)
         vectorTimeToRealize.push_back(mission_depot_base_diagonale.get_time_to_realise());
     }
 
-    if(!mission_depot_base_verticale.is_accomplie()&& mission_depot_base_verticale.get_time_to_realise()< temps_restant && mission_depot_base_verticale.is_priorite_normal())
+    if(!mission_depot_base_verticale.is_accomplie()
+       && mission_depot_base_verticale.get_time_to_realise()< temps_restant
+       && mission_depot_base_verticale.is_priorite_normal()
+       && mission_depot_base_verticale.points_to_do() >0)
     {
         vectorMission.push_back(MISSION_DEPOT_BASE_VERTICALE);
         vectorName.push_back(mission_depot_base_verticale.get_title());
@@ -226,7 +277,9 @@ int Gestionnaire_Mission::decision_mission(long temps_restant_)
         // V = 0.4m/s =d/t -> t=d/v=vector_d/400mm/s
         vectorDecision.push_back((float)vectorPtsToGet[index]/(vectorTimeToRealize[index]+ vectorDistance[index]/300.0) );
         cout.precision(2);
-        cout<<"#"<<vectorMission[index]<<" "<<vectorName[index] << "\tp : "<< vectorPtsToGet[index]<< " \td : "<<(int)vectorDistance[index]<< " \tt : "<<(int)((vectorTimeToRealize[index]+ vectorDistance[index]/250.0))<<"  \tPds :"<<vectorDecision[index]<<endl;
+        cout<<"#"<<vectorMission[index]<<" "<<vectorName[index] << "\tp : "<< vectorPtsToGet[index]
+        << " \td : "<<(int)vectorDistance[index]<< " \tt : "<<(int)((vectorTimeToRealize[index]+ vectorDistance[index]/250.0))
+        <<"  \tPds :"<<vectorDecision[index]<<endl;
     }
     cout<<"----------------------------------------------------- "<<endl;
 
@@ -496,6 +549,7 @@ void Gestionnaire_Mission::actualisation_target(int mission_indice_)
     }
     // affiche les stats... Coord reel, Coord target, cap to target... distance a vol de piaf...
     cout<<"\tCoord reel -> (" << setprecision (4)<< coord_reel.get_x() << " , " << coord_reel.get_y() << " , " << coord_reel.get_cap()*180/PI << " ) " <<endl;
+    cout<<"\tCoord ennemi -> (" << setprecision (4)<< coord_ennemi.get_x() << " , " << coord_ennemi.get_y() << " , " << coord_ennemi.get_cap()*180/PI << " ) " <<endl;
     cout<<"\tCoord target -> (" << setprecision (4)<< x_mission << " , " << y_mission << " , " << cap_mission*180/PI << " ) " <<endl;
     cout<<"\tDist to mission -> " << setprecision (4)<< get_distance_to_mission()  << " mm " <<endl;
     cout<<"\tCap to mission -> " << setprecision (4)<< get_cap_to_mission()  << " deg " <<endl;
@@ -515,6 +569,10 @@ void Gestionnaire_Mission::evitement_mission()
 
     sortie_evitement = true;
     cout<<"[Evitement provoque sur mission] -> #"<<mission_sortie_evitement<<""<<endl;
+
+    // autre mission a eviter dans le cone de detection, peut etre mission en cours redeclenchable...
+    // a voir dans actualisation des priorités
+
 }
 
 
@@ -527,8 +585,59 @@ void Gestionnaire_Mission::actualisation_Priorite()
     //temps_restant = (period_jeu.time_elapsed()- PERIODE_JEU)/1000; // en s
     //cout<<"temps restant : "<<temps_restant<<" s"<<endl;
     //cout<<"actualisation des prioritées"<<endl;
+
+    vecteur_reel_ennemi.set_vector(coord_reel,coord_ennemi);
+
+    //vecteur_reel_mission.set_vector(coord_reel,coord_ennemi);
+
+
+
     if(sortie_evitement == true)
     {
+        // on devrait faire un tableau de mission pour eviter ces repetitions...
+        /// collecte
+        vecteur_reel_mission.set_vector(coord_reel,mission_collecte_module_centraux_initiale.get_coord_debut_mission());
+        if(abs(diff_cap(vecteur_reel_ennemi.get_angle(), vecteur_reel_mission.get_angle()))*180/PI < CONE_EVITEMENT_DEG){
+                mission_collecte_module_centraux_initiale.set_priorite_evitement();
+        }
+        vecteur_reel_mission.set_vector(coord_reel,mission_collecte_module_centraux_restant.get_coord_debut_mission());
+        if(abs(diff_cap(vecteur_reel_ennemi.get_angle(), vecteur_reel_mission.get_angle()))*180/PI < CONE_EVITEMENT_DEG){
+                mission_collecte_module_centraux_restant.set_priorite_evitement();
+        }
+        vecteur_reel_mission.set_vector(coord_reel,mission_collecte_distributeur_monochrome.get_coord_debut_mission());
+        if(abs(diff_cap(vecteur_reel_ennemi.get_angle(), vecteur_reel_mission.get_angle()))*180/PI < CONE_EVITEMENT_DEG){
+                mission_collecte_distributeur_monochrome.set_priorite_evitement();
+        }
+
+        /// divers
+        vecteur_reel_mission.set_vector(coord_reel,mission_push_distributeur_monochrome.get_coord_debut_mission());
+        if(abs(diff_cap(vecteur_reel_ennemi.get_angle(), vecteur_reel_mission.get_angle()))*180/PI < CONE_EVITEMENT_DEG){
+                mission_push_distributeur_monochrome.set_priorite_evitement();
+        }
+        vecteur_reel_mission.set_vector(coord_reel,mission_transfert_direct_distributeur_polychrome.get_coord_debut_mission());
+        if(abs(diff_cap(vecteur_reel_ennemi.get_angle(), vecteur_reel_mission.get_angle()))*180/PI < CONE_EVITEMENT_DEG){
+                mission_transfert_direct_distributeur_polychrome.set_priorite_evitement();
+        }
+        vecteur_reel_mission.set_vector(coord_reel,mission_push_cratere.get_coord_debut_mission());
+        if(abs(diff_cap(vecteur_reel_ennemi.get_angle(), vecteur_reel_mission.get_angle()))*180/PI < CONE_EVITEMENT_DEG){
+                mission_push_cratere.set_priorite_evitement();
+        }
+
+        /// depot
+        vecteur_reel_mission.set_vector(coord_reel,mission_drop_zone_depart.get_coord_debut_mission());
+        if(abs(diff_cap(vecteur_reel_ennemi.get_angle(), vecteur_reel_mission.get_angle()))*180/PI < CONE_EVITEMENT_DEG){
+                mission_drop_zone_depart.set_priorite_evitement();
+        }
+        vecteur_reel_mission.set_vector(coord_reel,mission_depot_base_diagonale.get_coord_debut_mission());
+        if(abs(diff_cap(vecteur_reel_ennemi.get_angle(), vecteur_reel_mission.get_angle()))*180/PI < CONE_EVITEMENT_DEG){
+                mission_depot_base_diagonale.set_priorite_evitement();
+        }
+        vecteur_reel_mission.set_vector(coord_reel,mission_depot_base_verticale.get_coord_debut_mission());
+        if(abs(diff_cap(vecteur_reel_ennemi.get_angle(), vecteur_reel_mission.get_angle()))*180/PI < CONE_EVITEMENT_DEG){
+                mission_depot_base_verticale.set_priorite_evitement();
+        }
+
+
         // peut etre mettre juste un malus
         switch(mission_sortie_evitement)
         {
@@ -636,15 +745,50 @@ void Gestionnaire_Mission::affiche_mission_active()
 
 
     cout<<"---------- mission active ------------------"<<endl;
-    if(!mission_collecte_module_centraux_initiale.is_accomplie() && !mission_collecte_module_centraux_initiale.is_priorite_evitement() && mission_collecte_module_centraux_initiale.get_time_to_realise() < temps_restant)               { mission_collecte_module_centraux_initiale.affiche(); }
-    if(!mission_collecte_module_centraux_restant.is_accomplie() && !mission_collecte_module_centraux_restant.is_priorite_evitement() && mission_collecte_module_centraux_restant.get_time_to_realise() < temps_restant)             { mission_collecte_module_centraux_restant.affiche(); }
-    if(!mission_collecte_distributeur_monochrome.is_accomplie() && !mission_collecte_distributeur_monochrome.is_priorite_evitement() && mission_collecte_distributeur_monochrome.get_time_to_realise() < temps_restant)        { mission_collecte_distributeur_monochrome.affiche(); }
-    if(!mission_transfert_direct_distributeur_polychrome.is_accomplie() && !mission_transfert_direct_distributeur_polychrome.is_priorite_evitement() && mission_transfert_direct_distributeur_polychrome.get_time_to_realise() < temps_restant)       { mission_transfert_direct_distributeur_polychrome.affiche(); }
-    if(!mission_push_distributeur_monochrome.is_accomplie() && !mission_push_distributeur_monochrome.is_priorite_evitement() && mission_push_distributeur_monochrome.get_time_to_realise() < temps_restant)   { mission_push_distributeur_monochrome.affiche(); }
-    if(!mission_push_cratere.is_accomplie() && !mission_push_cratere.is_priorite_evitement() && mission_push_cratere.get_time_to_realise() < temps_restant)  { mission_push_cratere.affiche(); }
-    if(!mission_drop_zone_depart.is_accomplie() && !mission_drop_zone_depart.is_priorite_evitement() && mission_drop_zone_depart.get_time_to_realise() < temps_restant)        { mission_drop_zone_depart.affiche(); }
-    if(!mission_depot_base_diagonale.is_accomplie() && !mission_depot_base_diagonale.is_priorite_evitement() && mission_depot_base_diagonale.get_time_to_realise() < temps_restant)        { mission_depot_base_diagonale.affiche(); }
-    if(!mission_depot_base_verticale.is_accomplie() && !mission_depot_base_verticale.is_priorite_evitement() && mission_depot_base_verticale.get_time_to_realise() < temps_restant)        { mission_depot_base_verticale.affiche(); }
+    if(!mission_collecte_module_centraux_initiale.is_accomplie()
+       && !mission_collecte_module_centraux_initiale.is_priorite_evitement()
+       && mission_collecte_module_centraux_initiale.get_time_to_realise() < temps_restant)
+       { mission_collecte_module_centraux_initiale.affiche(); }
+
+    if(!mission_collecte_module_centraux_restant.is_accomplie()
+       && !mission_collecte_module_centraux_restant.is_priorite_evitement()
+       && mission_collecte_module_centraux_restant.get_time_to_realise() < temps_restant)
+       { mission_collecte_module_centraux_restant.affiche(); }
+
+    if(!mission_collecte_distributeur_monochrome.is_accomplie()
+       && !mission_collecte_distributeur_monochrome.is_priorite_evitement()
+       && mission_collecte_distributeur_monochrome.get_time_to_realise() < temps_restant)
+       { mission_collecte_distributeur_monochrome.affiche(); }
+
+    if(!mission_transfert_direct_distributeur_polychrome.is_accomplie()
+       && !mission_transfert_direct_distributeur_polychrome.is_priorite_evitement()
+       && mission_transfert_direct_distributeur_polychrome.get_time_to_realise() < temps_restant)
+       { mission_transfert_direct_distributeur_polychrome.affiche(); }
+
+    if(!mission_push_distributeur_monochrome.is_accomplie()
+       && !mission_push_distributeur_monochrome.is_priorite_evitement()
+       && mission_push_distributeur_monochrome.get_time_to_realise() < temps_restant)
+       { mission_push_distributeur_monochrome.affiche(); }
+
+    if(!mission_push_cratere.is_accomplie()
+       && !mission_push_cratere.is_priorite_evitement()
+       && mission_push_cratere.get_time_to_realise() < temps_restant)
+       { mission_push_cratere.affiche(); }
+
+    if(!mission_drop_zone_depart.is_accomplie()
+       && !mission_drop_zone_depart.is_priorite_evitement()
+       && mission_drop_zone_depart.get_time_to_realise() < temps_restant)
+       { mission_drop_zone_depart.affiche(); }
+
+    if(!mission_depot_base_diagonale.is_accomplie()
+       && !mission_depot_base_diagonale.is_priorite_evitement()
+       && mission_depot_base_diagonale.get_time_to_realise() < temps_restant)
+       { mission_depot_base_diagonale.affiche(); }
+
+    if(!mission_depot_base_verticale.is_accomplie()
+       && !mission_depot_base_verticale.is_priorite_evitement()
+       && mission_depot_base_verticale.get_time_to_realise() < temps_restant)
+       { mission_depot_base_verticale.affiche(); }
 
     cout<<"---------- mission evitement ------------------"<<endl;
 
@@ -685,6 +829,7 @@ void Gestionnaire_Mission::affiche_mission_active()
 
     // affiche les stats... Coord reel, Coord target, cap to target... distance a vol de piaf...
     cout<<"Coord reel -> (" << setprecision (4)<< coord_reel.get_x() << " , " << coord_reel.get_y() << " , " << coord_reel.get_cap()*180/PI << " ) " <<endl;
+    cout<<"Coord ennemi -> (" << setprecision (4)<< coord_ennemi.get_x() << " , " << coord_ennemi.get_y() << " , " << coord_ennemi.get_cap()*180/PI << " ) " <<endl;
     cout<<"Coord target -> (" << setprecision (4)<< x_mission << " , " << y_mission << " , " << cap_mission*180/PI << " ) " <<endl;
     cout<<"Dist to mission -> " << setprecision (4)<< get_distance_to_mission()  << " mm " <<endl;
     cout<<"Cap to mission -> " << setprecision (4)<< get_cap_to_mission()  << " deg " <<endl<<endl;

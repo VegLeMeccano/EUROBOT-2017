@@ -47,6 +47,19 @@ int Zone_depose_module::point_marked()
 }
 
 
+void Zone_depose_module::add_module_polychrome()
+{
+	add_module(Module(POLYCHROME));
+}
+
+
+
+void Zone_depose_module::add_module_monochrome()
+{
+	add_module(Module(MONOCHROME));
+}
+
+
 void Zone_depose_module::add_module(Module module_to_add)
 {
     if(!is_full())

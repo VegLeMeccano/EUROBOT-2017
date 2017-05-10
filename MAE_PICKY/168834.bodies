@@ -1,0 +1,60 @@
+class Avance_State
+!!!211842.cpp!!!	assFini(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._avance_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART");
+#endif
+    if (master->get_element_robot()-> nb_module_present_stock() >0) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._vidange_stockage_haut_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.Vidange Stockage Haut");
+#endif
+      stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._vidange_stockage_haut_state.create(stm);
+    }
+    else if (master->get_element_robot()-> nb_module_present_stock() == 0) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._recule_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.Recule");
+#endif
+      stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._recule_state.create(stm);
+    }
+  }
+!!!211970.cpp!!!	blocage(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._avance_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART");
+#endif
+    if (master->get_element_robot()-> nb_module_present_stock() >0) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._vidange_stockage_haut_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.Vidange Stockage Haut");
+#endif
+      stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._vidange_stockage_haut_state.create(stm);
+    }
+    else if (master->get_element_robot()-> nb_module_present_stock() == 0) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._recule_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.Recule");
+#endif
+      stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._recule_state.create(stm);
+    }
+  }
+!!!212098.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!212226.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.Avance");
+#endif
+serialPrintf(master->getPortSerie(),"S4 270 \n");
+!!!212354.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state;
+!!!401154.cpp!!!	_doexit(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute exit behavior of .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.Avance");
+#endif
+// hold position
+serialPrintf(master->getPortSerie(),"S8 \n");

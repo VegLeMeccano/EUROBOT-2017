@@ -1,0 +1,42 @@
+class BF_droite_Charge_State
+!!!333826.cpp!!!	assFini(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._bf_droite_charge_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._recule_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.Recule");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._recule_state.create(stm);
+  }
+!!!333954.cpp!!!	blocage(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._bf_droite_charge_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._recule_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.Recule");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._recule_state.create(stm);
+  }
+!!!334082.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!334210.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.BF droite Charge");
+#endif
+if(master->is_blue())
+{
+	serialPrintf(master->getPortSerie(),"S5 -701 706 314 \n");
+}
+if(master->is_yellow())
+{
+	serialPrintf(master->getPortSerie(),"S5 701 706 -134 \n");
+}
+!!!334338.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state;
+!!!347778.cpp!!!	_doexit(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute exit behavior of .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.BF droite Charge");
+#endif
+
+master->get_plateau_jeu()->get_module_central_3()->remove();
+master->get_plateau_jeu()->get_depose_module_base_centrale_diagonale()->add_module_polychrome();

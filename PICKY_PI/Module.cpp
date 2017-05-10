@@ -7,6 +7,21 @@ Module::Module():
     monochrome(false)
 {
     //ctor
+
+}
+
+Module::Module(bool polychrome_, bool presence):
+    coord(0,0,0),
+    presence(presence),
+    polychrome(false),
+    monochrome(false)
+{
+    if(polychrome_){
+        set_polychrome();
+    }
+    else{
+        set_monochrome();
+    }
 }
 
 Module::Module(Coord coord_):

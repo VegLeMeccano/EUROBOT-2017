@@ -50,10 +50,13 @@ using namespace std;
 #define TIME_FROM_DISTRIB_TO_BASE_PER_MODULE 5.5
 #define TIME_PLACE_MODULE_ON_BASE_PER_MODULE 5
 
-#define POIDS_COLLECT_OVER_PLACEMENT 0.50
+#define POIDS_COLLECT_OVER_PLACEMENT 1//0.8
 
 #define TIME_OFFSET_DEBUT_MISSION 5
 #define TIME_LIMIT_TO_COLLECT 25
+
+#define PTS_PER_ROCHE 2
+#define TAUX_DISPERSION_ROCHE 0.8
 
 class Mission
 {
@@ -110,6 +113,8 @@ class Mission
 
         void set_temps_restant(long temps_restant_);
 
+        int get_compteur_prise_module();
+
         //void check_mission_complete(); // direct dans refresh_status
 
 
@@ -137,6 +142,8 @@ class Mission
         int nbr_pts; // a mettre en eval uniquement = fonction
         bool mission_faite;
         string title;
+
+        int compteur_prise_module;
 
 
 

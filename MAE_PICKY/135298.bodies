@@ -15,11 +15,11 @@ class SET_X_Y_CAP_State
 #endif
 if(master->is_blue())
 {
-	serialPrintf(master->getPortSerie(),"S0 -600 1800 -90 \n");
+	serialPrintf(master->getPortSerie(),"S0 -602 1915 -90 \n");
 }
 if(master->is_yellow())
 {
-	serialPrintf(master->getPortSerie(),"S0 600 1800 0 \n");
+	serialPrintf(master->getPortSerie(),"S0 602 1915 -90 \n");
 }
 master->set_time_out(300);
 !!!140930.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState

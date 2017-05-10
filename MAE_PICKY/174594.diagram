@@ -1,0 +1,125 @@
+format 213
+
+statecanvas 128002 state_ref 190210 // CATCH AND THROW
+  
+  xyzwh 13.9823 3.70665 2000 1391 1220
+end
+pseudostatecanvas 128130 pseudostate_ref 190594 // junction
+   xyz 539.195 44.0154 2005
+end
+pseudostatecanvas 128258 pseudostate_ref 190722 // exit_point
+   xyz 301.482 442.371 3005 label_xy 258 482
+end
+statecanvas 129154 state_ref 190466 // PRISE AR FACE
+  
+  xyzwh 838.454 187.525 2005 301 233
+end
+statecanvas 129282 state_ref 190594 // PRISE AV FACE
+  
+  xyzwh 720.499 455.776 2005 537 173
+end
+pseudostatecanvas 129410 pseudostate_ref 191106 // choice
+   xyz 531.866 115.108 2005
+end
+statecanvas 130178 state_ref 190722 // RECULE PINCE
+  
+  xyzwh 574.946 661.991 2005 301 145
+end
+statecanvas 130434 state_ref 190850 // POSE SUR ZONE DEPART
+  
+  xyzwh 680.737 834.652 2005 281 131
+end
+statecanvas 130818 state_ref 190978 // DEGAGEMENT
+  
+  xyzwh 748.154 1021.17 2005 587 119
+end
+statecanvas 130946 state_ref 191106 // RECENTRAGE
+  
+  xyzwh 377.186 1031.69 2005 301 173
+end
+statecanvas 132866 state_ref 240258 // REPLIS
+  
+  xyzwh 163.409 217.017 2005 301 173
+end
+statecanvas 133506 state_ref 240386 // ROTATION AND SLIDE VERS ZONE DE POSE
+  
+  xyzwh 1072.28 713.628 2005 301 257
+end
+transitioncanvas 129794 transition_ref 233858 // <transition>
+  
+  from ref 129154 z 2006 label "time_out" xyz 976 431 2006 to point 989 435
+  line 134274 z 2006 to ref 129282
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130050 transition_ref 234114 // <transition>
+  
+  from ref 129410 z 2006 label "[!master->get_plateau_jeu()->get_distributeur_monochrome()->is_empty()]" xyz 581 106 2006 to point 836 129
+  line 132482 z 2006 to ref 129154
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130306 transition_ref 234242 // <transition>
+  decenter_end 418
+  
+  from ref 129282 z 2006 label "clw_stocked" xyz 641 575 2006 to point 700 560
+  line 134402 z 2006 to ref 130178
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 131074 transition_ref 234626 // <transition>
+  
+  from ref 130434 z 2006 label "time_out" xyz 980 894 2006 to point 1028 915
+  line 134146 z 2006 to ref 130818
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 131202 transition_ref 234754 // <transition>
+  decenter_begin 537
+  
+  from ref 130818 z 2006 label "time_out" xyz 751 1146 2006 to point 782 1177
+  line 134018 z 2006 to ref 130946
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 131330 transition_ref 234882 // <transition>
+  
+  from ref 130946 z 2006 label "time_out" xyz 484 954 2006 to ref 129410
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 132610 transition_ref 290946 // <transition>
+  
+  from ref 129282 z 2006 label "clw_fail_catch" xyz 640 506 2006 to point 662 520
+  line 135170 z 2006 to ref 129410
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 132994 transition_ref 291074 // <transition>
+  
+  from ref 129410 z 2006 label "[master->get_plateau_jeu()->get_distributeur_monochrome()->is_empty()]" xyz 129 106 2006 to point 312 127
+  line 133378 z 2006 to ref 132866
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 133122 transition_ref 291202 // <transition>
+  
+  from ref 132866 z 3006 label "time_out" xyz 308 402 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 133250 transition_ref 291330 // <transition>
+  
+  from ref 128130 z 2006 to ref 129410
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 133634 transition_ref 291458 // <transition>
+  decenter_begin 231
+  
+  from ref 130178 z 2006 label "time_out" xyz 1027 682 2006 to point 1225 700
+  line 134530 z 2006 to ref 133506
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 133762 transition_ref 291586 // <transition>
+  
+  from ref 133506 z 2006 label "time_out" xyz 996 842 2006 to ref 130434
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 134786 transition_ref 291714 // <transition>
+  
+  from ref 129282 z 2006 label "time_out" xyz 713 398 2006 to point 675 394
+  line 134914 z 2006 to ref 129410
+  write_horizontally default show_definition default drawing_language default
+end
+end

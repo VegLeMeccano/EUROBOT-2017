@@ -1,0 +1,47 @@
+class SHOOT_State
+!!!206210.cpp!!!	time_out(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_push_cratere_state._golf_playing_state._shoot_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_cratere_state._golf_playing_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_CRATERE.GOLF PLAYING");
+#endif
+    if (master->get_compteur()->get_compte() <2) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_cratere_state._golf_playing_state._preparation_du_swing_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_CRATERE.GOLF PLAYING.PREPARATION DU SWING");
+#endif
+      stm._mae_picky_state._jeu_state._mission_push_cratere_state._golf_playing_state._preparation_du_swing_state.create(stm);
+    }
+    else if (master->get_compteur()->get_compte() >=2) {
+      stm._mae_picky_state._jeu_state._mission_push_cratere_state._golf_playing_state._exit21(stm);
+    }
+  }
+!!!206338.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!206466.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_PUSH_CRATERE.GOLF PLAYING.SHOOT");
+#endif
+if(master->is_blue()){
+	// position front, slide right, pitch catch AV
+	serialPrintf(master->getPortSerie(),"F0 \n");
+	serialPrintf(master->getPortSerie(),"L2 \n");
+	serialPrintf(master->getPortSerie(),"Y2 \n");
+	serialPrintf(master->getPortSerie(),"P2 \n");
+}
+if(master->is_yellow()){
+	// position front, slide left, pitch catch AV
+	serialPrintf(master->getPortSerie(),"F0 \n");
+	serialPrintf(master->getPortSerie(),"L0 \n");
+	serialPrintf(master->getPortSerie(),"Y2 \n");
+	serialPrintf(master->getPortSerie(),"P2 \n");
+}
+master->set_time_out(500);
+!!!206594.cpp!!!	_doexit(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute exit behavior of .MAE_PICKY.JEU.MISSION_PUSH_CRATERE.GOLF PLAYING.SHOOT");
+#endif
+master->get_compteur()->incremente();
+!!!206722.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_push_cratere_state._golf_playing_state;

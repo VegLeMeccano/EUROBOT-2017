@@ -1,0 +1,205 @@
+format 213
+
+statecanvas 128002 state_ref 312578 // Prise de stock
+  
+  xyzwh 39.182 4.46697 2000 1871 1142
+end
+pseudostatecanvas 128130 pseudostate_ref 274306 // initial
+   xyz 365.422 57.5333 2005
+end
+pseudostatecanvas 128258 pseudostate_ref 274434 // exit_point
+   xyz 133.421 333.902 3005 label_xy 94 352
+end
+pseudostatecanvas 128514 pseudostate_ref 280962 // choice
+   xyz 363.65 110.507 2005
+end
+statecanvas 128898 state_ref 319618 // STO L YAW SLIDE
+  
+  xyzwh 314.678 214.725 2005 313 117
+end
+statecanvas 129026 state_ref 319746 // STO L PITCH UP
+  
+  xyzwh 245.787 369.303 2005 459 229
+end
+statecanvas 129154 state_ref 319874 // STO L PITCH POSE
+  
+  xyzwh 283.938 850.754 2005 399 103
+end
+statecanvas 129282 state_ref 320002 // STO C PITCH UP
+  
+  xyzwh 785.62 366.939 2005 461 215
+end
+statecanvas 129410 state_ref 320130 // STO R PITCH UP
+  
+  xyzwh 1324.85 371.113 2005 459 215
+end
+statecanvas 130178 state_ref 320258 // STO C YAW SLIDE
+  
+  xyzwh 844.29 213.411 2005 313 117
+end
+statecanvas 130306 state_ref 320386 // STO R YAW SLIDE
+  
+  xyzwh 1376.53 202.57 2005 313 117
+end
+statecanvas 130434 state_ref 320514 // STO C PITCH POSE
+  
+  xyzwh 858.017 835.322 2005 399 103
+end
+statecanvas 130562 state_ref 320642 // STO R PITCH POSE
+  
+  xyzwh 1396.59 826.585 2005 399 103
+end
+statecanvas 131330 state_ref 320770 // RECENTRAGE
+  
+  xyzwh 732.762 1038.69 2005 313 75
+end
+statecanvas 131714 state_ref 320898 // pipo L
+  
+  xyzwh 279.2 667.754 2005 497 145
+end
+statecanvas 131842 state_ref 321026 // pipo C
+  
+  xyzwh 856.79 649.79 2005 499 145
+end
+statecanvas 131970 state_ref 321154 // pipo R
+  
+  xyzwh 1397.63 643.631 2005 497 145
+end
+transitioncanvas 128642 transition_ref 404738 // <transition>
+  
+  from ref 128130 z 2006 to ref 128514
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 128770 transition_ref 404866 // <transition>
+  
+  from ref 128514 z 3006 label "[master->get_element_robot()->where_to_pick_up() == -1]" xyz 66 109 3006 to point 139.392 129.966
+  line 129538 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129666 transition_ref 404994 // <transition>
+  
+  from ref 128514 z 2006 label "[master->get_element_robot()->where_to_pick_up() == 0]" xyz 228 183 2006 to point 374.336 191.335
+  line 131202 z 2006 to ref 128898
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130690 transition_ref 405250 // <transition>
+  
+  from ref 128514 z 2006 label "[master->get_element_robot()->where_to_pick_up() == 1]" xyz 595 178.5 2006 to ref 130178
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130818 transition_ref 405378 // <transition>
+  
+  from ref 128514 z 2006 label "[master->get_element_robot()->where_to_pick_up() == 2]" xyz 700 109 2006 to point 1136.92 129.966
+  line 130946 z 2006 to ref 130306
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 131458 transition_ref 405506 // <transition>
+  
+  from ref 131330 z 3006 to point 140.882 1062.15
+  line 131586 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 132226 transition_ref 405762 // <transition>
+  
+  from ref 129154 z 2006 label "time_out" xyz 601 972.5 2006 to ref 131330
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 132482 transition_ref 406018 // <transition>
+  
+  from ref 130434 z 2006 to ref 131330
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 132994 transition_ref 406530 // <transition>
+  
+  from ref 130562 z 2006 to ref 131330
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 133378 transition_ref 406914 // <transition>
+  
+  from ref 129410 z 2006 label "clw_fail_catch" xyz 1375 602 3000 to point 1371.56 624.515
+  line 136450 z 2006 to point 1375.92 814.59
+  line 136578 z 2006 to ref 130562
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 133506 transition_ref 407042 // <transition>
+  
+  from ref 130306 z 2006 label "time_out" xyz 1518 336 3000 to ref 129410
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 133634 transition_ref 407170 // <transition>
+  
+  from ref 130178 z 2006 label "time_out" xyz 987 343 3000 to ref 129282
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 133762 transition_ref 407298 // <transition>
+  
+  from ref 129282 z 2006 label "clw_fail_catch" xyz 828 594 3000 to point 831.074 630.204
+  line 136194 z 2006 to point 833.382 845.435
+  line 136322 z 2006 to ref 130434
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 133890 transition_ref 407426 // <transition>
+  
+  from ref 128898 z 2006 label "time_out" xyz 422 343.5 2006 to ref 129026
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 134018 transition_ref 407554 // <transition>
+  
+  from ref 129026 z 2006 label "time_out" xyz 191 533 2006 to point 172.749 549.576
+  line 135554 z 2006 to point 172.561 891.453
+  line 135682 z 2006 to ref 129154
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 134402 transition_ref 407682 // <transition>
+  
+  from ref 129026 z 2006 label "clw_stocked" xyz 340 607 3000 to point 357.715 631.624
+  line 134530 z 2006 to ref 131714
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 135042 transition_ref 407938 // <transition>
+  
+  from ref 131714 z 2006 to ref 129154
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 135298 transition_ref 408066 // <transition>
+  
+  from ref 129026 z 2006 label "clw_fail_catch" xyz 208 612 3000 to point 204.935 645.187
+  line 135426 z 2006 to point 202.768 852.516
+  line 135810 z 2006 to ref 129154
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 136834 transition_ref 408194 // <transition>
+  
+  from ref 131842 z 2006 to ref 130434
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 136962 transition_ref 408322 // <transition>
+  
+  from ref 131970 z 2006 to ref 130562
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 137090 transition_ref 408450 // <transition>
+  
+  from ref 129282 z 2006 to point 803.17 611.74
+  line 137218 z 2006 to point 804.661 874.951
+  line 137346 z 2006 to ref 130434
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 137474 transition_ref 408578 // <transition>
+  
+  from ref 129410 z 2006 label "time_out" xyz 1352 589 3000 to point 1344.87 613.022
+  line 137602 z 2006 to point 1352.49 845.764
+  line 137730 z 2006 to ref 130562
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 137858 transition_ref 408706 // <transition>
+  
+  from ref 129282 z 2006 label "clw_stocked" xyz 1032 603 3000 to ref 131842
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 137986 transition_ref 408834 // <transition>
+  
+  from ref 129410 z 2006 label "clw_stocked" xyz 1572 602 3000 to ref 131970
+  write_horizontally default show_definition default drawing_language default
+end
+end

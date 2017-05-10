@@ -16,6 +16,7 @@ class Module
         Module();
         Module(Coord coord_);
         Module(bool polychrome_);
+        Module(bool polychrome_, bool presence);
         Module(bool polychrome_, Coord coord_);
         void set_remove();
         void remove();

@@ -1,0 +1,44 @@
+class PLACEMENT_State
+!!!187394.cpp!!!	assFini(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._placement_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.CATCH AND THROW");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state.create(stm);
+  }
+!!!187522.cpp!!!	blocage(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._placement_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.CATCH AND THROW");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state.create(stm);
+  }
+!!!187650.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!187778.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.PLACEMENT");
+#endif
+serialPrintf(master->getPortSerie(),"S7 0 \n");
+
+if(master->is_blue())
+{
+	serialPrintf(master->getPortSerie(),"S5 -349 1648 90 \n");
+}
+if(master->is_yellow())
+{
+	serialPrintf(master->getPortSerie(),"S5 349 1648 90 \n");
+}
+//
+!!!187906.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state;
+!!!400898.cpp!!!	_doexit(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute exit behavior of .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.PLACEMENT");
+#endif
+//hold position
+serialPrintf(master->getPortSerie(),"S8 \n");

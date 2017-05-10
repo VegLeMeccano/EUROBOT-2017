@@ -19,7 +19,8 @@ ControlLoop::ControlLoop():
     late_pos(),
     detect_on(false),
     sonarg(PIN_SLA_US, Coord(90., 0, 0.)),
-    assfini_on(true)
+    assfini_on(true),
+    moving_backward(false)
     {
         Serial.println("[CONTROL LOOP][INIT]");
         set_speed(SLOW);        // on defini la vitesse initiale comme slow
@@ -118,6 +119,7 @@ void ControlLoop::set_BF(int bf_type_, Coord target_position_){
         /** STOP **/
         case STOP:
             Serial.println("STOP");
+            // faut pas arreter ?
             break;
 
 
@@ -174,6 +176,34 @@ void ControlLoop::set_BF(int bf_type_, Coord target_position_){
             piddep.setTarget(0.0);                          // l'ecart a minimiser
             pidcap.setTarget(target_position.get_cap());    // cap a rejoindre
             break;
+
+
+
+        /** BF HOLD Cap jusque la prochaine asserv (rotation angulaire) **/
+        case BFHOLDCAP:
+            piddep.set_near_error_value(NEAR_ERROR_DEP_BF_CAP);
+            piddep.set_done_error_value(DONE_ERROR_DEP_BF_CAP);
+
+            pidcap.set_near_error_value(NEAR_ERROR_CAP_BF_CAP);
+            pidcap.set_done_error_value(DONE_ERROR_CAP_BF_CAP);
+            //target_position = real_coord;
+            target_position.set_cap(target_position_.get_cap());
+            pidcap.setTarget(target_position.get_cap());
+            break;
+
+
+        /** BF avance **/
+        case BFHOLDFW:
+            piddep.set_near_error_value(NEAR_ERROR_DEP_BF_AVANCE);
+            piddep.set_done_error_value(DONE_ERROR_DEP_BF_AVANCE);
+
+            pidcap.set_near_error_value(NEAR_ERROR_CAP_BF_AVANCE);
+            pidcap.set_done_error_value(DONE_ERROR_CAP_BF_AVANCE);
+
+            target_position = real_coord;
+            piddep.setTarget(0.0);  // pk???
+            pidcap.setTarget(real_coord.get_cap());
+            break;
     }
 
 }
@@ -210,11 +240,18 @@ void ControlLoop::compute_pids(){
     Vector to_target;
     to_target = Vector(real_coord, target_position);
 
+    float alpha;       // difference angulaire entre (le cap du point objectif) et (le cap de la droite reliant le robot au point objectif)
+    float beta;        // difference angulaire entre (le cap du robot) et (le cap du point objectif)
+    float A(0.1);      // poids angle alpha
+    float B(0.9);      // poids angle beta
+    float erreur_cap;
+
     // les PIDs dependent des BF a faire....
     switch (bf_type){
 
         /** arret, on renvoi rien **/
         case STOP:
+            moving_backward = false;
             cmd_cap = 0;
             cmd_dep = 0;
             break;
@@ -223,18 +260,6 @@ void ControlLoop::compute_pids(){
 
         /** BF AVANCE ***********************************************************************/
         case BFFW:
-            //Serial.println("coucou BFFW");
-            //cmd_cap = 0;
-            //Serial.println(to_target.scalar(dir));
-            /*
-            double Xt, Yt, Xr, Yr, erreur_deplacement;
-            Xt = target_position.get_x();
-            Yt = target_position.get_y();
-            Xr = real_coord.get_x();
-            Yr = real_coord.get_y();
-
-            erreur_deplacement = sqrt( (Xt-Xr)*(Xt-Xr) + (Yt-Yr)*(Yt-Yr) );
-            */
             // commande de PID sur le deplacement
             //cmd_dep = piddep.compute(erreur_deplacement);
 
@@ -254,7 +279,7 @@ void ControlLoop::compute_pids(){
 
                 if (abs(diff_cap(to_target.get_angle(), target_position.get_cap())) > PI / 2)
                 {
-
+                    moving_backward = true;
                     // le cap est celui vers la cible (en marche arriere), normal :)
                     pidcap.setTarget(to_target.get_angle() + PI);
 
@@ -267,6 +292,7 @@ void ControlLoop::compute_pids(){
                 // si on avance
                 else
                 {
+                    moving_backward = false;
                     // le cap est celui vers la cible (en marche avant), normal
                     pidcap.setTarget(to_target.get_angle());
 
@@ -296,6 +322,15 @@ void ControlLoop::compute_pids(){
             {
                 //next_asserv_state();
                 // pour check de pid proportionnel uniquement
+
+                if(assfini_on)
+                {
+                    next_asserv_state();
+                }
+
+            }
+            if(!assfini_on)
+            {
                 Serial.print("Fin BF avance -> D_cap : ");
                 Serial.print(180.0/3.1416*pidcap.get_last_error());
                 Serial.print(" deg \t D_dep : ");
@@ -303,12 +338,8 @@ void ControlLoop::compute_pids(){
                 Serial.print(" mm");
                 Serial.print(" \t t: ");
                 Serial.println(millis());
-                if(assfini_on)
-                {
-                    next_asserv_state();
-                }
-
             }
+
             break;
 
 
@@ -322,6 +353,8 @@ void ControlLoop::compute_pids(){
             //Serial.print ("  CAP  ");
 
             // commande de PID sur la rotation
+            moving_backward = false;
+
             cmd_cap = pidcap.compute(real_coord.get_cap());     // on s'oriente vers le cap cible
             cmd_dep = 0;                                        // on reste sur place, logique, on veut tourner en rond
 
@@ -330,21 +363,22 @@ void ControlLoop::compute_pids(){
             {
                //next_asserv_state();
                 // pour check de pid proportionnel uniquement
-                Serial.print("Fin BF Cap -> D_cap : ");
+                if(assfini_on)
+                {
+                    next_asserv_state();
+                }
+            }
+            if(!assfini_on)
+            {
+                Serial.print("Fin BF CAP -> D_cap : ");
                 Serial.print(180.0/3.1416*pidcap.get_last_error());
                 Serial.print(" deg \t D_dep : ");
                 Serial.print(piddep.get_last_error());
                 Serial.print(" mm");
                 Serial.print(" \t t: ");
                 Serial.println(millis());
-                if(assfini_on)
-                {
-                    next_asserv_state();
-                }
             }
             break;
-
-
 
 
 /******************************************* MODIF A FAIRE....
@@ -361,12 +395,13 @@ void ControlLoop::compute_pids(){
 
 
             /**  secondly, on s'occupe de la rotation */
+            /*
             float alpha;       // difference angulaire entre (le cap du point objectif) et (le cap de la droite reliant le robot au point objectif)
             float beta;        // difference angulaire entre (le cap du robot) et (le cap du point objectif)
             float A(0.1);      // poids angle alpha
             float B(0.9);      // poids angle beta
             float erreur_cap;
-
+*/
 
             // si on est pret
             if (asserv_state == NEAR)
@@ -405,16 +440,17 @@ void ControlLoop::compute_pids(){
             else
             {
                 A = 1;
-                B = 1;//1.8;
-                alpha = -diff_cap( target_position.get_cap() ,  real_coord.get_cap() );
-                beta =  -diff_cap( to_target.get_angle()     ,  target_position.get_cap() );
-                erreur_cap = diff_cap((A*alpha + B*beta),0); // /(A+B)
+                B = 2;//1.8;
+                // B = 1; tracé tendu
+                // B = 2; BF cercle
+
                 //cmd_cap = pidcap.compute(erreur_cap + pidcap.get_target());  // car la formule du pidcap : target - input
                 //cmd_dep = 0.75*piddep.compute( to_target.scalar(Vector(real_coord)));
 
                 // si on est dos à la cible
                 if (abs(diff_cap(to_target.get_angle(), target_position.get_cap())) > PI / 2)
                 {
+                    moving_backward = true;
                     // le cap est celui vers la cible (en marche arriere), normal :)
                     //pidcap.setTarget(to_target.get_angle() + PI);
                     alpha = -diff_cap( target_position.get_cap() ,  real_coord.get_cap() );
@@ -423,6 +459,13 @@ void ControlLoop::compute_pids(){
                     //cmd_cap = pidcap.compute(erreur_cap + pidcap.get_target());  // car la formule du pidcap : target - input
                     //cmd_dep = 0.75*piddep.compute( to_target.scalar(Vector(real_coord)));
 
+                }
+                else
+                {
+                    moving_backward = false;
+                    alpha = -diff_cap( target_position.get_cap() ,  real_coord.get_cap() );
+                    beta =  -diff_cap( to_target.get_angle()     ,  target_position.get_cap() );
+                    erreur_cap = diff_cap((A*alpha + B*beta),0); // /(A+B)
                 }
 /*
                 if(alpha < DONE_ERROR_CAP_BF_DROITE)
@@ -450,13 +493,6 @@ void ControlLoop::compute_pids(){
             /** Check si on fini */
             if (piddep.check_if_over(asserv_state)  && pidcap.check_if_over(asserv_state))
             {
-                Serial.print("Fin BF droite -> D_cap : ");
-                Serial.print(180.0/3.1416*pidcap.get_last_error());
-                Serial.print(" deg \t D_dep : ");
-                Serial.print(piddep.get_last_error());
-                Serial.print(" mm");
-                Serial.print(" \t t: ");
-                Serial.println(millis());
                //next_asserv_state();
                 // pour check de pid proportionnel uniquement
                 if(assfini_on)
@@ -464,7 +500,94 @@ void ControlLoop::compute_pids(){
                     next_asserv_state();
                 }
             }
+
+            if(!assfini_on)
+            {
+                Serial.print("Fin BF droite -> D_cap : ");
+                Serial.print(180.0/3.1416*pidcap.get_last_error());
+                Serial.print(" deg \t D_dep : ");
+                Serial.print(piddep.get_last_error());
+                Serial.print(" mm");
+                Serial.print(" \t t: ");
+                Serial.println(millis());
+            }
             break;
+
+        /** BF HOLD CAP ******************************************************************/
+        case BFHOLDCAP:
+            {
+            moving_backward = false;
+            cmd_cap = pidcap.compute(real_coord.get_cap());     // on s'oriente vers le cap cible
+            cmd_dep = 0;                                        // on reste sur place, logique, on veut tourner en rond
+
+            if(!assfini_on)
+            {
+                Serial.print("Fin BF CAP -> D_cap : ");
+                Serial.print(180.0/3.1416*pidcap.get_last_error());
+                Serial.print(" deg \t D_dep : ");
+                Serial.print(piddep.get_last_error());
+                Serial.print(" mm");
+                Serial.print(" \t t: ");
+                Serial.println(millis());
+            }
+            }
+            break;
+
+        /** BF HOLD POSITION ***********************************************************************/
+        case BFHOLDFW:
+        {
+            moving_backward = false;
+            cmd_dep = piddep.compute( to_target.scalar(Vector(real_coord)));
+
+            if (to_target.norm() > 50)
+            {
+
+                // si on recule, evite de faire demi tour....
+                if (abs(diff_cap(to_target.get_angle(), target_position.get_cap())) > PI / 2)
+                {
+
+                    // le cap est celui vers la cible (en marche arriere), normal :)
+                    pidcap.setTarget(to_target.get_angle() + PI);
+                }
+                else
+                {
+                    // le cap est celui vers la cible (en marche avant), normal
+                    pidcap.setTarget(to_target.get_angle());
+                    cmd_cap = pidcap.compute(real_coord.get_cap());
+                }
+            }
+
+            /** si on est proche, on s'asservi sur la posistion finale
+            */
+
+            else
+            {
+                pidcap.setTarget(target_position.get_cap());
+                // il faut faire une modif ici, les gains sont trop fort une fois arrive en NEAR
+                // commande de PID sur la rotation
+                float factor_NEAR(1);
+                cmd_cap = factor_NEAR*pidcap.compute(real_coord.get_cap());
+
+            }
+
+
+            if(!assfini_on)
+            {
+                Serial.print("Fin BF avance -> D_cap : ");
+                Serial.print(180.0/3.1416*pidcap.get_last_error());
+                Serial.print(" deg \t D_dep : ");
+                Serial.print(piddep.get_last_error());
+                Serial.print(" mm");
+                Serial.print(" \t t: ");
+                Serial.println(millis());
+            }
+        }
+            break;
+
+
+
+
+
     }
 }
 
@@ -500,11 +623,12 @@ void ControlLoop::run(Coord real_coord_){
     compute_cmds();                         // calcul les commandes
 
     // mettre aussi la BF droite si elle fonctionne
-    if ((bf_type == BFFW || bf_type == BFXYCAP)&& detect_on)
+    // check si move BACKWARD...
+    if ((bf_type == BFFW || bf_type == BFXYCAP)&& detect_on && !moving_backward)
     {
         check_adversary();
     }
-    if (bf_type != STOP && assfini_on)
+    if ((bf_type == BFFW || bf_type == BFXYCAP) && assfini_on)
     {
         // pour tester a remettre apres
         check_blockage();                       // check blocage, ....
@@ -598,10 +722,11 @@ void ControlLoop::check_adversary()
 
  // on check a le sonar unique
     if (sonarg.adv_detected(real_coord)){
+        Serial.println("# SLAVE_ENNEMI");
         write_real_coords();
         sonarg.write_adv_coord();
         set_BF(STOP, Coord());
-        Serial.println("# SLAVE_ENNEMI");
+
     }
 
     // on check a gauche

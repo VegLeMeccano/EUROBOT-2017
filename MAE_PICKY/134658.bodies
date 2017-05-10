@@ -152,3 +152,84 @@ class AnyState
   else
     puts("DEBUG : transition near not expected");
 #endif
+!!!243202.cpp!!!	clw_stocked(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->clw_stocked(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition clw_stocked not expected");
+#endif
+!!!243586.cpp!!!	clw_fail_catch(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->clw_fail_catch(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition clw_fail_catch not expected");
+#endif
+!!!308098.cpp!!!	sto_l_stocked(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->sto_l_stocked(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition sto_l_stocked not expected");
+#endif
+!!!308482.cpp!!!	sto_l_fail(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->sto_l_fail(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition sto_l_fail not expected");
+#endif
+!!!308994.cpp!!!	sto_c_stocked(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->sto_c_stocked(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition sto_c_stocked not expected");
+#endif
+!!!309378.cpp!!!	sto_c_fail(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->sto_c_fail(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition sto_c_fail not expected");
+#endif
+!!!309890.cpp!!!	sto_r_stocked(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->sto_r_stocked(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition sto_r_stocked not expected");
+#endif
+!!!310274.cpp!!!	sto_r_fail(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->sto_r_fail(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition sto_r_fail not expected");
+#endif
+!!!408194.cpp!!!	recall(inout stm : MAE_PICKY) : void
+  AnyState * st = _upper(stm);
+
+  if (st != 0)
+    st->recall(stm);
+#ifdef VERBOSE_STATE_MACHINE
+  else
+    puts("DEBUG : transition recall not expected");
+#endif

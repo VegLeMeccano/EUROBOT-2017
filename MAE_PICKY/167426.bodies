@@ -1,0 +1,34 @@
+class AVANCE_State
+!!!204802.cpp!!!	assFini(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_push_cratere_state._avance_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_cratere_state._golf_playing_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_CRATERE.GOLF PLAYING");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_cratere_state._golf_playing_state.create(stm);
+  }
+!!!204930.cpp!!!	blocage(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_push_cratere_state._avance_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_cratere_state._golf_playing_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_CRATERE.GOLF PLAYING");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_cratere_state._golf_playing_state.create(stm);
+  }
+!!!205058.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!205186.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_PUSH_CRATERE.AVANCE");
+#endif
+serialPrintf(master->getPortSerie(),"S4 260 \n");
+!!!205314.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_push_cratere_state;
+!!!401026.cpp!!!	_doexit(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute exit behavior of .MAE_PICKY.JEU.MISSION_PUSH_CRATERE.AVANCE");
+#endif
+// hold position
+serialPrintf(master->getPortSerie(),"S8 \n");

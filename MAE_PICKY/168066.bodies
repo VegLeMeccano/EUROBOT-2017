@@ -1,0 +1,24 @@
+class RANGE_ARM_State
+!!!207746.cpp!!!	time_out(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_cratere_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_CRATERE");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_cratere_state._exit19(stm);
+  }
+!!!207874.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!208002.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_PUSH_CRATERE.RANGE ARM");
+#endif
+// replis bras
+serialPrintf(master->getPortSerie(),"F0 \n");
+serialPrintf(master->getPortSerie(),"L2 \n");
+serialPrintf(master->getPortSerie(),"Y0 \n");
+serialPrintf(master->getPortSerie(),"P0 \n");
+
+master->set_time_out(500);
+!!!208130.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_push_cratere_state;

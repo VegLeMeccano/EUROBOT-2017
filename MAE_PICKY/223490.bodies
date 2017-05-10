@@ -1,0 +1,33 @@
+class Avance_pour_pose_State
+!!!337154.cpp!!!	assFini(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._drop_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.Drop");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._drop_state.create(stm);
+  }
+!!!337282.cpp!!!	blocage(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._drop_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.Drop");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._drop_state.create(stm);
+  }
+!!!337410.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!337538.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.Avance pour pose");
+#endif
+if(master->is_blue())
+{
+	serialPrintf(master->getPortSerie(),"S5 -701 706 314 \n");
+}
+if(master->is_yellow())
+{
+	serialPrintf(master->getPortSerie(),"S5 701 706 -134 \n");
+}
+!!!337666.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state;

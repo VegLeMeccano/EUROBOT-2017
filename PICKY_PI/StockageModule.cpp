@@ -9,7 +9,10 @@ StockageModule::StockageModule():
     release();
 }
 
-
+Module StockageModule::get_module()
+{
+    return Module(color_polychrome,presence_module);
+}
 
 void StockageModule::catch_polychrome()
 {

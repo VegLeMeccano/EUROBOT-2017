@@ -29,6 +29,20 @@ time_out
 
 APPEL dans MAE
 master->getPortSerie()
+master->get_plateau_jeu()->get_module_central_1()->remove();
+
+master->get_element_robot()->stockage_available()
+
+master->get_element_robot()->get_stockage_L()->is_color_polychrome()
+
+master->get_element_robot()->get_stockage_CLAW()->catch_polychrome();
+
+master->get_element_robot()->where_to_stock() //-1 rien de dispo , 0 L, 1 C, 2 R
+
+master->get_element_robot()->where_to_pick_up() //-1 rien de dispo , 0 L, 1 C, 2 R
+
+
+
 SerialPrintf
 
 cout<<"ETAT INITIALISATION"<<endl;
@@ -38,3 +52,7 @@ serialPrintf(master->getPortSerie(),"E0 \n"); // desactivation de l'evitement
 serialPrintf(master->getPortSerie(),"S0 0 0 0 \n");
 serialPrintf(master->getPortSerie(),"S2 \n");
 master->set_time_out(2000);
+
+
+clw_stocked
+clw_fail_catch

@@ -1,0 +1,28 @@
+class WAYPOINT_INIT_State
+!!!192898.cpp!!!	create(inout stm : MAE_PICKY) : void
+  {
+    if (master->get_gestionnaire_mission()->is_mission_far()) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_depot_base_verticale_state._waypoint_init_state._cap_to_mission_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DEPOT_BASE_VERTICALE.WAYPOINT INIT.CAP TO MISSION");
+#endif
+      stm._mae_picky_state._jeu_state._mission_depot_base_verticale_state._waypoint_init_state._cap_to_mission_state.create(stm);
+    }
+    else if (!master->get_gestionnaire_mission()->is_mission_far()) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_depot_base_verticale_state._waypoint_init_state._cap_mission_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DEPOT_BASE_VERTICALE.WAYPOINT INIT.CAP MISSION");
+#endif
+      stm._mae_picky_state._jeu_state._mission_depot_base_verticale_state._waypoint_init_state._cap_mission_state.create(stm);
+    }
+  }
+!!!193026.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_depot_base_verticale_state;
+!!!381698.cpp!!!	_exit27(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_depot_base_verticale_state._placement_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DEPOT_BASE_VERTICALE.PLACEMENT");
+#endif
+    stm._mae_picky_state._jeu_state._mission_depot_base_verticale_state._placement_state.create(stm);
+  }

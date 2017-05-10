@@ -1,18 +1,18 @@
-format 76
+format 213
 
 statecanvas 128002 state_ref 128386 // EVITEMENT
-  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
-  xyzwh 273 136 2000 497 329
+  
+  xyzwh 272 135 2000 695 547
 end
 pseudostatecanvas 128130 pseudostate_ref 162946 // initial
-   xyz 525 225 2005
+   xyz 560 205 2005
 end
 statecanvas 128258 state_ref 162818 // ACTION TO DO
-  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
-  xyzwh 420 297 2005 227 61
+  
+  xyzwh 419 259 2005 313 271
 end
 pseudostatecanvas 128514 pseudostate_ref 163074 // exit_point
-   xyz 460 402 3005 label_xy 421 421
+   xyz 558 590 3005 label_xy 519 609
 end
 transitioncanvas 128386 transition_ref 166402 // <transition>
   
@@ -20,24 +20,31 @@ transitioncanvas 128386 transition_ref 166402 // <transition>
   write_horizontally default show_definition default drawing_language default
 end
 transitioncanvas 128642 transition_ref 166530 // <transition>
+  decenter_begin 763
   
-  from ref 128258 z 3006 label "near" xyz 511 360 3000 to point 518 375
-  line 129154 z 3006 to point 515 385
-  line 128898 z 3006 to ref 128514
+  from ref 128258 z 3006 label "near" xyz 604 552 3006 to ref 128514
   write_horizontally default show_definition default drawing_language default
 end
 transitioncanvas 128770 transition_ref 182274 // <transition>
+  geometry HVH unfixed
   
-  from ref 128258 z 3006 label "assFini" xyz 441.5 361.5 3000 to point 440 378
-  line 129026 z 3006 to ref 128514
+  from ref 128258 z 3006 label "assFini" xyz 742 383 3006 to point 787 389
+  line 131330 z 3006 to point 787 597
+  line 131458 z 3006 to ref 128514
   write_horizontally default show_definition default drawing_language default
 end
 transitioncanvas 129282 transition_ref 182402 // <transition>
+  geometry HVH unfixed
   
-  from ref 128258 z 3006 label "time_out" xyz 549.5 357.5 3000 to point 576 371
-  line 129794 z 3006 to point 573 386
-  line 129666 z 3006 to point 550 400
-  line 129410 z 3006 to ref 128514
+  from ref 128258 z 3006 label "time_out" xyz 362 383 3006 to point 343 389
+  line 130818 z 3006 to point 343 597
+  line 130946 z 3006 to ref 128514
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 131714 transition_ref 195458 // <transition>
+  decenter_begin 224
+  
+  from ref 128258 z 3006 label "blocage" xyz 503 552 3006 to ref 128514
   write_horizontally default show_definition default drawing_language default
 end
 end

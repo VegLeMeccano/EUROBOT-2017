@@ -1,14 +1,25 @@
 class MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT_State
 !!!147458.cpp!!!	create(inout stm : MAE_PICKY) : void
+  _doentry(stm);
   {
-    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._exit3(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._waypoint_init_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT.WAYPOINT INIT");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._waypoint_init_state.create(stm);
   }
-!!!147586.cpp!!!	_exit3(inout stm : MAE_PICKY) : void
+!!!147714.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state;
+!!!172546.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT");
+#endif
+cout<<"[MAE][JEU][MISSION COLLECTE MODULE CENTRAUX RESTANT]"<<endl;
+!!!348162.cpp!!!	_exit9(inout stm : MAE_PICKY) : void
   {
     stm._set_currentState(stm._mae_picky_state._jeu_state._decision_mission_state);
 #ifdef VERBOSE_STATE_MACHINE
     puts("DEBUG : current state is now .MAE_PICKY.JEU.DECISION_MISSION");
 #endif
+    stm._mae_picky_state._jeu_state._decision_mission_state.create(stm);
   }
-!!!147714.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
-  return &stm._mae_picky_state._jeu_state;

@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="main.cpp" open="1" top="1" tabpos="0">
-		<Cursor position="120" topLine="0" />
+	<File name="..\..\PICKY_PI\Cratere.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="..\..\PICKY_PI\Cratere.h" open="1" top="0" tabpos="2">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="..\..\PICKY_PI\Module.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="..\..\PICKY_PI\Module.h" open="0" top="0" tabpos="4">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="..\..\PICKY_PI\Plateau_jeu.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="..\..\PICKY_PI\Plateau_jeu.h" open="1" top="1" tabpos="4">
+		<Cursor position="211" topLine="0" />
+	</File>
+	<File name="..\..\PICKY_PI\Zone_depose_module.h" open="1" top="0" tabpos="6">
+		<Cursor position="480" topLine="12" />
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="423" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

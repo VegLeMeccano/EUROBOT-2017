@@ -73,3 +73,19 @@ class DECISION_MISSION_State
   }
 !!!146946.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
   return &stm._mae_picky_state._jeu_state;
+!!!169986.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!170114.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.DECISION_MISSION");
+#endif
+cout<<"[MAE][JEU] -> DECISION DE MISSION"<<endl;
+master->decision_nouvelle_mission();
+!!!408322.cpp!!!	recall(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._recall_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.recall");
+#endif
+    stm._mae_picky_state._jeu_state._recall_state.create(stm);
+  }

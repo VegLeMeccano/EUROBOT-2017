@@ -1,0 +1,33 @@
+class Ouverture_pince_State
+!!!212994.cpp!!!	time_out(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._ouverture_pince_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._avance_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.Avance");
+#endif
+    stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._avance_state.create(stm);
+  }
+!!!213122.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!213250.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.Ouverture pince");
+#endif
+serialPrintf(master->getPortSerie(),"C1 \n");
+//serialPrintf(master->getPortSerie(),"C2 \n");
+
+master->set_time_out(200);
+!!!213378.cpp!!!	_doexit(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute exit behavior of .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.Ouverture pince");
+#endif
+// ecriture du module dans la zone de depart
+master->get_plateau_jeu()->get_depose_module_zone_depart()->add_module(master->get_element_robot()->get_stockage_CLAW()->get_module());
+
+// enleve le module de la pince
+//master->get_element_robot()->vidange_claw();
+master->get_element_robot()->get_stockage_CLAW()->release();
+
+!!!213506.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state;

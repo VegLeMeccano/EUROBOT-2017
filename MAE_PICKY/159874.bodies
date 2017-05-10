@@ -1,0 +1,28 @@
+class WAYPOINT_INIT_State
+!!!191362.cpp!!!	create(inout stm : MAE_PICKY) : void
+  {
+    if (!master->get_gestionnaire_mission()->is_mission_far()) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._waypoint_init_state._cap_mission_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.WAYPOINT INIT.Cap mission");
+#endif
+      stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._waypoint_init_state._cap_mission_state.create(stm);
+    }
+    else if (master->get_gestionnaire_mission()->is_mission_far()) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._waypoint_init_state._cap_to_mission_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.WAYPOINT INIT.Cap to mission");
+#endif
+      stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._waypoint_init_state._cap_to_mission_state.create(stm);
+    }
+  }
+!!!191490.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state;
+!!!380546.cpp!!!	_exit18(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._placement_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.PLACEMENT");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._placement_state.create(stm);
+  }

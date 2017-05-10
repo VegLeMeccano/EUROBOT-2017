@@ -1,14 +1,25 @@
 class MISSION_DEPOT_BASE_DIAGONALE_State
 !!!149762.cpp!!!	create(inout stm : MAE_PICKY) : void
+  _doentry(stm);
   {
-    stm._mae_picky_state._jeu_state._mission_depot_base_diagonale_state._exit9(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_depot_base_diagonale_state._waypoint_init_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DEPOT_BASE_DIAGONALE.WAYPOINT INIT");
+#endif
+    stm._mae_picky_state._jeu_state._mission_depot_base_diagonale_state._waypoint_init_state.create(stm);
   }
-!!!149890.cpp!!!	_exit9(inout stm : MAE_PICKY) : void
+!!!150018.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state;
+!!!174082.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_DEPOT_BASE_DIAGONALE");
+#endif
+cout<<"[MAE][JEU][MISSION DEPOT BASE DIAGONALE]"<<endl;
+!!!381314.cpp!!!	_exit24(inout stm : MAE_PICKY) : void
   {
     stm._set_currentState(stm._mae_picky_state._jeu_state._decision_mission_state);
 #ifdef VERBOSE_STATE_MACHINE
     puts("DEBUG : current state is now .MAE_PICKY.JEU.DECISION_MISSION");
 #endif
+    stm._mae_picky_state._jeu_state._decision_mission_state.create(stm);
   }
-!!!150018.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
-  return &stm._mae_picky_state._jeu_state;

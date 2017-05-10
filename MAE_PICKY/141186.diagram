@@ -1,18 +1,121 @@
-format 76
+format 213
 
 statecanvas 128002 state_ref 141698 // MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT
-  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
-  xyzwh 226 108 2000 705 435
+  
+  xyzwh 35.1 40.3 2000 1265 871
 end
 pseudostatecanvas 128130 pseudostate_ref 141442 // initial
-   xyz 269 220 2005
+   xyz 86.2 162.9 2005
 end
 pseudostatecanvas 128258 pseudostate_ref 141570 // exit_point
-   xyz 597 282 3005 label_xy 463 301
+   xyz 255.1 779.1 3005 label_xy 121 797
 end
-transitioncanvas 128386 transition_ref 136450 // <transition>
+statecanvas 129026 state_ref 189698 // Collecte Monochrome 4
   
-  from ref 128130 z 3006 to ref 128258
+  xyzwh 544.7 444.6 2005 415 75
+end
+statecanvas 129154 state_ref 189826 // Collecte Monochrome 5
+  
+  xyzwh 666.9 813.8 2005 415 75
+end
+statecanvas 129410 state_ref 189954 // Sortie de Zone
+  
+  xyzwh 51.7 624.6 2005 461 61
+end
+pseudostatecanvas 129538 pseudostate_ref 190082 // choice
+   xyz 624.5 173.8 2005
+end
+pseudostatecanvas 129922 pseudostate_ref 190210 // choice
+   xyz 741.4 288.3 2005
+end
+pseudostatecanvas 130434 pseudostate_ref 190338 // choice
+   xyz 980.9 556.9 2005
+end
+pseudostatecanvas 130818 pseudostate_ref 190466 // choice
+   xyz 643.4 556.1 2005
+end
+statecanvas 134146 state_ref 204162 // WAYPOINT INIT
+  
+  xyzwh 271 158 2005 99 33
+end
+pseudostatecanvas 136450 pseudostate_ref 219138 // exit_point
+   xyz 360 181 3005 label_xy 310 200
+end
+transitioncanvas 129794 transition_ref 229506 // <transition>
+  
+  from ref 129538 z 2006 label "[master->get_element_robot()->nb_slot_available() == 0]" xyz 151 250 2006 to point 279 336
+  line 135170 z 2006 to ref 129410
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130050 transition_ref 229634 // <transition>
+  
+  from ref 129410 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130178 transition_ref 229762 // <transition>
+  geometry HV
+  
+  from ref 129538 z 2006 label "[master->get_element_robot()->nb_slot_available() >= 1]" xyz 647 228 2006 to point 750 189
+  line 133762 z 2006 to ref 129922
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130306 transition_ref 229890 // <transition>
+  
+  from ref 129922 z 2006 label "[master->get_plateau_jeu()->get_module_central_4()->is_present()]" xyz 536 378 2006 to ref 129026
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130562 transition_ref 230018 // <transition>
+  geometry HVH unfixed
+  
+  from ref 130434 z 2006 label "[master->get_plateau_jeu()->get_module_central_5()->is_present()]" xyz 929 694 2006 to point 1116 571
+  line 133378 z 2006 to point 1116 841
+  line 133506 z 2006 to ref 129154
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130690 transition_ref 230146 // <transition>
+  geometry HV
+  
+  from ref 129922 z 2006 label "[!master->get_plateau_jeu()->get_module_central_4()->is_present()]" xyz 812 319 2006 to point 989 304
+  line 133634 z 2006 to ref 130434
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130946 transition_ref 230274 // <transition>
+  
+  from ref 129026 z 2006 to ref 130818
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 131074 transition_ref 230402 // <transition>
+  
+  from ref 130818 z 2006 label "[master->get_element_robot()->nb_slot_available() >= 1]" xyz 693 577 2006 to ref 130434
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 131202 transition_ref 230530 // <transition>
+  
+  from ref 130818 z 2006 label "[master->get_element_robot()->nb_slot_available() == 0]" xyz 351 541 2006 to point 354 576
+  line 135298 z 2006 to ref 129410
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 131714 transition_ref 230658 // <transition>
+  
+  from ref 129154 z 2006 to point 542 838
+  line 135682 z 2006 to ref 129410
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 131842 transition_ref 230786 // <transition>
+  geometry HVr
+  
+  from ref 130434 z 2006 label "[!master->get_plateau_jeu()->get_module_central_5()->is_present()]" xyz 642 658 2006 to point 990 651
+  line 133890 z 2006 to ref 129410
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 134530 transition_ref 248834 // <transition>
+  
+  from ref 128130 z 2006 to ref 134146
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 136834 transition_ref 307330 // <transition>
+  
+  from ref 136450 z 3006 to ref 129538
   write_horizontally default show_definition default drawing_language default
 end
 end

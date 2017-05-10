@@ -1,0 +1,98 @@
+format 213
+
+statecanvas 128002 state_ref 169474 // Collecte Polychrome 1
+  
+  xyzwh 94.3379 25.8135 2000 1162 826
+end
+pseudostatecanvas 128130 pseudostate_ref 252930 // initial
+   xyz 499.409 107.748 2005
+end
+pseudostatecanvas 128258 pseudostate_ref 253058 // exit_point
+   xyz 1005.08 773.909 3005 label_xy 922 805
+end
+statecanvas 128386 state_ref 289154 // Preparation Pince
+  
+  xyzwh 356.276 141.613 2005 313 159
+end
+statecanvas 128514 state_ref 289282 // BF droite sur le module
+  
+  xyzwh 110.351 328.074 2005 415 229
+end
+statecanvas 128898 state_ref 289410 // Stockage
+  
+  xyzwh 1124.63 559.063 2005 71 33
+end
+pseudostatecanvas 129026 pseudostate_ref 253314 // choice
+   xyz 691.214 407.206 2005
+end
+statecanvas 129154 state_ref 289538 // replacement Pince
+  
+  xyzwh 175.24 622.651 2005 313 103
+end
+pseudostatecanvas 130562 pseudostate_ref 253570 // exit_point
+   xyz 1164.97 582.811 3005 label_xy 1135 601
+end
+statecanvas 131202 state_ref 291074 // garde pince
+  
+  xyzwh 603.788 545.822 2005 453 131
+end
+transitioncanvas 129794 transition_ref 359938 // <transition>
+  decenter_begin 564
+  
+  from ref 129026 z 2006 label "[master->get_element_robot()->stockage_available()]" xyz 768 404 2006 to point 1019 424
+  line 131586 z 2006 to ref 128898
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130050 transition_ref 360194 // <transition>
+  
+  from ref 128386 z 2006 label "time_out" xyz 314 287 2006 to point 305 298
+  line 130434 z 2006 to ref 128514
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130178 transition_ref 360322 // <transition>
+  
+  from ref 128130 z 2006 to ref 128386
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130306 transition_ref 360450 // <transition>
+  
+  from ref 129154 z 3006 to point 358 768
+  line 131970 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130690 transition_ref 364034 // <transition>
+  
+  from ref 130562 z 3006 to point 1177 780
+  line 130818 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 131330 transition_ref 364162 // <transition>
+  
+  from ref 129026 z 2006 label "[!master->get_element_robot()->stockage_available()]" xyz 638 459 2006 to point 821 500
+  line 131842 z 2006 to ref 131202
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 131458 transition_ref 364290 // <transition>
+  
+  from ref 131202 z 3006 to point 1011 700
+  line 132098 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 132482 transition_ref 371074 // <transition>
+  
+  from ref 128514 z 2006 label "clw_fail_catch" xyz 243 580 2006 to ref 129154
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 132994 transition_ref 371202 // <transition>
+  decenter_begin 437
+  
+  from ref 128514 z 2006 label "clw_stocked" xyz 575 413 2006 to ref 129026
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 133122 transition_ref 379010 // <transition>
+  
+  from ref 128514 z 2006 label "time_out" xyz 366 563 2006 to point 394 586
+  line 133250 z 2006 to ref 129154
+  write_horizontally default show_definition default drawing_language default
+end
+end

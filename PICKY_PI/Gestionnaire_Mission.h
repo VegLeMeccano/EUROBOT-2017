@@ -23,6 +23,12 @@
 
 
 #define DISTANCE_MINI_TO_MISSION 150
+#define CONE_EVITEMENT_DEG 40 // 45deg autour du vecteur reel, ennemi
+
+
+
+
+
 
 using namespace std;
 
@@ -38,6 +44,9 @@ class Gestionnaire_Mission
 
         //Coordonne actuel
         Coord coord_reel;
+
+        // Coordonne ennemi
+        Coord coord_ennemi;
 
         float cap_to_mission;
         float x_mission;
@@ -75,6 +84,9 @@ class Gestionnaire_Mission
         bool sortie_evitement;
         bool premiere_entree_decision;
 
+        Vector vecteur_reel_ennemi;
+        Vector vecteur_reel_mission;
+
     public:
         //Gestionnaire_Mission(MAE_PICKY* mae_picky_,Plateau_jeu* plateau_jeu_, Element_Robot* element_robot_);
         Gestionnaire_Mission(Plateau_jeu* plateau_jeu_, Element_Robot* element_robot_);
@@ -85,7 +97,9 @@ class Gestionnaire_Mission
         void set_strategie_2(int strat_);
 
         void set_coord(Coord coord_reel_);
-        Coord get_coord();
+        void set_coord_ennemi(Coord coord_reel_);
+        Coord* get_coord_reel();
+        Coord* get_coord_ennemi();
 
 
         bool is_blue();

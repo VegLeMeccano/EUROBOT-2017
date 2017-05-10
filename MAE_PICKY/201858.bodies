@@ -1,0 +1,25 @@
+class garde_pince_State
+!!!297218.cpp!!!	_completion(inout stm : MAE_PICKY) : bool
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._collecte_polychrome_1_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Collecte Polychrome 1");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._collecte_polychrome_1_state._exit3(stm);
+    return (bool) 1;
+  }
+!!!297346.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+	_completion(stm);
+!!!297474.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Collecte Polychrome 1.garde pince");
+#endif
+serialPrintf(master->getPortSerie(),"F0 \n");
+serialPrintf(master->getPortSerie(),"L1 \n");
+serialPrintf(master->getPortSerie(),"Y2 \n");
+serialPrintf(master->getPortSerie(),"P1 \n");
+
+master->get_element_robot()->get_stockage_CLAW()->catch_polychrome();
+!!!297602.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._collecte_polychrome_1_state;

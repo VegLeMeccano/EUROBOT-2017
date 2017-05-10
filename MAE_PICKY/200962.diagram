@@ -1,0 +1,76 @@
+format 213
+
+statecanvas 128002 state_ref 204162 // WAYPOINT INIT
+  
+  xyzwh 15 9 2000 1257 855
+end
+pseudostatecanvas 128130 pseudostate_ref 219010 // initial
+   xyz 208 125 2005
+end
+pseudostatecanvas 128258 pseudostate_ref 219138 // exit_point
+   xyz 1055 411 3005 label_xy 1022 435
+end
+statecanvas 128386 state_ref 247298 // CAP TO MISSION
+  
+  xyzwh 76 252 2005 459 173
+end
+statecanvas 128514 state_ref 247426 // BF DROITE TO MISSION
+  
+  xyzwh 31 601 2005 1091 173
+end
+statecanvas 128642 state_ref 247554 // CAP MISSION
+  
+  xyzwh 627 69 2005 441 229
+end
+pseudostatecanvas 128770 pseudostate_ref 219266 // choice
+   xyz 292 161 2005
+end
+transitioncanvas 128898 transition_ref 306050 // <transition>
+  
+  from ref 128130 z 2006 to ref 128770
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129026 transition_ref 306178 // <transition>
+  
+  from ref 128770 z 2006 label "[master->get_gestionnaire_mission()->is_mission_far()]" xyz 170 217 2006 to ref 128386
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129154 transition_ref 306306 // <transition>
+  
+  from ref 128770 z 2006 label "[!master->get_gestionnaire_mission()->is_mission_far()]" xyz 338 162 2006 to ref 128642
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129282 transition_ref 306434 // <transition>
+  
+  from ref 128386 z 2006 label "assFini" xyz 422 505 2006 to ref 128514
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129410 transition_ref 306562 // <transition>
+  
+  from ref 128514 z 2006 label "assFini" xyz 684.5 441 2006 to ref 128642
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129538 transition_ref 306690 // <transition>
+  
+  from ref 128642 z 3006 label "assFini" xyz 985 346 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129794 transition_ref 306818 // <transition>
+  
+  from ref 128386 z 2006 label "blocage" xyz 449 445 2006 to point 506 478
+  line 129922 z 2006 to ref 128514
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130050 transition_ref 306946 // <transition>
+  
+  from ref 128514 z 2006 label "blocage" xyz 698.5 519 2006 to point 783 451
+  line 130178 z 2006 to ref 128642
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130306 transition_ref 307074 // <transition>
+  
+  from ref 128642 z 3006 label "blocage" xyz 1015 302 3006 to point 1050 320
+  line 130434 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+end

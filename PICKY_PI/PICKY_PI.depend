@@ -236,7 +236,7 @@
 1493736217 source:c:\users\link\desktop\eurobot-2017\picky_pi\coord.cpp
 	"Coord.h"
 
-1493735976 c:\users\link\desktop\eurobot-2017\picky_pi\coord.h
+1494417316 c:\users\link\desktop\eurobot-2017\picky_pi\coord.h
 	<cmath>
 
 1493638130 source:c:\users\link\desktop\eurobot-2017\picky_pi\distributeur.cpp
@@ -247,19 +247,20 @@
 	"Coord.h"
 	"Module.h"
 
-1493640775 c:\users\link\desktop\eurobot-2017\picky_pi\module.h
+1493992118 c:\users\link\desktop\eurobot-2017\picky_pi\module.h
 	<iostream>
 	"Coord.h"
 
-1493722858 source:c:\users\link\desktop\eurobot-2017\picky_pi\element_robot.cpp
+1493995972 source:c:\users\link\desktop\eurobot-2017\picky_pi\element_robot.cpp
 	"Element_Robot.h"
 
-1493658091 c:\users\link\desktop\eurobot-2017\picky_pi\element_robot.h
+1493992770 c:\users\link\desktop\eurobot-2017\picky_pi\element_robot.h
 	"StockageModule.h"
 	<iostream>
 
-1493626723 c:\users\link\desktop\eurobot-2017\picky_pi\stockagemodule.h
+1493991985 c:\users\link\desktop\eurobot-2017\picky_pi\stockagemodule.h
 	<iostream>
+	"Module.h"
 
 1493776087 source:c:\users\link\desktop\eurobot-2017\picky_pi\gestionnaire_mission.cpp
 	"Gestionnaire_Mission.h"
@@ -291,4 +292,14 @@
 	"Coord.h"
 	"Element_Robot.h"
 	"Plateau_jeu.h"
+
+1494020719 source:c:\users\link\desktop\eurobot-2017\picky_pi\compteur.cpp
+	"Compteur.h"
+
+1494020581 c:\users\link\desktop\eurobot-2017\picky_pi\compteur.h
+
+1494206782 source:c:\users\link\desktop\eurobot-2017\picky_pi\cratere.cpp
+	"Cratere.h"
+
+1494206729 c:\users\link\desktop\eurobot-2017\picky_pi\cratere.h
 

@@ -1,0 +1,26 @@
+class REPLIS_ARM_State
+!!!392706.cpp!!!	time_out(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME");
+#endif
+    stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._exit13(stm);
+  }
+!!!392834.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!392962.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME.REPLIS ARM");
+#endif
+// position front, slide centre, pitch folded
+serialPrintf(master->getPortSerie(),"F0 \n");
+serialPrintf(master->getPortSerie(),"L2 \n");
+serialPrintf(master->getPortSerie(),"Y0 \n");
+serialPrintf(master->getPortSerie(),"P0 \n");
+
+serialPrintf(master->getPortSerie(),"C5 \n");
+
+master->set_time_out(150);
+!!!393090.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state;

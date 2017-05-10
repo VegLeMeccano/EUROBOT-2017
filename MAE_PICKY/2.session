@@ -1,8 +1,10 @@
-window_sizes 1920 1058 326 1588 720 82
+window_sizes 1920 1058 387 1528 1012 0
+
 show_stereotypes
-selected classview_ref 128002 // MAE_PICKY
+selected statediagram_ref 155010 // INITIALISATION
 open
-  pseudostate_ref 156418 // exit_point
+  state_ref 128130 // INITIALISATION
+  state_ref 128386 // EVITEMENT
   deploymentview_ref 128002 // MAE_PICKY
 end
 end

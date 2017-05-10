@@ -1,18 +1,57 @@
-format 76
+format 213
 
 statecanvas 128002 state_ref 142594 // MISSION_DEPOT_BASE_VERTICALE
-  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
-  xyzwh 200 185 2000 429 195
+  
+  xyzwh 31 30 2000 1129 821
 end
 pseudostatecanvas 128130 pseudostate_ref 149634 // initial
-   xyz 297 272 2005
+   xyz 127 116 2005
 end
 pseudostatecanvas 128258 pseudostate_ref 149762 // exit_point
-   xyz 486 323 3005 label_xy 394 342
+   xyz 209 655 3005 label_xy 117 674
 end
-transitioncanvas 128386 transition_ref 145026 // <transition>
+statecanvas 128898 state_ref 205058 // WAYPOINT INIT
   
-  from ref 128130 z 3006 to ref 128258
+  xyzwh 239 114 2005 99 33
+end
+statecanvas 129282 state_ref 282370 // PLACEMENT
+  
+  xyzwh 529 248 2005 87 33
+end
+statecanvas 129410 state_ref 282498 // ROUTINE DE POSE
+  
+  xyzwh 586 417 2005 113 33
+end
+statecanvas 129538 state_ref 282626 // DEGAGEMENT
+  
+  xyzwh 573 569 2005 93 33
+end
+pseudostatecanvas 129666 pseudostate_ref 246274 // exit_point
+   xyz 328 137 3005 label_xy 278 156
+end
+transitioncanvas 129026 transition_ref 250626 // <transition>
+  
+  from ref 128130 z 2006 to ref 128898
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129794 transition_ref 345858 // <transition>
+  
+  from ref 129666 z 3006 to ref 129282
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129922 transition_ref 345986 // <transition>
+  
+  from ref 129282 z 2006 to ref 129410
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130050 transition_ref 346114 // <transition>
+  
+  from ref 129410 z 2006 to ref 129538
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130178 transition_ref 346242 // <transition>
+  
+  from ref 129538 z 3006 to ref 128258
   write_horizontally default show_definition default drawing_language default
 end
 end

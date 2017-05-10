@@ -12,7 +12,7 @@ Master::Master(int portSerie_):
     color_blue(true),
     portSerie(portSerie_)
 {
-
+	compteur = new Compteur();
     element_robot = new Element_Robot();
     plateau_jeu = new Plateau_jeu();
     gestionnaire_mission = new Gestionnaire_Mission(plateau_jeu, element_robot);
@@ -20,6 +20,11 @@ Master::Master(int portSerie_):
     //mae_murphy.create();
     mae_picky.create();
     cout << "[MASTER_PICKY] initialisation" << endl;
+}
+
+Compteur* Master::get_compteur()
+{
+	return compteur;
 }
 
 /**************************************************************************
@@ -56,7 +61,7 @@ void Master::run()
 
 void Master::decision_nouvelle_mission()
 {
-    int new_mission = get_gestionnaire_mission()->decision_mission((period_jeu.time_elapsed() - PERIODE_JEU)/1000); // temps restant en seconde
+    int new_mission = get_gestionnaire_mission()->decision_mission((PERIODE_JEU - period_jeu.time_elapsed())/1000); // temps restant en seconde
     switch(new_mission)
     {
         case MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE:
@@ -93,6 +98,10 @@ void Master::decision_nouvelle_mission()
 
         case MISSION_DEPOT_BASE_VERTICALE:
             get_mae_picky()->mission_depot_base_verticale();
+        break;
+
+        case -1:
+            get_mae_picky()->recall();
         break;
 
     }

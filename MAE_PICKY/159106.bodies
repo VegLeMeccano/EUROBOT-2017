@@ -1,0 +1,34 @@
+class PRISE_AR_FACE_State
+!!!188802.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!188930.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state;
+!!!222466.cpp!!!	time_out(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state._prise_ar_face_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state._prise_av_face_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.CATCH AND THROW.PRISE AV FACE");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state._prise_av_face_state.create(stm);
+  }
+!!!222594.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.CATCH AND THROW.PRISE AR FACE");
+#endif
+// position front, slide centre, pitch folded
+serialPrintf(master->getPortSerie(),"F0 \n");
+serialPrintf(master->getPortSerie(),"L1 \n");
+serialPrintf(master->getPortSerie(),"Y2 \n");
+serialPrintf(master->getPortSerie(),"P0 \n");
+
+master->set_time_out(300);
+!!!222722.cpp!!!	_doexit(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute exit behavior of .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.CATCH AND THROW.PRISE AR FACE");
+#endif
+// claw open wide
+serialPrintf(master->getPortSerie(),"C2 \n");
+
+// claw catch auto
+serialPrintf(master->getPortSerie(),"C4 \n");

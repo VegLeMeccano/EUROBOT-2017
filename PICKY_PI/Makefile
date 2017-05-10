@@ -6,10 +6,10 @@
 #Change output_file_name.a below to your desired executible filename
 
 #Set all your object files (the object files of all the .c files in your project, e.g. main.o my_sub_functions.o )
-OBJ = main.o Coord.o Distributeur.o Element_Robot.o Gestionnaire_Mission.o MAE_PICKY.o Master.o Mission.o Module.o Period.o Plateau_jeu.o Protocole_COM.o StockageModule.o Zone_depose_module.o
+OBJ = main.o Compteur.o Coord.o Cratere.o Distributeur.o Element_Robot.o Gestionnaire_Mission.o MAE_PICKY.o Master.o Mission.o Module.o Period.o Plateau_jeu.o Protocole_COM.o StockageModule.o Zone_depose_module.o
 
 #Set any dependant header files so that if they are edited they cause a complete re-compile (e.g. main.h some_subfunctions.h some_definitions_file.h ), or leave blank
-DEPS = main.h Coord.h Distributeur.h Element_Robot.h Gestionnaire_Mission.h MAE_PICKY.h Master.h Mission.h Module.h Period.h Plateau_jeu.h Protocole_COM.h StockageModule.h Zone_depose_module.h 
+DEPS = main.h Compteur.h Coord.h Cratere.h Distributeur.h Element_Robot.h Gestionnaire_Mission.h MAE_PICKY.h Master.h Mission.h Module.h Period.h Plateau_jeu.h Protocole_COM.h StockageModule.h Zone_depose_module.h 
 
 #Any special libraries you are using in your project (e.g. -lbcm2835 -lrt `pkg-config --libs gtk+-3.0` ), or leave blank
 LIBS = -lrt -lwiringPi -lpthread -lm

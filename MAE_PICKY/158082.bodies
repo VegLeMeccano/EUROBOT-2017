@@ -1,0 +1,26 @@
+class Collecte_Monochrome_5_State
+!!!184834.cpp!!!	_completion(inout stm : MAE_PICKY) : bool
+  {
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._collecte_monochrome_5_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._sortie_de_zone_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT.Sortie de Zone");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._sortie_de_zone_state.create(stm);
+    return (bool) 1;
+  }
+!!!184962.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+	_completion(stm);
+!!!185090.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT.Collecte Monochrome 5");
+#endif
+cout<< "[MAE] -> [COLLECTE MONOCHROME #5]" <<endl;
+!!!185218.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state;
+!!!298498.cpp!!!	_doexit(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute exit behavior of .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT.Collecte Monochrome 5");
+#endif
+master->get_plateau_jeu()->get_module_central_5()->remove();

@@ -1,0 +1,26 @@
+class Recule_State
+!!!213634.cpp!!!	assFini(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._range_arm_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.Range Arm");
+#endif
+    stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._range_arm_state.create(stm);
+  }
+!!!213762.cpp!!!	blocage(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._range_arm_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.Range Arm");
+#endif
+    stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._range_arm_state.create(stm);
+  }
+!!!213890.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!214018.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.Recule");
+#endif
+serialPrintf(master->getPortSerie(),"S4 -300 \n");
+!!!214146.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state;

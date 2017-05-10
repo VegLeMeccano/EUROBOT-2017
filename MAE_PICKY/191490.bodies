@@ -1,0 +1,42 @@
+class CAP_MISSION_State
+!!!270594.cpp!!!	assFini(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._waypoint_init_state._cap_mission_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._waypoint_init_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME.WAYPOINT INIT");
+#endif
+    stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._waypoint_init_state._exit14(stm);
+  }
+!!!270722.cpp!!!	blocage(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._waypoint_init_state._cap_mission_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._waypoint_init_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME.WAYPOINT INIT");
+#endif
+    stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._waypoint_init_state._exit14(stm);
+  }
+!!!270850.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!270978.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME.WAYPOINT INIT.CAP MISSION");
+#endif
+cout<< "BF CAP MISSION "<<endl;
+
+string ordre;
+ordre = "S3 " + master->get_gestionnaire()->get_cap_mission_str() + " \n";
+const char* ordre_c = ordre.c_str();
+
+serialPrintf(master->getPortSerie(),ordre_c); 
+cout<<"ORIENTATION VERS MISSION : "<<ordre<<endl;
+!!!271106.cpp!!!	_doexit(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute exit behavior of .MAE_PICKY.JEU.MISSION_TRANSFERT_DIRECT_DISTRIBUTEUR_POLYCHROME.WAYPOINT INIT.CAP MISSION");
+#endif
+
+// vitesse lente
+serialPrintf(master->getPortSerie(),"S7 0 \n"); 
+!!!271234.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_transfert_direct_distributeur_polychrome_state._waypoint_init_state;

@@ -1,0 +1,20 @@
+class Sortie_de_Zone_State
+!!!185346.cpp!!!	_completion(inout stm : MAE_PICKY) : bool
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._exit9(stm);
+    return (bool) 1;
+  }
+!!!185474.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+	_completion(stm);
+!!!185602.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT.Sortie de Zone");
+#endif
+cout<< "[MAE] -> [SORTIE ZONE COLLECTE CENTRAUX RESTANT]" <<endl;
+!!!185730.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state;

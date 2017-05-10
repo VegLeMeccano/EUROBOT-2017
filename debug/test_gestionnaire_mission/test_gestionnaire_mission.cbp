@@ -34,6 +34,8 @@
 		</Compiler>
 		<Unit filename="..\..\PICKY_PI\Coord.cpp" />
 		<Unit filename="..\..\PICKY_PI\Coord.h" />
+		<Unit filename="..\..\PICKY_PI\Cratere.cpp" />
+		<Unit filename="..\..\PICKY_PI\Cratere.h" />
 		<Unit filename="..\..\PICKY_PI\Distributeur.cpp" />
 		<Unit filename="..\..\PICKY_PI\Distributeur.h" />
 		<Unit filename="..\..\PICKY_PI\Element_Robot.cpp" />

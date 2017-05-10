@@ -14,5 +14,8 @@ class WAIT_START_OUT_State
 	puts("DEBUG : execute entry behavior of .MAE_PICKY.INITIALISATION.WAIT START OUT");
 #endif
 cout<<"wait start, to be removed"<<endl;
+
+// hold on
+serialPrintf(master->getPortSerie(),"S8 \n");
 !!!142978.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
   return &stm._mae_picky_state._initialisation_state;

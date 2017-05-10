@@ -1,0 +1,22 @@
+class POSE_SUR_ZONE_DEPART_State
+!!!190082.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!190210.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state;
+!!!224130.cpp!!!	time_out(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state._degagement_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.CATCH AND THROW.DEGAGEMENT");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state._degagement_state.create(stm);
+  }
+!!!224258.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.CATCH AND THROW.POSE SUR ZONE DEPART");
+#endif
+// deplis et ouverture de pince
+serialPrintf(master->getPortSerie(),"P2 \n");
+serialPrintf(master->getPortSerie(),"C2 \n");
+
+master->set_time_out(500);

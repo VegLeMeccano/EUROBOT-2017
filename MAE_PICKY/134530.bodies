@@ -150,3 +150,75 @@ return (_current_state != 0);
     _current_state->near(*this);
   }
   return (_current_state != 0);
+!!!243074.cpp!!!	clw_stocked() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger clw_stocked");
+#endif
+    _current_state->clw_stocked(*this);
+  }
+  return (_current_state != 0);
+!!!243458.cpp!!!	clw_fail_catch() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger clw_fail_catch");
+#endif
+    _current_state->clw_fail_catch(*this);
+  }
+  return (_current_state != 0);
+!!!307970.cpp!!!	sto_l_stocked() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger sto_l_stocked");
+#endif
+    _current_state->sto_l_stocked(*this);
+  }
+  return (_current_state != 0);
+!!!308354.cpp!!!	sto_l_fail() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger sto_l_fail");
+#endif
+    _current_state->sto_l_fail(*this);
+  }
+  return (_current_state != 0);
+!!!308866.cpp!!!	sto_c_stocked() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger sto_c_stocked");
+#endif
+    _current_state->sto_c_stocked(*this);
+  }
+  return (_current_state != 0);
+!!!309250.cpp!!!	sto_c_fail() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger sto_c_fail");
+#endif
+    _current_state->sto_c_fail(*this);
+  }
+  return (_current_state != 0);
+!!!309762.cpp!!!	sto_r_stocked() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger sto_r_stocked");
+#endif
+    _current_state->sto_r_stocked(*this);
+  }
+  return (_current_state != 0);
+!!!310146.cpp!!!	sto_r_fail() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger sto_r_fail");
+#endif
+    _current_state->sto_r_fail(*this);
+  }
+  return (_current_state != 0);
+!!!408066.cpp!!!	recall() : bool
+  if (_current_state != 0) {
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : fire trigger recall");
+#endif
+    _current_state->recall(*this);
+  }
+  return (_current_state != 0);

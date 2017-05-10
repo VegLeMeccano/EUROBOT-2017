@@ -6,5 +6,7 @@ class END_State
 	puts("DEBUG : execute entry behavior of .MAE_PICKY.END");
 #endif
 cout<<"ETAT END"<<endl;
+// affiche les stats du jeux: element robot, plateau de jeux et mission
+serialPrintf(master->getPortSerie(),"S9 \n");
 !!!152706.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
   return &stm._mae_picky_state;

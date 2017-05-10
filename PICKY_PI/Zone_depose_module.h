@@ -19,6 +19,8 @@ class Zone_depose_module
 
 
         void add_module(Module module_to_add);
+		void add_module_polychrome();
+		void add_module_monochrome();
 
         bool is_full();
 

@@ -29,20 +29,20 @@ void Element_Robot::display_element()
     cout << "[can be stocked] ->  #" << this->can_be_stocked() <<endl;
     cout << "[where to stock] ->  #" << this->where_to_stock() <<endl;
 
-    cout << "[CLAW] ->  #" << this->get_stockage_CLAW()->is_stockage_full();
-    cout << " (P : " << this->get_stockage_CLAW()->is_color_polychrome() << " ; ";
+    cout << "[CLAW] ->  [" << this->get_stockage_CLAW()->is_stockage_full();
+    cout << "/1] (P : " << this->get_stockage_CLAW()->is_color_polychrome() << " ; ";
     cout << "M : " << this->get_stockage_CLAW()->is_color_monochrome() << ")"<< endl;
 
-    cout << "[STO_L] -> #" << this->get_stockage_L()->is_stockage_full();
-    cout << " (P : " << this->get_stockage_L()->is_color_polychrome() << " ; ";
+    cout << "[STO_L] -> [" << this->get_stockage_L()->is_stockage_full();
+    cout << "/1] (P : " << this->get_stockage_L()->is_color_polychrome() << " ; ";
     cout << "M : " << this->get_stockage_L()->is_color_monochrome() << ")"<< endl;
 
-    cout << "[STO_C] -> #" << this->get_stockage_C()->is_stockage_full();
-    cout << " (P : " << this->get_stockage_C()->is_color_polychrome() << " ; ";
+    cout << "[STO_C] -> [" << this->get_stockage_C()->is_stockage_full();
+    cout << "/1] (P : " << this->get_stockage_C()->is_color_polychrome() << " ; ";
     cout << "M : " << this->get_stockage_C()->is_color_monochrome() << ")"<< endl;
 
-    cout << "[STO_R] -> #" << this->get_stockage_R()->is_stockage_full();
-    cout << " (P : " << this->get_stockage_R()->is_color_polychrome() << " ; ";
+    cout << "[STO_R] -> [" << this->get_stockage_R()->is_stockage_full();
+    cout << "/1] (P : " << this->get_stockage_R()->is_color_polychrome() << " ; ";
     cout << "M : " << this->get_stockage_R()->is_color_monochrome() << ")"<< endl;
     cout <<"---------------------------------------------------" << endl<< endl;
 }
@@ -85,6 +85,10 @@ StockageModule* Element_Robot::get_stockage_CLAW()
     return &stockage_CLAW;
 }
 
+int Element_Robot::nb_module_present_stock()
+{
+    return get_stockage_L()->is_stockage_full() + get_stockage_C()->is_stockage_full() +get_stockage_R()->is_stockage_full();
+}
 
 int Element_Robot::nb_module_present()
 {

@@ -1,0 +1,34 @@
+class Push_Polychrome_3_State
+!!!332290.cpp!!!	_completion(inout stm : MAE_PICKY) : bool
+  {
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._etat_check_sortie_de_mission_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Etat check sortie de mission");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._etat_check_sortie_de_mission_state.create(stm);
+    return (bool) 1;
+  }
+!!!332418.cpp!!!	create(inout stm : MAE_PICKY) : void
+  _doentry(stm);
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._preparation_du_belier_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.Preparation du belier");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._preparation_du_belier_state.create(stm);
+  }
+!!!332546.cpp!!!	_exit6(inout stm : MAE_PICKY) : void
+  _doexit(stm);
+!!!338434.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3");
+#endif
+cout<< "[MAE] -> [PUSH POLYCHROME #3]" <<endl;
+!!!338562.cpp!!!	_doexit(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute exit behavior of .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3");
+#endif
+master->get_plateau_jeu()->get_module_central_3()->remove();
+!!!338690.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state;

@@ -1,0 +1,51 @@
+class Prise_de_stock_State
+!!!335746.cpp!!!	create(inout stm : MAE_PICKY) : void
+  {
+    if (master->get_element_robot()->where_to_pick_up() == -1) {
+      stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state._exit7(stm);
+    }
+    else if (master->get_element_robot()->where_to_pick_up() == 0) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state._sto_l_yaw_slide_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.Prise de stock.STO L YAW SLIDE");
+#endif
+      stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state._sto_l_yaw_slide_state.create(stm);
+    }
+    else if (master->get_element_robot()->where_to_pick_up() == 1) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state._sto_c_yaw_slide_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.Prise de stock.STO C YAW SLIDE");
+#endif
+      stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state._sto_c_yaw_slide_state.create(stm);
+    }
+    else if (master->get_element_robot()->where_to_pick_up() == 2) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state._sto_r_yaw_slide_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.Prise de stock.STO R YAW SLIDE");
+#endif
+      stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state._sto_r_yaw_slide_state.create(stm);
+    }
+  }
+!!!335874.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state;
+!!!347906.cpp!!!	_exit7(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3");
+#endif
+    if (!master->get_element_robot()-> claw_available()) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._positionnement_pince_pour_pose_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.Positionnement pince pour pose");
+#endif
+      stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._positionnement_pince_pour_pose_state.create(stm);
+    }
+    else if (master->get_element_robot()-> claw_available()) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.Prise de stock");
+#endif
+      stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state.create(stm);
+    }
+  }

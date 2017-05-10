@@ -1,0 +1,48 @@
+class Collecte_Monochrome_4_State
+!!!184322.cpp!!!	_completion(inout stm : MAE_PICKY) : bool
+  {
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._collecte_monochrome_4_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT");
+#endif
+    if (master->get_element_robot()->nb_slot_available() >= 1) {
+      if (master->get_plateau_jeu()->get_module_central_5()->is_present()) {
+        stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._collecte_monochrome_5_state);
+#ifdef VERBOSE_STATE_MACHINE
+        puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT.Collecte Monochrome 5");
+#endif
+        stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._collecte_monochrome_5_state.create(stm);
+      }
+      else if (!master->get_plateau_jeu()->get_module_central_5()->is_present()) {
+        stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._sortie_de_zone_state);
+#ifdef VERBOSE_STATE_MACHINE
+        puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT.Sortie de Zone");
+#endif
+        stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._sortie_de_zone_state.create(stm);
+      }
+    }
+    else if (master->get_element_robot()->nb_slot_available() == 0) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._sortie_de_zone_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT.Sortie de Zone");
+#endif
+      stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._sortie_de_zone_state.create(stm);
+    }
+    return (bool) 1;
+  }
+!!!184450.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+	_completion(stm);
+!!!184578.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT.Collecte Monochrome 4");
+#endif
+cout<< "[MAE] -> [COLLECTE MONOCHROME #4]" <<endl;
+!!!184706.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state;
+!!!298370.cpp!!!	_doexit(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute exit behavior of .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT.Collecte Monochrome 4");
+#endif
+master->get_plateau_jeu()->get_module_central_4()->remove();

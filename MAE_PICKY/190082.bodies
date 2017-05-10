@@ -1,0 +1,34 @@
+class CAP_TO_MISSION_State
+!!!263554.cpp!!!	assFini(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._waypoint_init_state._bf_droite_to_mission_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT.WAYPOINT INIT.BF DROITE TO MISSION");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._waypoint_init_state._bf_droite_to_mission_state.create(stm);
+  }
+!!!263682.cpp!!!	blocage(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._waypoint_init_state._bf_droite_to_mission_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT.WAYPOINT INIT.BF DROITE TO MISSION");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._waypoint_init_state._bf_droite_to_mission_state.create(stm);
+  }
+!!!263810.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!263938.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_RESTANT.WAYPOINT INIT.CAP TO MISSION");
+#endif
+cout<< "BFCAP VERS MISSION "<<endl;
+
+string ordre;
+ordre = "S3 " + master->get_gestionnaire()->get_cap_to_mission_str() + " \n";
+const char* ordre_c = ordre.c_str();
+
+// vitesse moyenne & BF CAP
+serialPrintf(master->getPortSerie(),"S7 1 \n"); 	
+serialPrintf(master->getPortSerie(),ordre_c);
+!!!264066.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_restant_state._waypoint_init_state;

@@ -1,0 +1,32 @@
+class PREPARATION_DU_SWING_State
+!!!205698.cpp!!!	time_out(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_cratere_state._golf_playing_state._shoot_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_CRATERE.GOLF PLAYING.SHOOT");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_cratere_state._golf_playing_state._shoot_state.create(stm);
+  }
+!!!205826.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!205954.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_PUSH_CRATERE.GOLF PLAYING.PREPARATION DU SWING");
+#endif
+if(master->is_blue()){
+	// position diagonal left, slide left, pitch catch AV
+	serialPrintf(master->getPortSerie(),"F0 \n");
+	serialPrintf(master->getPortSerie(),"L0 \n");
+	serialPrintf(master->getPortSerie(),"Y1 \n");
+	serialPrintf(master->getPortSerie(),"P2 \n");
+}
+if(master->is_yellow()){
+	// position diagonal right, slide right, pitch catch AV
+	serialPrintf(master->getPortSerie(),"F0 \n");
+	serialPrintf(master->getPortSerie(),"L2 \n");
+	serialPrintf(master->getPortSerie(),"Y3 \n");
+	serialPrintf(master->getPortSerie(),"P2 \n");
+}
+master->set_time_out(500);
+!!!206082.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_push_cratere_state._golf_playing_state;

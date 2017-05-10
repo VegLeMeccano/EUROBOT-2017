@@ -1,0 +1,28 @@
+class CATCH_AND_THROW_State
+!!!188034.cpp!!!	_junction1(inout stm : MAE_PICKY) : void
+  {
+    if (!master->get_plateau_jeu()->get_distributeur_monochrome()->is_empty()) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state._prise_ar_face_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.CATCH AND THROW.PRISE AR FACE");
+#endif
+      stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state._prise_ar_face_state.create(stm);
+    }
+    else if (master->get_plateau_jeu()->get_distributeur_monochrome()->is_empty()) {
+      stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state._replis_state);
+#ifdef VERBOSE_STATE_MACHINE
+      puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.CATCH AND THROW.REPLIS");
+#endif
+      stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._catch_and_throw_state._replis_state.create(stm);
+    }
+  }
+!!!191106.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state;
+!!!380418.cpp!!!	_exit17(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._degagement_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_PUSH_DISTRIBUTEUR_MONOCHROME.DEGAGEMENT");
+#endif
+    stm._mae_picky_state._jeu_state._mission_push_distributeur_monochrome_state._degagement_state.create(stm);
+  }

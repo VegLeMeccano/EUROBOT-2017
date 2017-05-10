@@ -43,7 +43,8 @@ class Element_Robot
         StockageModule* get_stockage_R();
         StockageModule* get_stockage_CLAW();
 
-        int nb_module_present();
+        int nb_module_present();        //au total
+        int nb_module_present_stock();  // juste le stock haut
         int nb_slot_available();
 
 // available

@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+#include "Module.h"
+
 
 using namespace std;
 
@@ -22,6 +24,8 @@ class StockageModule
         void catch_polychrome();
         void catch_monochrome();
         void release();
+
+        Module get_module();
 
 
 

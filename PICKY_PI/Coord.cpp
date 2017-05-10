@@ -79,7 +79,17 @@ void Coord::barycentre(Coord coord2, float rapport){
 
 }
 
-Vector::Vector():x(0.), y(0.){}
+
+
+/************************************
+    CONSTRUCTOR
+************************************/
+Vector::Vector():
+x(0.),
+y(0.)
+{
+
+}
 
 Vector::Vector(Coord u, Coord v)
 {
@@ -87,7 +97,33 @@ Vector::Vector(Coord u, Coord v)
     y = v.get_y() - u.get_y();
 }
 
-float Vector::norm(){
+Vector::Vector(Coord cap):
+    x(cos(cap.get_cap())),
+    y(sin(cap.get_cap()))
+{
+
+}
+
+Vector::Vector(float x_, float y_):
+x(x_),
+y(y_)
+{
+
+}
+
+
+
+/************************************
+    SETTER
+************************************/
+void Vector::set_vector(Coord u, Coord v)
+{
+    x = v.get_x() - u.get_x();
+    y = v.get_y() - u.get_y();
+}
+
+float Vector::norm()
+{
     return sqrt(x*x + y*y);
 }
 
@@ -102,13 +138,22 @@ void Vector::normalize(){
     y = y / len;
 }
 
-Vector::Vector(Coord cap):x(cos(cap.get_cap())), y(sin(cap.get_cap())){}
-
-Vector::Vector(float x_, float y_):x(x_), y(y_){}
 
 
-float Vector::get_x(){return x;}
-float Vector::get_y(){return y;}
+
+/************************************
+    GETTER
+************************************/
+
+float Vector::get_x()
+{
+    return x;
+}
+
+float Vector::get_y()
+{
+    return y;
+}
 
 float Vector::scalar(Vector u){
    return x * u.get_x() + y * u.get_y();
@@ -124,6 +169,8 @@ void Vector::write_serial(){
 }
 
 float Vector::get_angle(){
+    return atan2(y,x);
+    /*
     if (x > 0)
     {
         return atan(y / x);
@@ -140,6 +187,7 @@ float Vector::get_angle(){
     {
         return - PI / 2;
     }
+    */
 }
 
 float diff_cap(float cap1, float cap2)

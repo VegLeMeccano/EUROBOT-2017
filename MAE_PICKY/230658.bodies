@@ -1,0 +1,52 @@
+class STO_R_PITCH_UP_State
+!!!361602.cpp!!!	clw_fail_catch(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state._sto_r_pitch_up_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state._sto_r_pitch_pose_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.Prise de stock.STO R PITCH POSE");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state._sto_r_pitch_pose_state.create(stm);
+  }
+!!!361730.cpp!!!	time_out(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state._sto_r_pitch_up_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state._sto_r_pitch_pose_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.Prise de stock.STO R PITCH POSE");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state._sto_r_pitch_pose_state.create(stm);
+  }
+!!!361858.cpp!!!	clw_stocked(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state._sto_r_pitch_up_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state._pipo_r_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.Prise de stock.pipo R");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state._pipo_r_state.create(stm);
+  }
+!!!361986.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!362114.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.Prise de stock.STO R PITCH UP");
+#endif
+serialPrintf(master->getPortSerie(),"P5 \n");
+serialPrintf(master->getPortSerie(),"C4 \n");
+
+master->set_time_out(3000);
+
+if(master->get_element_robot()->get_stockage_R()->is_color_polychrome()){
+	serialPrintf(master->getPortSerie(),"C7 \n");
+}
+else{
+	serialPrintf(master->getPortSerie(),"C8 \n");
+}
+!!!362242.cpp!!!	_doexit(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute exit behavior of .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.Push Polychrome 3.Prise de stock.STO R PITCH UP");
+#endif
+serialPrintf(master->getPortSerie(),"T9 \n");
+!!!362370.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._push_polychrome_3_state._prise_de_stock_state;

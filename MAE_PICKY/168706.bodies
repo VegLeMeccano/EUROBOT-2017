@@ -1,0 +1,42 @@
+class Vidange_Stockage_Haut_State
+!!!211202.cpp!!!	time_out(inout stm : MAE_PICKY) : void
+  {
+    stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._vidange_stockage_haut_state._doexit(stm);
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._recule_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.Recule");
+#endif
+    stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state._recule_state.create(stm);
+  }
+!!!211330.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!211458.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.Vidange Stockage Haut");
+#endif
+// release all Stock
+serialPrintf(master->getPortSerie(),"T3 \n");
+serialPrintf(master->getPortSerie(),"T6 \n");
+serialPrintf(master->getPortSerie(),"T9 \n");
+
+master->set_time_out(1000);
+!!!211586.cpp!!!	_doexit(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute exit behavior of .MAE_PICKY.JEU.MISSION_DROP_ZONE_DEPART.Vidange Stockage Haut");
+#endif
+// ecriture du module dans la zone de depart
+if(master->get_element_robot()->get_stockage_L()->is_stockage_full()){
+master->get_plateau_jeu()->get_depose_module_zone_depart()->add_module(master->get_element_robot()->get_stockage_L()->get_module());
+}
+if(master->get_element_robot()->get_stockage_C()->is_stockage_full()){
+master->get_plateau_jeu()->get_depose_module_zone_depart()->add_module(master->get_element_robot()->get_stockage_C()->get_module());
+}
+if(master->get_element_robot()->get_stockage_R()->is_stockage_full()){
+master->get_plateau_jeu()->get_depose_module_zone_depart()->add_module(master->get_element_robot()->get_stockage_R()->get_module());
+}
+
+
+// enleve les module du stock
+master->get_element_robot()->vidange_stock();
+!!!211714.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_drop_zone_depart_state;

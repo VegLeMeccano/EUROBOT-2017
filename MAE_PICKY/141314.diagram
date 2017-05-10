@@ -1,18 +1,57 @@
-format 76
+format 213
 
 statecanvas 128002 state_ref 141826 // MISSION_COLLECTE_DISTRIBUTEUR_MONOCHROME
-  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
-  xyzwh 169 99 2000 531 309
+  
+  xyzwh 52 24 2000 987 809
 end
 pseudostatecanvas 128130 pseudostate_ref 141698 // initial
-   xyz 294 223 2005
+   xyz 177 146 2005
 end
 pseudostatecanvas 128258 pseudostate_ref 141826 // exit_point
-   xyz 511 288 3005 label_xy 379 307
+   xyz 481 590 3005 label_xy 349 609
 end
-transitioncanvas 128386 transition_ref 136706 // <transition>
+statecanvas 128898 state_ref 204290 // WAYPOINT INIT
   
-  from ref 128130 z 3006 to ref 128258
+  xyzwh 370 187 2005 99 33
+end
+statecanvas 129282 state_ref 254082 // PLACEMENT
+  
+  xyzwh 574 252 2005 87 33
+end
+statecanvas 129410 state_ref 254210 // DEBOIT LE DISTRIB
+  
+  xyzwh 571 381 2005 119 33
+end
+statecanvas 129538 state_ref 254338 // SORTIE DE ZONE
+  
+  xyzwh 577 500 2005 105 33
+end
+pseudostatecanvas 130050 pseudostate_ref 225922 // exit_point
+   xyz 454 210 3005 label_xy 353 233
+end
+transitioncanvas 129026 transition_ref 249090 // <transition>
+  
+  from ref 128130 z 2006 to ref 128898
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129666 transition_ref 313858 // <transition>
+  
+  from ref 129282 z 2006 to ref 129410
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129794 transition_ref 313986 // <transition>
+  
+  from ref 129410 z 2006 to ref 129538
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 129922 transition_ref 314114 // <transition>
+  
+  from ref 129538 z 3006 to ref 128258
+  write_horizontally default show_definition default drawing_language default
+end
+transitioncanvas 130178 transition_ref 315394 // <transition>
+  
+  from ref 130050 z 3006 to ref 129282
   write_horizontally default show_definition default drawing_language default
 end
 end

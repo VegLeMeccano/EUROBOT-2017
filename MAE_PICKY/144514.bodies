@@ -5,7 +5,7 @@ class ACTION_TO_DO_State
 #ifdef VERBOSE_STATE_MACHINE
     puts("DEBUG : current state is now .MAE_PICKY.EVITEMENT");
 #endif
-    stm._mae_picky_state._evitement_state._exit11(stm);
+    stm._mae_picky_state._evitement_state._exit28(stm);
   }
 !!!162306.cpp!!!	assFini(inout stm : MAE_PICKY) : void
   {
@@ -13,7 +13,7 @@ class ACTION_TO_DO_State
 #ifdef VERBOSE_STATE_MACHINE
     puts("DEBUG : current state is now .MAE_PICKY.EVITEMENT");
 #endif
-    stm._mae_picky_state._evitement_state._exit11(stm);
+    stm._mae_picky_state._evitement_state._exit28(stm);
   }
 !!!162434.cpp!!!	time_out(inout stm : MAE_PICKY) : void
   {
@@ -21,7 +21,7 @@ class ACTION_TO_DO_State
 #ifdef VERBOSE_STATE_MACHINE
     puts("DEBUG : current state is now .MAE_PICKY.EVITEMENT");
 #endif
-    stm._mae_picky_state._evitement_state._exit11(stm);
+    stm._mae_picky_state._evitement_state._exit28(stm);
   }
 !!!162562.cpp!!!	create(inout stm : MAE_PICKY) : void
 	_doentry(stm);
@@ -29,6 +29,29 @@ class ACTION_TO_DO_State
 #ifdef VERBOSE_STATE_MACHINE
 	puts("DEBUG : execute entry behavior of .MAE_PICKY.EVITEMENT.ACTION TO DO");
 #endif
-master->set_time_out(200);
+serialPrintf(master->getPortSerie(),"S8 \n");
+
+serialPrintf(master->getPortSerie(),"F0 \n");
+serialPrintf(master->getPortSerie(),"L2 \n");
+serialPrintf(master->getPortSerie(),"Y0 \n");
+serialPrintf(master->getPortSerie(),"P0 \n");
+
+serialPrintf(master->getPortSerie(),"C5 \n");
+
+// vitesse faible
+serialPrintf(master->getPortSerie(),"S7 0 \n"); 
+
+// recule un peu
+serialPrintf(master->getPortSerie(),"S4 -50 \n");
+
+master->set_time_out(500);
 !!!162818.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
   return &stm._mae_picky_state._evitement_state;
+!!!174466.cpp!!!	blocage(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._evitement_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.EVITEMENT");
+#endif
+    stm._mae_picky_state._evitement_state._exit28(stm);
+  }

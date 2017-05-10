@@ -1,0 +1,37 @@
+class BF_DROITE_TO_MISSION_State
+!!!171522.cpp!!!	assFini(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._waypoint_init_state._cap_mission_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.WAYPOINT INIT.CAP MISSION");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._waypoint_init_state._cap_mission_state.create(stm);
+  }
+!!!171650.cpp!!!	blocage(inout stm : MAE_PICKY) : void
+  {
+    stm._set_currentState(stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._waypoint_init_state._cap_mission_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.WAYPOINT INIT.CAP MISSION");
+#endif
+    stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._waypoint_init_state._cap_mission_state.create(stm);
+  }
+!!!171778.cpp!!!	create(inout stm : MAE_PICKY) : void
+	_doentry(stm);
+!!!171906.cpp!!!	_doentry(inout stm : MAE_PICKY) : void
+#ifdef VERBOSE_STATE_MACHINE
+	puts("DEBUG : execute entry behavior of .MAE_PICKY.JEU.MISSION_COLLECTE_MODULE_CENTRAUX_INITIALE.WAYPOINT INIT.BF DROITE TO MISSION");
+#endif
+// BF Droite vers objectif
+string ordre;
+ordre = "S5 "
+	+ master->get_gestionnaire()->get_x_mission_str() 
+	+ " "
+	+ master->get_gestionnaire()->get_y_mission_str() 
+	+ " "
+	+ master->get_gestionnaire()->get_cap_to_mission_str() 
+	+ " \n";
+const char* ordre_c = ordre.c_str();
+serialPrintf(master->getPortSerie(),ordre_c); 
+cout<<"BF droite vers MISSION : "<<ordre<<endl;
+!!!172034.cpp!!!	_upper(inout stm : MAE_PICKY) : MAE_PICKY::AnyState
+  return &stm._mae_picky_state._jeu_state._mission_collecte_module_centraux_initiale_state._waypoint_init_state;

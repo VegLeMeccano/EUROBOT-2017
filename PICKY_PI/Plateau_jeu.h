@@ -4,6 +4,7 @@
 #include "Distributeur.h"
 #include "Module.h"
 #include "Zone_depose_module.h"
+#include "Cratere.h"
 
 // par defaut en blue
 
@@ -28,7 +29,7 @@ class Plateau_jeu
         Zone_depose_module* get_depose_module_base_centrale_diagonale();
         Zone_depose_module* get_depose_module_base_centrale_verticale();
 
-
+        Cratere* get_cratere_zone_depart();
 
         int point_total();
 
@@ -52,9 +53,11 @@ class Plateau_jeu
         Zone_depose_module *depose_module_base_centrale_diagonale;
         Zone_depose_module *depose_module_base_centrale_verticale;
 
+        Cratere *cratere_zone_depart;
+
 
         bool color_blue;
-        bool cratere_zone_depart;
+        //bool cratere_zone_depart;
 
 };
 
